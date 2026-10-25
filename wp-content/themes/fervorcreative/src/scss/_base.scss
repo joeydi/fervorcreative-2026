@@ -9,6 +9,13 @@ html {
     text-size-adjust: 100%;
 }
 
+// Cross-fade between pages (the browser's default view transition).
+@media (prefers-reduced-motion: no-preference) {
+    @view-transition {
+        navigation: auto;
+    }
+}
+
 body {
     margin: 0;
     background-color: var(--color-background);
