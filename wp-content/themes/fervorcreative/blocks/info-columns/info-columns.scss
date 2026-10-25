@@ -1,0 +1,38 @@
+@use "mixins" as *;
+
+// Sit closer to a preceding intro heading.
+.section-intro + .info-columns {
+    margin-top: calc(var(--space-fluid-xl) - var(--space-section));
+}
+
+.info-columns {
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 15rem));
+        gap: var(--space-fluid-lg) var(--space-fluid-2xl);
+    }
+
+    &__title {
+        margin: 0 0 var(--space-xs);
+        font-family: var(--font-serif);
+        font-size: var(--font-size-large);
+        font-weight: 400;
+    }
+
+    &__copy {
+        font-size: var(--font-size-small);
+        line-height: 1.6;
+
+        p {
+            margin: 0;
+        }
+
+        a {
+            color: var(--color-primary);
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}

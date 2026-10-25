@@ -1,0 +1,31 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "fervor/capabilities",
+	"title": "Capabilities",
+	"category": "fervor",
+	"icon": "columns",
+	"description": "Columns of capabilities with icons and lists.",
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"customClassName": false,
+		"html": false
+	},
+	"acf": {
+		"blockVersion": 3,
+		"mode": "preview",
+		"renderTemplate": "capabilities.php"
+	},
+	"styles": [
+		{
+			"name": "default",
+			"label": "White",
+			"isDefault": true
+		},
+		{
+			"name": "surface",
+			"label": "Gray"
+		}
+	]
+}

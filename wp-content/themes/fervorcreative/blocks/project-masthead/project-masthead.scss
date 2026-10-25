@@ -1,0 +1,56 @@
+@use "mixins" as *;
+
+.project-masthead {
+    padding-block: var(--space-fluid-xl) var(--space-fluid-2xl);
+
+    &__inner {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        column-gap: var(--space-column-gap);
+        row-gap: var(--space-lg);
+
+        @include mobile {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    &__main {
+        grid-column: 1 / span 6;
+    }
+
+    &__title {
+        @include statement;
+        margin-bottom: var(--space-md);
+        color: var(--color-primary);
+    }
+
+    &__tagline {
+        margin: 0 0 var(--space-xs);
+        font-weight: 600;
+    }
+
+    &__intro {
+        max-width: 34em;
+        font-size: var(--font-size-small);
+        line-height: 1.7;
+
+        > :last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__services {
+        grid-column: 9 / -1;
+        padding-top: var(--space-xs);
+    }
+
+    &__list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        color: var(--color-muted);
+        font-size: var(--font-size-xsmall);
+        line-height: 1.9;
+    }
+}

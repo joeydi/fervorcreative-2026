@@ -1,0 +1,76 @@
+{
+    "key": "group_fc_project",
+    "title": "Project Details",
+    "fields": [
+        {
+            "key": "field_fc_project_tagline",
+            "label": "Tagline",
+            "name": "tagline",
+            "type": "text",
+            "instructions": "Short line shown under the title, e.g. “Branding a local favorite”.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_fc_project_intro",
+            "label": "Intro",
+            "name": "intro",
+            "type": "textarea",
+            "instructions": "Intro paragraph at the top of the project page.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 4,
+            "new_lines": "",
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_fc_project_card_image",
+            "label": "Card Image",
+            "name": "card_image",
+            "type": "image",
+            "instructions": "Image for project grids. Falls back to the featured image.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "project"
+            }
+        ]
+    ],
+    "menu_order": -1,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1792947693
+}

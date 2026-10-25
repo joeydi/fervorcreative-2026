@@ -1,0 +1,19 @@
+@use "sass:math";
+@use "variables";
+
+@function strip-unit($value) {
+    @return math.div($value, ($value * 0 + 1));
+}
+
+// Fluid value that scales linearly between two viewport widths.
+@function fluid($min-value, $max-value, $min-width: variables.$mobile, $max-width: variables.$wide) {
+    $min-value: strip-unit($min-value);
+    $max-value: strip-unit($max-value);
+    $min-width: strip-unit($min-width);
+    $max-width: strip-unit($max-width);
+
+    $slope: math.div(($max-value - $min-value), ($max-width - $min-width));
+    $intercept: -$min-width * $slope + $min-value;
+
+    @return clamp(#{$min-value}px, #{$intercept}px + #{$slope * 100}vw, #{$max-value}px);
+}

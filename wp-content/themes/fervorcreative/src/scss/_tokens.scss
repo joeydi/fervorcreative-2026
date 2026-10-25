@@ -1,0 +1,72 @@
+@use "functions" as *;
+
+:root {
+    // Brand colors
+    --color-primary: #e2261c;
+    --color-primary-hover: color-mix(in oklch, var(--color-primary) 85%, var(--color-black));
+
+    // Neutral scale
+    --color-neutral-0: #ffffff;
+    --color-neutral-1: #f4f4f4;
+    --color-neutral-2: #e4e4e4;
+    --color-neutral-3: #c4c4c4;
+    --color-neutral-4: #8a8a8a;
+    --color-neutral-5: #5c5c5c;
+    --color-neutral-6: #2b2b2b;
+    --color-neutral-7: #1a1a1a;
+
+    // Semantic colors
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-background: var(--color-neutral-0);
+    --color-foreground: var(--color-neutral-7);
+    --color-muted: var(--color-neutral-5);
+    --color-surface: var(--color-neutral-1);
+    --color-border: var(--color-neutral-2);
+
+    // Font families (swap for licensed faces when available)
+    --font-sans: "Inter Tight Variable", "Helvetica Neue", Arial, sans-serif;
+    --font-serif: "Source Serif 4 Variable", Georgia, serif;
+    --font-display: "Oswald Variable", "Arial Narrow", sans-serif;
+
+    // Font sizes
+    --font-size-eyebrow: 11px;
+    --font-size-xsmall: 11px;
+    --font-size-small: 13px;
+    --font-size-base: 15px;
+    --font-size-large: #{fluid(16, 19)};
+    --font-size-statement: #{fluid(30, 56)};
+    --font-size-display: #{fluid(48, 104)};
+
+    // Spacing primitives
+    --space-3xs: 4px;
+    --space-2xs: 8px;
+    --space-xs: 12px;
+    --space-sm: 16px;
+    --space-md: 24px;
+    --space-lg: 32px;
+    --space-xl: 48px;
+    --space-2xl: 64px;
+    --space-3xl: 96px;
+
+    // Spacing fluid
+    --space-fluid-sm: #{fluid(12, 16)};
+    --space-fluid-md: #{fluid(16, 24)};
+    --space-fluid-lg: #{fluid(24, 40)};
+    --space-fluid-xl: #{fluid(32, 64)};
+    --space-fluid-2xl: #{fluid(48, 96)};
+    --space-fluid-3xl: #{fluid(64, 144)};
+
+    // Spacing semantic
+    --space-section: var(--space-fluid-3xl);
+    --space-gutter: #{fluid(20, 48)};
+    --space-column-gap: var(--space-fluid-lg);
+
+    // Layout
+    --container-max: 1200px;
+    --header-height: #{fluid(72, 104)};
+
+    // Motion
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --duration: 200ms;
+}

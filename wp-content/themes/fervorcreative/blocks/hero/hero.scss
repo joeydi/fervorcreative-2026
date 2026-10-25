@@ -1,0 +1,45 @@
+@use "mixins" as *;
+
+.hero {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: flex-end;
+    min-height: clamp(420px, 56vw, 92vh);
+    overflow: hidden;
+    background-color: var(--color-neutral-6);
+    color: var(--color-white);
+
+    &__media {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+
+        // Darken the top for the overlaid header and the bottom for the title.
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgb(0 0 0 / 0.35) 0%, rgb(0 0 0 / 0) 28%);
+        }
+    }
+
+    &--has-title &__media::after {
+        background:
+            linear-gradient(180deg, rgb(0 0 0 / 0.35) 0%, rgb(0 0 0 / 0) 28%),
+            linear-gradient(0deg, rgb(0 0 0 / 0.35) 0%, rgb(0 0 0 / 0) 40%);
+    }
+
+    &__image,
+    &__video {
+        @include cover;
+    }
+
+    &__content {
+        padding-block: var(--space-fluid-xl);
+    }
+
+    &__title {
+        @include display;
+    }
+}

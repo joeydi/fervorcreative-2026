@@ -1,0 +1,23 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "fervor/site-footer",
+	"title": "Site Footer",
+	"category": "fervor",
+	"icon": "editor-insertbefore",
+	"description": "Work-with-us call to action, contact details, and social links. Edit in Site Options.",
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"customClassName": false,
+		"html": false,
+		"inserter": false,
+		"multiple": false,
+		"reusable": false
+	},
+	"acf": {
+		"blockVersion": 3,
+		"mode": "preview",
+		"renderTemplate": "site-footer.php"
+	}
+}

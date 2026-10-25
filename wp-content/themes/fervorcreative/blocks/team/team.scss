@@ -1,0 +1,49 @@
+@use "mixins" as *;
+
+.team {
+    &__eyebrow {
+        @include eyebrow;
+        margin-bottom: var(--space-fluid-lg);
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        row-gap: var(--space-fluid-xl);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        @include mobile {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    &__photo {
+        position: relative;
+        margin-bottom: var(--space-xs);
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+        background-color: var(--color-neutral-3);
+    }
+
+    &__image {
+        @include cover;
+        filter: grayscale(1) contrast(1.05);
+    }
+
+    &__name,
+    &__title {
+        margin: 0;
+        font-size: var(--font-size-xsmall);
+        line-height: 1.5;
+    }
+
+    &__name {
+        font-weight: 600;
+    }
+
+    &__title {
+        color: var(--color-muted);
+    }
+}

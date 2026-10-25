@@ -1,0 +1,20 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "fervor/info-columns",
+	"title": "Info Columns",
+	"category": "fervor",
+	"icon": "text",
+	"description": "Columns of titled copy, e.g. contact details.",
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"customClassName": false,
+		"html": false
+	},
+	"acf": {
+		"blockVersion": 3,
+		"mode": "preview",
+		"renderTemplate": "info-columns.php"
+	}
+}

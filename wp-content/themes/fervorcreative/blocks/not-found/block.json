@@ -1,0 +1,23 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "fervor/not-found",
+	"title": "Not Found",
+	"category": "fervor",
+	"icon": "warning",
+	"description": "404 message. Used by the 404 template.",
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"customClassName": false,
+		"html": false,
+		"inserter": false,
+		"multiple": false,
+		"reusable": false
+	},
+	"acf": {
+		"blockVersion": 3,
+		"mode": "preview",
+		"renderTemplate": "not-found.php"
+	}
+}

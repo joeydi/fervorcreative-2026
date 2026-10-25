@@ -1,0 +1,41 @@
+@use "mixins" as *;
+
+// Core blocks placed directly in post content.
+.site-main__content {
+    > :is(p, h2, h3, h4, ul, ol, .wp-block-image, .wp-block-embed, .wp-block-html) {
+        width: 100%;
+        max-width: calc(46rem + var(--space-gutter) * 2);
+        margin-inline: auto;
+        padding-inline: var(--space-gutter);
+    }
+
+    > :is(h2, h3, h4) {
+        margin-top: var(--space-fluid-xl);
+        font-weight: 300;
+    }
+
+    > h2 {
+        font-size: var(--font-size-statement);
+        line-height: 1.15;
+    }
+
+    > :is(.wp-block-image, .wp-block-embed) {
+        margin-block: var(--space-fluid-xl);
+    }
+
+    > :first-child:is(p, h2, h3, h4, ul, ol) {
+        margin-top: var(--space-section);
+    }
+
+    > :last-child:is(p, h2, h3, h4, ul, ol) {
+        margin-bottom: var(--space-section);
+    }
+
+    a:not([class]) {
+        color: var(--color-primary);
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

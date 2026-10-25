@@ -1,0 +1,52 @@
+@use "mixins" as *;
+
+.capabilities {
+    &__header {
+        margin-bottom: var(--space-fluid-xl);
+    }
+
+    &__eyebrow {
+        @include eyebrow;
+    }
+
+    &__heading {
+        @include statement;
+        max-width: 13.5em;
+    }
+
+    &__columns {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: var(--space-fluid-xl) var(--space-column-gap);
+
+        @include tablet {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        @include mobile {
+            grid-template-columns: minmax(0, 1fr);
+        }
+    }
+
+    &__icon {
+        width: 16px;
+        height: 16px;
+        margin-bottom: var(--space-sm);
+        object-fit: contain;
+    }
+
+    &__title {
+        margin: 0 0 var(--space-sm);
+        font-family: var(--font-serif);
+        font-size: var(--font-size-large);
+        font-weight: 400;
+    }
+
+    &__list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-size: var(--font-size-xsmall);
+        line-height: 2;
+    }
+}

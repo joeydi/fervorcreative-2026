@@ -1,0 +1,30 @@
+@use "mixins" as *;
+
+.section-intro {
+    &__eyebrow {
+        @include eyebrow;
+    }
+
+    &__heading {
+        @include statement;
+        max-width: 13.5em;
+    }
+
+    &__copy {
+        max-width: 30em;
+        margin-top: var(--space-fluid-xl);
+        font-size: var(--font-size-small);
+
+        > :last-child {
+            margin-bottom: 0;
+        }
+
+        a {
+            color: var(--color-primary);
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}

@@ -1,0 +1,13 @@
+@use "mixins" as *;
+
+.not-found {
+    &__eyebrow {
+        @include eyebrow;
+    }
+
+    &__heading {
+        @include statement;
+        max-width: 13.5em;
+        margin-bottom: var(--space-xl);
+    }
+}

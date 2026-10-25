@@ -1,0 +1,122 @@
+{
+    "key": "group_fc_block_project_media",
+    "title": "Block: Project Media",
+    "fields": [
+        {
+            "key": "field_fc_project_media_layout",
+            "label": "Layout",
+            "name": "layout",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "value",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "choices": {
+                "full": "Full width (1 item)",
+                "two-up": "Two up, equal",
+                "wide-left": "Two up, wide left",
+                "wide-right": "Two up, wide right"
+            },
+            "default_value": "full"
+        },
+        {
+            "key": "field_fc_project_media_label",
+            "label": "Label",
+            "name": "label",
+            "type": "text",
+            "instructions": "Optional red side label.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_fc_project_media_items",
+            "label": "Items",
+            "name": "items",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "collapsed": "",
+            "button_label": "Add Item",
+            "min": 0,
+            "max": 2,
+            "sub_fields": [
+                {
+                    "key": "field_fc_project_media_items_image",
+                    "label": "Image",
+                    "name": "image",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "id",
+                    "preview_size": "medium",
+                    "library": "all",
+                    "parent_repeater": "field_fc_project_media_items"
+                },
+                {
+                    "key": "field_fc_project_media_items_video",
+                    "label": "Video URL (optional)",
+                    "name": "video",
+                    "type": "oembed",
+                    "instructions": "Vimeo or YouTube URL. Replaces the image.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "width": "",
+                    "height": "",
+                    "parent_repeater": "field_fc_project_media_items"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "fervor/project-media"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1792947693
+}

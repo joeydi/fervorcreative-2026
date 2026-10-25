@@ -1,0 +1,20 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "fervor/testimonials",
+	"title": "Testimonials",
+	"category": "fervor",
+	"icon": "format-quote",
+	"description": "Rotating client quotes.",
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"customClassName": false,
+		"html": false
+	},
+	"acf": {
+		"blockVersion": 3,
+		"mode": "preview",
+		"renderTemplate": "testimonials.php"
+	}
+}

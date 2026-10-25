@@ -1,0 +1,75 @@
+{
+    "key": "group_fc_block_hero",
+    "title": "Block: Hero",
+    "fields": [
+        {
+            "key": "field_fc_hero_image",
+            "label": "Image",
+            "name": "image",
+            "type": "image",
+            "instructions": "Full-bleed background. Also used as the video poster.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_fc_hero_video",
+            "label": "Video (optional)",
+            "name": "video",
+            "type": "file",
+            "instructions": "Muted, looping MP4 shown instead of the image.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "mime_types": "mp4,webm"
+        },
+        {
+            "key": "field_fc_hero_title",
+            "label": "Title",
+            "name": "title",
+            "type": "text",
+            "instructions": "Optional large title shown bottom-left, e.g. ABOUT. Becomes the page H1.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "fervor/hero"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1792947693
+}

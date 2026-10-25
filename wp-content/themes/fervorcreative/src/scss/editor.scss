@@ -1,0 +1,16 @@
+// Editor-only adjustments inside the block editor iframe.
+.editor-styles-wrapper {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-base);
+    color: var(--color-foreground);
+}
+
+// Space blocks apart so they are easy to select in the editor.
+.editor-styles-wrapper .wp-block[data-type^="fervor/"] {
+    max-width: none;
+    margin-block: 0;
+}
+
+.editor-styles-wrapper .site-main__content > .wp-block {
+    max-width: none;
+}

@@ -1,0 +1,84 @@
+<?php
+/**
+ * Theme setup, asset loading, and ACF configuration.
+ *
+ * @package Fervor
+ */
+
+/**
+ * Register theme supports.
+ */
+function fervor_setup() {
+	add_theme_support( 'post-thumbnails' );
+	add_theme_support( 'responsive-embeds' );
+	remove_theme_support( 'core-block-patterns' );
+
+	register_nav_menus(
+		array(
+			'primary' => __( 'Main Menu', 'fervorcreative' ),
+		)
+	);
+}
+add_action( 'after_setup_theme', 'fervor_setup' );
+
+/**
+ * Enqueue front-end assets.
+ */
+function fervor_enqueue_assets() {
+	fervor_vite_enqueue( 'fervor-main', 'src/js/main.js' );
+}
+add_action( 'wp_enqueue_scripts', 'fervor_enqueue_assets' );
+
+/**
+ * Enqueue editor styles inside the block editor iframe.
+ */
+function fervor_enqueue_editor_assets() {
+	if ( ! is_admin() ) {
+		return;
+	}
+
+	fervor_vite_enqueue( 'fervor-editor', 'src/js/editor.js' );
+}
+add_action( 'enqueue_block_assets', 'fervor_enqueue_editor_assets' );
+
+/**
+ * Save and load ACF field groups from the theme's acf-json directory.
+ */
+add_filter(
+	'acf/settings/save_json',
+	function () {
+		return get_theme_file_path( 'acf-json' );
+	}
+);
+
+add_filter(
+	'acf/settings/load_json',
+	function ( $paths ) {
+		$paths[] = get_theme_file_path( 'acf-json' );
+		return array_unique( $paths );
+	}
+);
+
+/**
+ * Disable comments site-wide.
+ */
+add_action(
+	'init',
+	function () {
+		foreach ( get_post_types() as $post_type ) {
+			if ( post_type_supports( $post_type, 'comments' ) ) {
+				remove_post_type_support( $post_type, 'comments' );
+				remove_post_type_support( $post_type, 'trackbacks' );
+			}
+		}
+	},
+	100
+);
+add_filter( 'comments_open', '__return_false', 20 );
+add_filter( 'pings_open', '__return_false', 20 );
+add_action(
+	'admin_menu',
+	function () {
+		remove_menu_page( 'edit-comments.php' );
+	}
+);

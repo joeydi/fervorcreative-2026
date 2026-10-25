@@ -1,0 +1,48 @@
+@use "mixins" as *;
+
+.clients {
+    &__header {
+        margin-bottom: var(--space-fluid-2xl);
+    }
+
+    &__eyebrow {
+        @include eyebrow;
+    }
+
+    &__heading {
+        @include statement;
+        max-width: 13.5em;
+    }
+
+    &__logos {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: var(--space-fluid-xl) var(--space-column-gap);
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        @include tablet {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        @include mobile {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
+
+    &__logo {
+        display: grid;
+        place-items: center;
+    }
+
+    &__image {
+        width: auto;
+        max-width: min(120px, 100%);
+        max-height: 44px;
+        object-fit: contain;
+        filter: grayscale(1);
+        mix-blend-mode: multiply;
+    }
+}

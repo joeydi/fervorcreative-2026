@@ -1,0 +1,61 @@
+@use "mixins" as *;
+
+.image-collage {
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        column-gap: var(--space-column-gap);
+        row-gap: var(--space-fluid-lg);
+        align-items: start;
+
+        @include mobile {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    &__image {
+        width: 100%;
+    }
+
+    &__item:nth-child(1) {
+        grid-column: 1 / span 6;
+        grid-row: 1;
+    }
+
+    &__item:nth-child(2) {
+        grid-column: 8 / -1;
+        grid-row: 1;
+    }
+
+    // Two images: right image sits lower.
+    &--count-2 &__item:nth-child(2) {
+        margin-top: var(--space-fluid-2xl);
+    }
+
+    // Three images: left image sits lower, the third tucks under the second.
+    &--count-3 &__item:nth-child(1) {
+        grid-row: 1 / span 2;
+        margin-top: var(--space-fluid-2xl);
+    }
+
+    &--count-3 &__item:nth-child(2) {
+        grid-column: 8 / span 4;
+    }
+
+    &--count-3 &__item:nth-child(3) {
+        grid-column: 8 / span 3;
+        grid-row: 2;
+    }
+
+    @include mobile {
+        &__item {
+            margin-top: 0 !important;
+        }
+
+        &__item:nth-child(even) {
+            width: 80%;
+            margin-left: auto;
+        }
+    }
+}

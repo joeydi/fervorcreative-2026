@@ -1,0 +1,98 @@
+@use "mixins" as *;
+
+.wp-site-blocks {
+    position: relative;
+}
+
+.site-header {
+    position: relative;
+    z-index: 20;
+    color: var(--color-foreground);
+
+    &__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-md);
+        min-height: var(--header-height);
+    }
+
+    &__logo {
+        display: block;
+        color: var(--color-primary);
+        transition: opacity var(--duration) var(--ease-out);
+
+        &:hover {
+            opacity: 0.8;
+        }
+
+        svg,
+        img {
+            width: auto;
+            height: clamp(18px, 2vw, 26px);
+        }
+
+        svg :is(path, rect, polygon, circle) {
+            fill: currentColor;
+        }
+    }
+
+    &__wordmark {
+        display: block;
+        font-family: var(--font-display);
+        font-size: clamp(20px, 2.2vw, 30px);
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        line-height: 1;
+        text-transform: uppercase;
+    }
+
+    &__menu {
+        display: flex;
+        gap: clamp(16px, 2vw, 28px);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__link {
+        position: relative;
+        display: block;
+        padding-block: var(--space-2xs);
+        font-size: var(--font-size-small);
+        line-height: 1;
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 1px;
+            background-color: currentColor;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform var(--duration) var(--ease-out);
+        }
+
+        &:hover::after,
+        &[aria-current="page"]::after {
+            transform: scaleX(1);
+        }
+    }
+}
+
+// Overlay the header on pages that open with a hero.
+body:has(.site-main__content > .hero:first-child) .site-header-part {
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 20;
+}
+
+body:has(.site-main__content > .hero:first-child) .site-header {
+    color: var(--color-white);
+}
+
+body:has(.site-main__content > .hero:first-child) .site-header__logo {
+    color: var(--color-white);
+}

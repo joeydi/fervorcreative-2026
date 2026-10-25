@@ -1,0 +1,44 @@
+{
+    "key": "group_fc_block_image_collage",
+    "title": "Block: Image Collage",
+    "fields": [
+        {
+            "key": "field_fc_image_collage_images",
+            "label": "Images",
+            "name": "images",
+            "type": "gallery",
+            "instructions": "Two or three images.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all",
+            "insert": "append",
+            "max": 3
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "fervor/image-collage"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1792947693
+}
