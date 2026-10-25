@@ -46,7 +46,7 @@ How it works:
 | `single-project.html` | Header, Project Masthead, post content, Project Pagination, footer |
 | `404.html` | Header, Not Found, footer |
 
-The header overlays the page in white when the first block in the content is a Hero; otherwise it sits on white with a red logo.
+The header overlays the page in white when the first block in the content is a Hero; otherwise it sits on white with a red logo. At 640px and below the menu collapses behind a toggle that opens a full-screen panel (`src/js/modules/menu.js`).
 
 ## Blocks
 

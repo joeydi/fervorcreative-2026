@@ -20,7 +20,9 @@
     &__logo {
         display: block;
         color: var(--color-primary);
-        transition: opacity var(--duration) var(--ease-out);
+        transition:
+            opacity var(--duration) var(--ease-out),
+            color var(--duration) var(--ease-out);
 
         &:hover {
             opacity: 0.8;
@@ -79,6 +81,176 @@
         &[aria-current="page"]::after {
             transform: scaleX(1);
         }
+    }
+
+    &__toggle {
+        display: none;
+    }
+
+    // Full-screen menu. The header itself becomes the panel so the logo and
+    // close button stay in place above the links.
+    @include mobile {
+        transition: color var(--duration) var(--ease-out);
+
+        &__toggle {
+            display: grid;
+            place-items: center;
+            width: 44px;
+            height: 44px;
+            margin-right: -10px;
+            padding: 0;
+            border: 0;
+            background: none;
+            color: inherit;
+            cursor: pointer;
+
+            svg {
+                width: 28px;
+                height: 28px;
+            }
+        }
+
+        &__open-icon,
+        &__close-icon {
+            display: block;
+        }
+
+        &__close-icon {
+            display: none;
+        }
+
+        &__nav {
+            display: none;
+        }
+
+        &__logo :is(svg, img) {
+            height: 22px;
+        }
+
+        &__wordmark {
+            font-size: 30px;
+        }
+
+        &__menu {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: var(--space-md);
+        }
+
+        &__link {
+            font-size: 40px;
+            font-weight: 300;
+            letter-spacing: -0.015em;
+        }
+
+        &.is-open {
+            position: fixed;
+            inset: 0;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            background-color: var(--color-neutral-7);
+            animation: site-header-open var(--duration) var(--ease-out);
+        }
+
+        // Colors switch back as soon as closing starts, alongside the fade.
+        &.is-open:not(.is-closing) {
+            color: var(--color-white);
+        }
+
+        &.is-open &__inner {
+            flex-wrap: wrap;
+            align-content: flex-start;
+        }
+
+        // The open panel wraps the nav onto its own line, so give the logo
+        // and toggle the full header height to keep them where they were.
+        &.is-open &__logo {
+            display: flex;
+            align-items: center;
+            height: var(--header-height);
+        }
+
+        &.is-open:not(.is-closing) &__logo {
+            color: var(--color-white);
+        }
+
+        &.is-open &__toggle {
+            height: var(--header-height);
+        }
+
+        &.is-open &__open-icon {
+            display: none;
+        }
+
+        &.is-open &__close-icon {
+            display: block;
+        }
+
+        &.is-open &__nav {
+            display: block;
+            flex-basis: 100%;
+            padding-block: var(--space-2xl);
+        }
+
+        &.is-open:not(.is-closing) &__menu li {
+            animation: site-header-item 500ms var(--ease-out) both;
+
+            @for $i from 2 through 6 {
+                &:nth-child(#{$i}) {
+                    animation-delay: #{($i - 1) * 50}ms;
+                }
+            }
+        }
+
+        &.is-closing {
+            animation: site-header-close var(--duration) var(--ease-out) both;
+        }
+
+        &.is-closing &__nav {
+            animation: site-header-fade-out var(--duration) var(--ease-out) both;
+        }
+
+        &.is-closing &__open-icon {
+            display: block;
+        }
+
+        &.is-closing &__close-icon {
+            display: none;
+        }
+    }
+}
+
+// Hold the header's space while the open menu takes it out of the flow.
+.site-header-part {
+    min-height: var(--header-height);
+}
+
+.has-open-menu {
+    overflow: hidden;
+}
+
+@keyframes site-header-open {
+    from {
+        background-color: transparent;
+    }
+}
+
+@keyframes site-header-close {
+    to {
+        background-color: transparent;
+    }
+}
+
+@keyframes site-header-fade-out {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes site-header-item {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
     }
 }
 

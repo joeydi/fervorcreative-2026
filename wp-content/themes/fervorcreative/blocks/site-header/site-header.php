@@ -22,7 +22,7 @@ $current_url = is_singular() ? untrailingslashit( get_permalink() ) : '';
 $work_url    = untrailingslashit( home_url( '/work' ) );
 
 ?>
-<div<?php fervor_block_attrs( $block, array( 'site-header' ) ); ?>>
+<div<?php fervor_block_attrs( $block, array( 'site-header' ) ); ?> data-menu>
 	<a class="skip-link" href="#main"><?php esc_html_e( 'Skip to content', 'fervorcreative' ); ?></a>
 
 	<div class="site-header__inner container">
@@ -38,7 +38,13 @@ $work_url    = untrailingslashit( home_url( '/work' ) );
 		</a>
 
 		<?php if ( $menu ) : ?>
-			<nav class="site-header__nav" aria-label="<?php esc_attr_e( 'Main', 'fervorcreative' ); ?>">
+			<button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="site-menu" data-menu-toggle>
+				<span class="site-header__open-icon"><?php fervor_icon( 'menu' ); ?></span>
+				<span class="site-header__close-icon"><?php fervor_icon( 'close' ); ?></span>
+				<span class="visually-hidden"><?php esc_html_e( 'Menu', 'fervorcreative' ); ?></span>
+			</button>
+
+			<nav class="site-header__nav" id="site-menu" aria-label="<?php esc_attr_e( 'Main', 'fervorcreative' ); ?>">
 				<ul class="site-header__menu">
 					<?php
 					foreach ( $menu as $item ) :
