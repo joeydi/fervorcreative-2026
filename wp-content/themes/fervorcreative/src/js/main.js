@@ -8,3 +8,8 @@ carousel();
 header();
 menu();
 styleGuide();
+
+// Dropped from production builds entirely.
+if (import.meta.env.DEV) {
+	import('./modules/grid-overlay').then(({ default: gridOverlay }) => gridOverlay());
+}

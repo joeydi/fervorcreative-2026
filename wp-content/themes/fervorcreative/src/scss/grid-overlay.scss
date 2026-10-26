@@ -1,0 +1,39 @@
+@use "mixins" as *;
+
+// Dev-only column overlay, toggled with Ctrl+L (see src/js/modules/grid-overlay.js).
+// Mirrors the 12-column grid blocks use from md up; below md layouts are a
+// single column, so only the container's content area is shown.
+.grid-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483647;
+    pointer-events: none;
+
+    &[hidden] {
+        display: none;
+    }
+
+    &__columns {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        column-gap: var(--space-column-gap);
+        height: 100%;
+
+        @include md {
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+        }
+    }
+
+    &__column {
+        background-color: rgb(0 255 255 / 0.2);
+        box-shadow: inset 1px 0 rgb(0 200 200 / 0.5), inset -1px 0 rgb(0 200 200 / 0.5);
+
+        &:nth-child(n + 2) {
+            display: none;
+
+            @include md {
+                display: block;
+            }
+        }
+    }
+}
