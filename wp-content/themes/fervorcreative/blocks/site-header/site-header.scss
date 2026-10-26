@@ -35,7 +35,7 @@
             height: 22px;
 
             @include md {
-                height: clamp(18px, 2vw, 26px);
+                height: fluid(22px, 26px);
             }
         }
 
@@ -92,7 +92,7 @@
         line-height: 1;
 
         @include md {
-            font-size: var(--font-size-small);
+            font-size: 20px;
             font-weight: 400;
             letter-spacing: normal;
         }
