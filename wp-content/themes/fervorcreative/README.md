@@ -116,4 +116,10 @@ Project helpers live in `inc/projects.php`.
 
 ## Fonts
 
-Inter Tight, Source Serif 4, and Oswald are self-hosted via Fontsource as stand-ins. To switch to licensed faces, replace the imports in `src/js/styles.js` and update `--font-sans`, `--font-serif`, and `--font-display` in `_tokens.scss`.
+| Token | Family | Weights | Source |
+|---|---|---|---|
+| `--font-sans` | Söhne | Leicht 300, Buch 400, Kräftig 500, Halbfett 600, Dreiviertelfett 700 (+ Kursiv) | Self-hosted from `src/fonts/`, declared in `src/scss/_fonts.scss` |
+| `--font-serif` | Kepler | Regular 400 | Adobe Fonts kit `olo8rkh`, enqueued in `inc/setup.php` |
+| `--font-display` | Good Condensed | Bold 700 | Adobe Fonts kit `olo8rkh` |
+
+Kepler is for subheadings and quotes; Good Condensed is for hero headings. Add new weights to the Adobe Fonts kit before using them, or the browser will substitute the nearest one.

@@ -22,9 +22,15 @@ function fervor_setup() {
 add_action( 'after_setup_theme', 'fervor_setup' );
 
 /**
+ * Adobe Fonts kit: Kepler and Good Condensed.
+ */
+const FERVOR_TYPEKIT_URL = 'https://use.typekit.net/olo8rkh.css';
+
+/**
  * Enqueue front-end assets.
  */
 function fervor_enqueue_assets() {
+	wp_enqueue_style( 'fervor-typekit', FERVOR_TYPEKIT_URL, array(), null ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion -- versioned by Adobe.
 	fervor_vite_enqueue( 'fervor-main', 'src/js/main.js' );
 }
 add_action( 'wp_enqueue_scripts', 'fervor_enqueue_assets' );
@@ -37,9 +43,29 @@ function fervor_enqueue_editor_assets() {
 		return;
 	}
 
+	wp_enqueue_style( 'fervor-typekit', FERVOR_TYPEKIT_URL, array(), null ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion -- versioned by Adobe.
 	fervor_vite_enqueue( 'fervor-editor', 'src/js/editor.js' );
 }
 add_action( 'enqueue_block_assets', 'fervor_enqueue_editor_assets' );
+
+/**
+ * Preconnect to Adobe Fonts so the kit and its font files start loading sooner.
+ *
+ * @param array  $urls          URLs to print for the relation type.
+ * @param string $relation_type The relation type, e.g. 'preconnect'.
+ * @return array
+ */
+function fervor_resource_hints( $urls, $relation_type ) {
+	if ( 'preconnect' === $relation_type ) {
+		$urls[] = array(
+			'href'        => 'https://use.typekit.net',
+			'crossorigin' => 'anonymous',
+		);
+	}
+
+	return $urls;
+}
+add_filter( 'wp_resource_hints', 'fervor_resource_hints', 10, 2 );
 
 /**
  * Save and load ACF field groups from the theme's acf-json directory.

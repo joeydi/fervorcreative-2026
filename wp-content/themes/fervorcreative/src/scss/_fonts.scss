@@ -1,0 +1,26 @@
+// Söhne (Klim), self-hosted. Kepler and Good Condensed load from Adobe Fonts (inc/setup.php).
+$soehne-weights: (
+    "leicht": 300,
+    "buch": 400,
+    "kraftig": 500,
+    "halbfett": 600,
+    "dreiviertelfett": 700,
+);
+
+@each $name, $weight in $soehne-weights {
+    @font-face {
+        font-family: "Soehne";
+        font-style: normal;
+        font-weight: $weight;
+        font-display: swap;
+        src: url("../fonts/soehne-#{$name}.woff2") format("woff2");
+    }
+
+    @font-face {
+        font-family: "Soehne";
+        font-style: italic;
+        font-weight: $weight;
+        font-display: swap;
+        src: url("../fonts/soehne-#{$name}-kursiv.woff2") format("woff2");
+    }
+}
