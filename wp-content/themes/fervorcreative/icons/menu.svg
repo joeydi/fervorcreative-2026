@@ -1,1 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" aria-hidden="true" focusable="false"><path d="M2 5.5h20"/><path d="M2 12h20"/><path d="M2 18.5h20"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="27" height="21" viewBox="0 0 27 21">
+  <path d="M0 0h27v3H0z" />
+  <path d="M0 9h27v3H0z" />
+  <path d="M0 18h27v3H0z" />
+</svg>

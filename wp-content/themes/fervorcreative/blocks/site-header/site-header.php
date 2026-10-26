@@ -39,8 +39,7 @@ $work_url    = untrailingslashit( home_url( '/work' ) );
 
 		<?php if ( $menu ) : ?>
 			<button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="site-menu" data-menu-toggle>
-				<span class="site-header__open-icon"><?php fervor_icon( 'menu' ); ?></span>
-				<span class="site-header__close-icon"><?php fervor_icon( 'close' ); ?></span>
+				<?php fervor_icon( 'menu' ); ?>
 				<span class="visually-hidden"><?php esc_html_e( 'Menu', 'fervorcreative' ); ?></span>
 			</button>
 

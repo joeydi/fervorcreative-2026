@@ -133,17 +133,26 @@
         }
 
         svg {
-            width: 28px;
-            height: 28px;
+            width: 27px;
+            height: 21px;
+            overflow: visible;
+            fill: currentColor;
         }
-    }
 
-    &__open-icon {
-        display: block;
-    }
+        // The menu icon's three bars fold into the X from close.svg: the outer
+        // bars slide to the middle, then rotate. Closing runs it in reverse.
+        path {
+            transform-box: fill-box;
+            transform-origin: center;
+            transition:
+                rotate var(--duration) var(--ease-out),
+                translate var(--duration) var(--ease-out) var(--duration),
+                opacity 0s linear var(--duration);
 
-    &__close-icon {
-        display: none;
+            @media (prefers-reduced-motion: reduce) {
+                transition-delay: 0s !important;
+            }
+        }
     }
 
     // Full-screen menu below md (menu.js closes it when the window widens past
@@ -184,12 +193,25 @@
         height: var(--header-height);
     }
 
-    &.is-open &__open-icon {
-        display: none;
-    }
+    &.is-open:not(.is-closing) &__toggle path {
+        transition:
+            translate var(--duration) var(--ease-out),
+            rotate var(--duration) var(--ease-out) var(--duration),
+            opacity 0s linear var(--duration);
 
-    &.is-open &__close-icon {
-        display: block;
+        &:nth-child(1) {
+            translate: 0 9px;
+            rotate: 45deg;
+        }
+
+        &:nth-child(2) {
+            opacity: 0;
+        }
+
+        &:nth-child(3) {
+            translate: 0 -9px;
+            rotate: -45deg;
+        }
     }
 
     &.is-open &__nav {
@@ -214,14 +236,6 @@
 
     &.is-closing &__nav {
         animation: site-header-fade-out var(--duration) var(--ease-out) both;
-    }
-
-    &.is-closing &__open-icon {
-        display: block;
-    }
-
-    &.is-closing &__close-icon {
-        display: none;
     }
 }
 
