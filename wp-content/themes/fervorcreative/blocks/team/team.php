@@ -37,7 +37,7 @@ if ( ! $members ) {
 									'class'   => 'team__image',
 									'alt'     => '',
 									'loading' => 'lazy',
-									'sizes'   => '(max-width: 640px) 50vw, 33vw',
+									'sizes'   => '(min-width: 768px) 33vw, 50vw',
 								)
 							);
 						}

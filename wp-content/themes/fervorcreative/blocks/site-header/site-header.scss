@@ -8,6 +8,7 @@
     position: relative;
     z-index: 20;
     color: var(--color-foreground);
+    transition: color var(--duration) var(--ease-out);
 
     &__inner {
         display: flex;
@@ -31,7 +32,11 @@
         svg,
         img {
             width: auto;
-            height: clamp(18px, 2vw, 26px);
+            height: 22px;
+
+            @include md {
+                height: clamp(18px, 2vw, 26px);
+            }
         }
 
         svg :is(path, rect, polygon, circle) {
@@ -42,27 +47,55 @@
     &__wordmark {
         display: block;
         font-family: var(--font-display);
-        font-size: clamp(20px, 2.2vw, 30px);
+        font-size: 30px;
         font-weight: 700;
         letter-spacing: 0.02em;
         line-height: 1;
         text-transform: uppercase;
+
+        @include md {
+            font-size: clamp(20px, 2.2vw, 30px);
+        }
+    }
+
+    &__nav {
+        display: none;
+
+        @include md {
+            display: block;
+        }
     }
 
     &__menu {
         display: flex;
-        gap: clamp(16px, 2vw, 28px);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-md);
         margin: 0;
         padding: 0;
         list-style: none;
+
+        @include md {
+            flex-direction: row;
+            align-items: normal;
+            gap: clamp(16px, 2vw, 28px);
+        }
     }
 
     &__link {
         position: relative;
         display: block;
         padding-block: var(--space-2xs);
-        font-size: var(--font-size-small);
+        font-size: 40px;
+        font-weight: 300;
+        letter-spacing: -0.015em;
         line-height: 1;
+
+        @include md {
+            font-size: var(--font-size-small);
+            font-weight: 400;
+            letter-spacing: normal;
+        }
 
         &::after {
             content: "";
@@ -84,139 +117,111 @@
     }
 
     &__toggle {
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        margin-right: -10px;
+        padding: 0;
+        border: 0;
+        background: none;
+        color: inherit;
+        cursor: pointer;
+
+        @include md {
+            display: none;
+        }
+
+        svg {
+            width: 28px;
+            height: 28px;
+        }
+    }
+
+    &__open-icon {
+        display: block;
+    }
+
+    &__close-icon {
         display: none;
     }
 
-    // Full-screen menu. The header itself becomes the panel so the logo and
-    // close button stay in place above the links.
-    @include mobile {
-        transition: color var(--duration) var(--ease-out);
+    // Full-screen menu below md (menu.js closes it when the window widens past
+    // md). The header itself becomes the panel so the logo and close button
+    // stay in place above the links.
+    &.is-open {
+        position: fixed;
+        inset: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        background-color: var(--color-neutral-7);
+        animation: site-header-open var(--duration) var(--ease-out);
+    }
 
-        &__toggle {
-            display: grid;
-            place-items: center;
-            width: 44px;
-            height: 44px;
-            margin-right: -10px;
-            padding: 0;
-            border: 0;
-            background: none;
-            color: inherit;
-            cursor: pointer;
+    // Colors switch back as soon as closing starts, alongside the fade.
+    &.is-open:not(.is-closing) {
+        color: var(--color-white);
+    }
 
-            svg {
-                width: 28px;
-                height: 28px;
+    &.is-open &__inner {
+        flex-wrap: wrap;
+        align-content: flex-start;
+    }
+
+    // The open panel wraps the nav onto its own line, so give the logo
+    // and toggle the full header height to keep them where they were.
+    &.is-open &__logo {
+        display: flex;
+        align-items: center;
+        height: var(--header-height);
+    }
+
+    &.is-open:not(.is-closing) &__logo {
+        color: var(--color-white);
+    }
+
+    &.is-open &__toggle {
+        height: var(--header-height);
+    }
+
+    &.is-open &__open-icon {
+        display: none;
+    }
+
+    &.is-open &__close-icon {
+        display: block;
+    }
+
+    &.is-open &__nav {
+        display: block;
+        flex-basis: 100%;
+        padding-block: var(--space-2xl);
+    }
+
+    &.is-open:not(.is-closing) &__menu li {
+        animation: site-header-item 500ms var(--ease-out) both;
+
+        @for $i from 2 through 6 {
+            &:nth-child(#{$i}) {
+                animation-delay: #{($i - 1) * 50}ms;
             }
         }
+    }
 
-        &__open-icon,
-        &__close-icon {
-            display: block;
-        }
+    &.is-closing {
+        animation: site-header-close var(--duration) var(--ease-out) both;
+    }
 
-        &__close-icon {
-            display: none;
-        }
+    &.is-closing &__nav {
+        animation: site-header-fade-out var(--duration) var(--ease-out) both;
+    }
 
-        &__nav {
-            display: none;
-        }
+    &.is-closing &__open-icon {
+        display: block;
+    }
 
-        &__logo :is(svg, img) {
-            height: 22px;
-        }
-
-        &__wordmark {
-            font-size: 30px;
-        }
-
-        &__menu {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: var(--space-md);
-        }
-
-        &__link {
-            font-size: 40px;
-            font-weight: 300;
-            letter-spacing: -0.015em;
-        }
-
-        &.is-open {
-            position: fixed;
-            inset: 0;
-            overflow-y: auto;
-            overscroll-behavior: contain;
-            background-color: var(--color-neutral-7);
-            animation: site-header-open var(--duration) var(--ease-out);
-        }
-
-        // Colors switch back as soon as closing starts, alongside the fade.
-        &.is-open:not(.is-closing) {
-            color: var(--color-white);
-        }
-
-        &.is-open &__inner {
-            flex-wrap: wrap;
-            align-content: flex-start;
-        }
-
-        // The open panel wraps the nav onto its own line, so give the logo
-        // and toggle the full header height to keep them where they were.
-        &.is-open &__logo {
-            display: flex;
-            align-items: center;
-            height: var(--header-height);
-        }
-
-        &.is-open:not(.is-closing) &__logo {
-            color: var(--color-white);
-        }
-
-        &.is-open &__toggle {
-            height: var(--header-height);
-        }
-
-        &.is-open &__open-icon {
-            display: none;
-        }
-
-        &.is-open &__close-icon {
-            display: block;
-        }
-
-        &.is-open &__nav {
-            display: block;
-            flex-basis: 100%;
-            padding-block: var(--space-2xl);
-        }
-
-        &.is-open:not(.is-closing) &__menu li {
-            animation: site-header-item 500ms var(--ease-out) both;
-
-            @for $i from 2 through 6 {
-                &:nth-child(#{$i}) {
-                    animation-delay: #{($i - 1) * 50}ms;
-                }
-            }
-        }
-
-        &.is-closing {
-            animation: site-header-close var(--duration) var(--ease-out) both;
-        }
-
-        &.is-closing &__nav {
-            animation: site-header-fade-out var(--duration) var(--ease-out) both;
-        }
-
-        &.is-closing &__open-icon {
-            display: block;
-        }
-
-        &.is-closing &__close-icon {
-            display: none;
-        }
+    &.is-closing &__close-icon {
+        display: none;
     }
 }
 

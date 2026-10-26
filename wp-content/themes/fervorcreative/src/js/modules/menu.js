@@ -10,8 +10,8 @@
  * Escape closes the menu, as does widening past the mobile breakpoint.
  */
 
-// Matches the `mobile` mixin ($mobile: 640px).
-const desktop = window.matchMedia('(min-width: 641px)');
+// Matches the `md` mixin ($md: 768px).
+const desktop = window.matchMedia('(min-width: 768px)');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 function initMenu(root) {

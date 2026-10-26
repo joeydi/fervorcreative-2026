@@ -18,7 +18,7 @@ if ( ! $items ) {
 	return;
 }
 
-$sizes = 'full' === $layout ? '(max-width: 1248px) 100vw, 1200px' : '(max-width: 640px) 100vw, 50vw';
+$sizes = 'full' === $layout ? '(min-width: 1249px) 1200px, 100vw' : '(min-width: 768px) 50vw, 100vw';
 
 ?>
 <section<?php fervor_block_attrs( $block, array( 'project-media', 'project-media--' . $layout ) ); ?>>

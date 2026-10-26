@@ -14,21 +14,17 @@
         align-items: start;
     }
 
-    &--two-up &__grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+    @include md {
+        &--two-up &__grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
 
-    &--wide-left &__grid {
-        grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-    }
+        &--wide-left &__grid {
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+        }
 
-    &--wide-right &__grid {
-        grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
-    }
-
-    @include mobile {
-        &__grid {
-            grid-template-columns: minmax(0, 1fr) !important;
+        &--wide-right &__grid {
+            grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
         }
     }
 

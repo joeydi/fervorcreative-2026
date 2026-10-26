@@ -8,15 +8,15 @@
     }
 
     &__row {
-        display: grid;
-        grid-template-columns: repeat(12, minmax(0, 1fr));
+        display: flex;
+        flex-direction: column;
         align-items: center;
-        column-gap: var(--space-column-gap);
+        gap: var(--space-fluid-xl);
 
-        @include mobile {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-fluid-xl);
+        @include md {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: 0 var(--space-column-gap);
         }
     }
 
@@ -35,10 +35,6 @@
         gap: var(--space-fluid-xl);
         grid-row: 1;
         grid-column: 8 / -1;
-
-        @include mobile {
-            gap: inherit;
-        }
     }
 
     &__row--split-reverse &__large {

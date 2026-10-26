@@ -4,14 +4,14 @@
     padding-block: var(--space-fluid-xl) var(--space-fluid-2xl);
 
     &__inner {
-        display: grid;
-        grid-template-columns: repeat(12, minmax(0, 1fr));
-        column-gap: var(--space-column-gap);
+        display: flex;
+        flex-direction: column;
         row-gap: var(--space-lg);
 
-        @include mobile {
-            display: flex;
-            flex-direction: column;
+        @include md {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            column-gap: var(--space-column-gap);
         }
     }
 

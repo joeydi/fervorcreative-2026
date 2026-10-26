@@ -46,7 +46,7 @@ How it works:
 | `single-project.html` | Header, Project Masthead, post content, Project Pagination, footer |
 | `404.html` | Header, Not Found, footer |
 
-The header overlays the page in white when the first block in the content is a Hero; otherwise it sits on white with a red logo. At 640px and below the menu collapses behind a toggle that opens a full-screen panel (`src/js/modules/menu.js`).
+The header overlays the page in white when the first block in the content is a Hero; otherwise it sits on white with a red logo. Below 768px (`md`) the menu collapses behind a toggle that opens a full-screen panel (`src/js/modules/menu.js`).
 
 ## Blocks
 
@@ -112,6 +112,7 @@ Project helpers live in `inc/projects.php`.
 - BEM: `.block`, `.block__element`, `.block--modifier`. One `__` per class. Write modifiers as siblings: `&--modifier &__element`.
 - Use CSS custom properties from `src/scss/_tokens.scss` for color, type, and spacing.
 - Shared type styles are mixins: `eyebrow`, `statement`, `display`.
+- Media queries are mobile first: base styles are the smallest layout, and `@include sm`, `md`, `lg`, `xl`, `xxl` (576, 768, 992, 1280, 1440px, from `_variables.scss`) apply from that width up. Don't write `max-width` queries.
 - Sections get vertical rhythm from `.section`; Gray style variants add `.section--surface`.
 
 ## Fonts

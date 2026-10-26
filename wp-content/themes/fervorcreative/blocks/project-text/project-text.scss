@@ -4,12 +4,10 @@
     margin-block: var(--space-fluid-2xl);
 
     &__inner {
-        display: grid;
-        grid-template-columns: repeat(12, minmax(0, 1fr));
-        column-gap: var(--space-column-gap);
-
-        @include mobile {
-            display: block;
+        @include md {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            column-gap: var(--space-column-gap);
         }
     }
 
@@ -19,12 +17,12 @@
     }
 
     &__copy {
-        grid-column: 7 / span 5;
+        grid-column: 6 / -1;
         font-size: var(--font-size-small);
         line-height: 1.7;
 
-        @include tablet {
-            grid-column: 6 / -1;
+        @include lg {
+            grid-column: 7 / span 5;
         }
 
         > :last-child {

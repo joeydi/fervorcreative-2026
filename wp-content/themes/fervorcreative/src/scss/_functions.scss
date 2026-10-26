@@ -6,7 +6,7 @@
 }
 
 // Fluid value that scales linearly between two viewport widths.
-@function fluid($min-value, $max-value, $min-width: variables.$mobile, $max-width: variables.$wide) {
+@function fluid($min-value, $max-value, $min-width: variables.$sm, $max-width: variables.$xxl) {
     $min-value: strip-unit($min-value);
     $max-value: strip-unit($max-value);
     $min-width: strip-unit($min-width);

@@ -1,26 +1,34 @@
 @use "variables";
 @forward "functions";
 
-@mixin mobile {
-    @media (max-width: variables.$mobile) {
+// Breakpoints are mobile first: base styles are the smallest layout, and each
+// mixin applies from that width up.
+@mixin sm {
+    @media (min-width: variables.$sm) {
         @content;
     }
 }
 
-@mixin tablet {
-    @media (max-width: variables.$tablet) {
+@mixin md {
+    @media (min-width: variables.$md) {
         @content;
     }
 }
 
-@mixin mobile-up {
-    @media (min-width: (variables.$mobile + 1)) {
+@mixin lg {
+    @media (min-width: variables.$lg) {
         @content;
     }
 }
 
-@mixin tablet-up {
-    @media (min-width: (variables.$tablet + 1)) {
+@mixin xl {
+    @media (min-width: variables.$xl) {
+        @content;
+    }
+}
+
+@mixin xxl {
+    @media (min-width: variables.$xxl) {
         @content;
     }
 }

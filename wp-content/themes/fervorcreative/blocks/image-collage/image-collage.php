@@ -37,7 +37,7 @@ $classes = array(
 					array(
 						'class'   => 'image-collage__image',
 						'loading' => 'lazy',
-						'sizes'   => '(max-width: 640px) 100vw, 50vw',
+						'sizes'   => '(min-width: 768px) 50vw, 100vw',
 					)
 				);
 				?>

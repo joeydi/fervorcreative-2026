@@ -16,15 +16,15 @@
 
     &__columns {
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: minmax(0, 1fr);
         gap: var(--space-fluid-xl) var(--space-column-gap);
 
-        @include tablet {
+        @include md {
             grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
-        @include mobile {
-            grid-template-columns: minmax(0, 1fr);
+        @include lg {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
         }
     }
 
