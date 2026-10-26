@@ -12,6 +12,7 @@ require 'inc/register-blocks.php';
 require 'inc/register-cpt.php';
 require 'inc/register-options.php';
 require 'inc/projects.php';
+require 'inc/style-guide.php';
 
 /**
  * Echo a sanitized class string from an array of classes.

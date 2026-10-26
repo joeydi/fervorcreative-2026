@@ -1,0 +1,23 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "fervor/style-guide",
+	"title": "Style Guide",
+	"category": "fervor",
+	"icon": "art",
+	"description": "Type, color, and spacing tokens. Used by the Style Guide page template.",
+	"supports": {
+		"anchor": false,
+		"align": false,
+		"customClassName": false,
+		"html": false,
+		"inserter": false,
+		"multiple": false,
+		"reusable": false
+	},
+	"acf": {
+		"blockVersion": 3,
+		"mode": "preview",
+		"renderTemplate": "style-guide.php"
+	}
+}

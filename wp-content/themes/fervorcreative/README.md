@@ -45,6 +45,7 @@ How it works:
 | `page.html` / `index.html` | Header, post content, footer |
 | `single-project.html` | Header, Project Masthead, post content, Project Pagination, footer |
 | `404.html` | Header, Not Found, footer |
+| `page-style-guide.html` | Header, Style Guide, footer. Applies to the page with the slug `style-guide`. |
 
 The header overlays the page in white when the first block in the content is a Hero; otherwise it sits on white with a red logo. Below 768px (`md`) the menu collapses behind a toggle that opens a full-screen panel (`src/js/modules/menu.js`).
 
@@ -64,7 +65,7 @@ The header overlays the page in white when the first block in the content is a H
 | Info Columns | Contact |
 | Project Media | Projects: one or two images or videos with an optional side label |
 | Project Text | Projects |
-| Site Header, Site Footer, Project Masthead, Project Pagination, Not Found | Templates only (hidden from the inserter) |
+| Site Header, Site Footer, Project Masthead, Project Pagination, Not Found, Style Guide | Templates only (hidden from the inserter) |
 
 ### Adding a block
 
@@ -114,6 +115,10 @@ Project helpers live in `inc/projects.php`.
 - Shared type styles are mixins: `eyebrow`, `statement`, `display`.
 - Media queries are mobile first: base styles are the smallest layout, and `@include sm`, `md`, `lg`, `xl`, `xxl` (576, 768, 992, 1280, 1440px, from `_variables.scss`) apply from that width up. Don't write `max-width` queries.
 - Sections get vertical rhythm from `.section`; Gray style variants add `.section--surface`.
+
+## Style Guide
+
+`/style-guide` shows the type, color, and spacing tokens. Create a page with the slug `style-guide` to enable it (it's excluded from search engines). Token names, groups, and declared values are read from `src/scss/_tokens.scss`, so new tokens appear automatically as long as they use the `--color-`, `--font-size-`, or `--space-` prefix. Group headings come from the comment above each run of tokens. Resolved values update with the window width.
 
 ## Fonts
 
