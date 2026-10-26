@@ -22,7 +22,7 @@ $current_url = is_singular() ? untrailingslashit( get_permalink() ) : '';
 $work_url    = untrailingslashit( home_url( '/work' ) );
 
 ?>
-<div<?php fervor_block_attrs( $block, array( 'site-header' ) ); ?> data-menu>
+<div<?php fervor_block_attrs( $block, array( 'site-header' ) ); ?> data-header data-menu>
 	<a class="skip-link" href="#main"><?php esc_html_e( 'Skip to content', 'fervorcreative' ); ?></a>
 
 	<div class="site-header__inner container">

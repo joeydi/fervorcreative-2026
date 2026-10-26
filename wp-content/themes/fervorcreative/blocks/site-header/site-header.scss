@@ -5,17 +5,36 @@
 }
 
 .site-header {
+    --site-header-height: var(--header-height);
+    --site-header-bg: transparent;
+
     position: relative;
     z-index: 20;
     color: var(--color-foreground);
-    transition: color var(--duration) var(--ease-out);
+    background-color: var(--site-header-bg);
+    transition:
+        color var(--duration) var(--ease-out),
+        background-color var(--duration) var(--ease-out);
+
+    // Fixed on the front end only, so it stays in the flow in the editor.
+    :where(body:not(.editor-styles-wrapper)) & {
+        position: fixed;
+        inset: var(--wp-admin--admin-bar--height, 0px) 0 auto;
+    }
+
+    // Once the page scrolls (header.js), it shrinks onto a white bar.
+    &.is-scrolled {
+        --site-header-height: 80px;
+        --site-header-bg: var(--color-white);
+    }
 
     &__inner {
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: var(--space-md);
-        min-height: var(--header-height);
+        min-height: var(--site-header-height);
+        transition: min-height 400ms var(--ease-out);
     }
 
     &__logo {
@@ -90,6 +109,7 @@
         font-weight: 300;
         letter-spacing: -0.015em;
         line-height: 1;
+        transition: opacity var(--duration) var(--ease-out);
 
         @include md {
             font-size: 20px;
@@ -103,16 +123,22 @@
             left: 0;
             right: 0;
             bottom: 0;
-            height: 1px;
-            background-color: currentColor;
+            height: 2px;
+            background-color: var(--color-primary);
             transform: scaleX(0);
             transform-origin: left;
             transition: transform var(--duration) var(--ease-out);
         }
 
-        &:hover::after,
-        &[aria-current="page"]::after {
+        &:hover::after {
             transform: scaleX(1);
+        }
+    }
+
+    // Hovering a link fades the others back.
+    @media (hover: hover) {
+        &__menu:has(&__link:hover) &__link:not(:hover) {
+            opacity: 0.5;
         }
     }
 
@@ -182,7 +208,7 @@
     &.is-open &__logo {
         display: flex;
         align-items: center;
-        height: var(--header-height);
+        height: var(--site-header-height);
     }
 
     &.is-open:not(.is-closing) &__logo {
@@ -190,7 +216,7 @@
     }
 
     &.is-open &__toggle {
-        height: var(--header-height);
+        height: var(--site-header-height);
     }
 
     &.is-open:not(.is-closing) &__toggle path {
@@ -212,6 +238,10 @@
             translate: 0 -9px;
             rotate: -45deg;
         }
+    }
+
+    &.is-open &__link::after {
+        background-color: currentColor;
     }
 
     &.is-open &__nav {
@@ -239,7 +269,7 @@
     }
 }
 
-// Hold the header's space while the open menu takes it out of the flow.
+// Hold the header's space, since the fixed header is out of the flow.
 .site-header-part {
     min-height: var(--header-height);
 }
@@ -250,13 +280,13 @@
 
 @keyframes site-header-open {
     from {
-        background-color: transparent;
+        background-color: var(--site-header-bg);
     }
 }
 
 @keyframes site-header-close {
     to {
-        background-color: transparent;
+        background-color: var(--site-header-bg);
     }
 }
 
@@ -280,10 +310,14 @@ body:has(.site-main__content > .hero:first-child) .site-header-part {
     z-index: 20;
 }
 
-body:has(.site-main__content > .hero:first-child) .site-header {
+body:has(.site-main__content > .hero:first-child) .site-header:not(.is-scrolled) {
     color: var(--color-white);
 }
 
-body:has(.site-main__content > .hero:first-child) .site-header__logo {
+body:has(.site-main__content > .hero:first-child) .site-header:not(.is-scrolled) .site-header__logo {
     color: var(--color-white);
+}
+
+body:has(.site-main__content > .hero:first-child) .site-header:not(.is-scrolled) .site-header__link::after {
+    background-color: var(--color-white);
 }
