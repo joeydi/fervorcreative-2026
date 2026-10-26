@@ -3,14 +3,15 @@
     align-items: center;
     justify-content: center;
     gap: var(--space-2xs);
-    min-height: 44px;
+    min-width: 180px;
+    min-height: 60px;
     padding: var(--space-xs) var(--space-xl);
     border: 0;
     border-radius: 0;
     background-color: var(--color-primary);
     color: var(--color-white);
     font-family: var(--font-sans);
-    font-size: var(--font-size-small);
+    font-size: 16px;
     font-weight: 500;
     line-height: 1;
     cursor: pointer;
