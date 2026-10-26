@@ -80,15 +80,17 @@
 
     &__social-link {
         display: block;
-        transition: opacity var(--duration) var(--ease-out);
+        color: var(--color-neutral-3);
+        transition: color var(--duration) var(--ease-out);
 
         &:hover {
-            opacity: 0.7;
+            color: var(--color-white);
         }
 
         svg {
-            width: 16px;
-            height: 16px;
+            display: block;
+            width: auto;
+            height: 32px;
         }
     }
 }
