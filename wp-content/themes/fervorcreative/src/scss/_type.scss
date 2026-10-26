@@ -28,6 +28,10 @@ p {
     @include display;
 }
 
+.subheading {
+    @include subheading;
+}
+
 .serif {
     font-family: var(--font-serif);
 }

@@ -30,13 +30,12 @@
     --font-display: "ff-good-web-pro-condensed", "Arial Narrow", sans-serif;
 
     // Font sizes
-    --font-size-eyebrow: 11px;
-    --font-size-xsmall: 11px;
-    --font-size-small: 13px;
-    --font-size-base: 15px;
-    --font-size-large: #{fluid(16, 19)};
-    --font-size-statement: #{fluid(30, 56)};
-    --font-size-display: #{fluid(48, 104)};
+    --font-size-small: 14px;
+    --font-size-base: #{fluid(18, 22)};
+    --font-size-eyebrow: 18px;
+    --font-size-subheading: 32px;
+    --font-size-statement: #{fluid(36, 80)};
+    --font-size-display: #{fluid(45, 100)};
 
     // Spacing primitives
     --space-3xs: 4px;

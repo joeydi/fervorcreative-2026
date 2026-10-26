@@ -62,7 +62,8 @@
         justify-content: center;
         gap: var(--space-2xs) var(--space-md);
         margin: 0;
-        font-size: var(--font-size-xsmall);
+        font-size: fluid(14, 16);
+        line-height: 1.6;
 
         a:hover {
             text-decoration: underline;

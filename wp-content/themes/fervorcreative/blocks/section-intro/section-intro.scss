@@ -13,7 +13,7 @@
     &__copy {
         max-width: 30em;
         margin-top: var(--space-fluid-xl);
-        font-size: var(--font-size-small);
+        @include small;
 
         > :last-child {
             margin-bottom: 0;

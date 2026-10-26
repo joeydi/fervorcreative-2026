@@ -17,9 +17,8 @@
     }
 
     &__copy {
+        @include small;
         grid-column: 6 / -1;
-        font-size: var(--font-size-small);
-        line-height: 1.7;
 
         @include lg {
             grid-column: 7 / span 5;

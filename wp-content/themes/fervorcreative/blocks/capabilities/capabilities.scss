@@ -36,17 +36,15 @@
     }
 
     &__title {
-        margin: 0 0 var(--space-sm);
-        font-family: var(--font-serif);
-        font-size: var(--font-size-large);
-        font-weight: 400;
+        @include subheading;
+        margin-bottom: var(--space-sm);
     }
 
     &__list {
         margin: 0;
         padding: 0;
         list-style: none;
-        font-size: var(--font-size-xsmall);
+        font-size: 16px;
         line-height: 2;
     }
 }

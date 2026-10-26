@@ -45,8 +45,7 @@
     &__copy {
         margin: 0;
         font-family: var(--font-serif);
-        font-size: var(--font-size-small);
-        line-height: 1.6;
+        @include small;
     }
 
     &__controls {

@@ -16,7 +16,8 @@
 
     > h2 {
         font-size: var(--font-size-statement);
-        line-height: 1.15;
+        letter-spacing: -0.02em;
+        line-height: 1.125;
     }
 
     > :is(.wp-block-image, .wp-block-embed) {

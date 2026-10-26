@@ -29,7 +29,7 @@
 			"fontSizes": [
 				{ "name": "Small", "slug": "small", "size": "var(--font-size-small)" },
 				{ "name": "Base", "slug": "base", "size": "var(--font-size-base)" },
-				{ "name": "Large", "slug": "large", "size": "var(--font-size-large)" }
+				{ "name": "Subheading", "slug": "subheading", "size": "var(--font-size-subheading)" }
 			]
 		},
 		"spacing": {

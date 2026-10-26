@@ -112,7 +112,7 @@ Project helpers live in `inc/projects.php`.
 - `@use "mixins" as *;` at the top of block stylesheets (`src/scss` is on the load path). Never `@import`.
 - BEM: `.block`, `.block__element`, `.block--modifier`. One `__` per class. Write modifiers as siblings: `&--modifier &__element`.
 - Use CSS custom properties from `src/scss/_tokens.scss` for color, type, and spacing.
-- Shared type styles are mixins: `eyebrow`, `statement`, `display`.
+- Shared type styles are mixins: `display`, `statement`, `subheading`, `eyebrow`, `small`. Body copy is the `body` default. `/style-guide` shows each one.
 - Media queries are mobile first: base styles are the smallest layout, and `@include sm`, `md`, `lg`, `xl`, `xxl` (576, 768, 992, 1280, 1440px, from `_variables.scss`) apply from that width up. Don't write `max-width` queries.
 - Sections get vertical rhythm from `.section`; Gray style variants add `.section--surface`.
 

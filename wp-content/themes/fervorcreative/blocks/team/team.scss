@@ -32,18 +32,16 @@
         filter: grayscale(1) contrast(1.05);
     }
 
-    &__name,
-    &__title {
-        margin: 0;
-        font-size: var(--font-size-xsmall);
-        line-height: 1.5;
-    }
-
+    // Body size and line height, inherited.
     &__name {
+        margin: 0;
         font-weight: 600;
     }
 
     &__title {
+        margin: 0;
         color: var(--color-muted);
+        font-size: fluid(16, 18);
+        line-height: 1.5;
     }
 }
