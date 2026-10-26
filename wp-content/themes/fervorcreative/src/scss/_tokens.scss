@@ -58,11 +58,11 @@
 
     // Spacing semantic
     --space-section: var(--space-fluid-3xl);
-    --space-gutter: #{fluid(20, 48)};
+    --space-gutter: #{fluid(20, 80)};
     --space-column-gap: var(--space-fluid-lg);
 
     // Layout
-    --container-max: 1200px;
+    --container-max: 1420px;
     --header-height: #{fluid(80, 200)};
 
     // Motion
