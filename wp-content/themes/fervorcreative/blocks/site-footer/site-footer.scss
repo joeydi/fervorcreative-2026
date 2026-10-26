@@ -1,5 +1,8 @@
 @use "mixins" as *;
 
+// Footer spacing scales from the sm mockup up to the 1920px one.
+$footer-max: 1920px;
+
 .site-footer {
     position: relative;
     isolation: isolate;
@@ -7,16 +10,14 @@
     background-color: var(--color-neutral-7);
     color: var(--color-white);
 
+    // Below md the image stops short of the bottom so it sits higher, as in the mockup.
     &__media {
         position: absolute;
-        inset: 0;
+        inset: 0 0 10%;
         z-index: -1;
 
-        &::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, rgb(0 0 0 / 0.35) 0%, rgb(0 0 0 / 0.1) 40%, rgb(0 0 0 / 0.55) 100%);
+        @include md {
+            bottom: 0;
         }
     }
 
@@ -30,19 +31,19 @@
         align-items: center;
         justify-content: space-between;
         gap: var(--space-fluid-2xl);
-        padding-block: var(--space-fluid-2xl) var(--space-fluid-xl);
+        padding-block: fluid(64, 164, $max-width: $footer-max) fluid(48, 100, $max-width: $footer-max);
         text-align: center;
     }
 
     &--has-image &__inner {
-        min-height: clamp(560px, 62vw, 960px);
+        min-height: fluid(626, 1196, $max-width: $footer-max);
     }
 
     &__cta {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: var(--space-md);
+        gap: fluid(32, 56, $max-width: $footer-max);
     }
 
     &__heading {
@@ -53,14 +54,14 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: var(--space-md);
+        gap: fluid(32, 52, $max-width: $footer-max);
     }
 
     &__contact {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: var(--space-2xs) var(--space-md);
+        gap: 0 var(--space-md);
         margin: 0;
         font-size: fluid(14, 16);
         line-height: 1.6;
