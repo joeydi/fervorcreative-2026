@@ -18,7 +18,7 @@ if ( ! $items ) {
 ?>
 <section<?php fervor_block_attrs( $block, array( 'numbered-carousel', 'section' ) ); ?> data-carousel>
 	<div class="numbered-carousel__viewport container">
-		<ol class="numbered-carousel__track" data-carousel-track>
+		<ol class="numbered-carousel__track" data-carousel-track data-reveal>
 			<?php foreach ( $items as $index => $item ) : ?>
 				<li class="numbered-carousel__item">
 					<span class="numbered-carousel__number" aria-hidden="true"><?php echo esc_html( str_pad( (string) ( $index + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></span>
@@ -29,7 +29,7 @@ if ( ! $items ) {
 	</div>
 
 	<?php if ( count( $items ) > 1 ) : ?>
-		<div class="numbered-carousel__controls container">
+		<div class="numbered-carousel__controls container" data-reveal-item>
 			<button class="circle-btn" type="button" data-carousel-prev aria-label="<?php esc_attr_e( 'Previous', 'fervorcreative' ); ?>"><?php fervor_icon( 'arrow-long-left' ); ?></button>
 			<button class="circle-btn" type="button" data-carousel-next aria-label="<?php esc_attr_e( 'Next', 'fervorcreative' ); ?>"><?php fervor_icon( 'arrow-long-right' ); ?></button>
 		</div>

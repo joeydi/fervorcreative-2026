@@ -18,7 +18,7 @@ if ( ! $copy ) {
 
 ?>
 <section<?php fervor_block_attrs( $block, array( 'project-text' ) ); ?>>
-	<div class="project-text__inner container">
+	<div class="project-text__inner container" data-reveal>
 		<?php if ( $label ) : ?>
 			<p class="project-text__label"><?php echo esc_html( $label ); ?></p>
 		<?php endif; ?>

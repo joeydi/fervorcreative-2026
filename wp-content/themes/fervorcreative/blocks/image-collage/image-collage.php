@@ -28,7 +28,7 @@ $classes = array(
 <section<?php fervor_block_attrs( $block, $classes ); ?>>
 	<div class="image-collage__grid container">
 		<?php foreach ( $images as $index => $image_id ) : ?>
-			<figure class="image-collage__item">
+			<figure class="image-collage__item" data-reveal-item>
 				<?php
 				echo wp_get_attachment_image(
 					$image_id,

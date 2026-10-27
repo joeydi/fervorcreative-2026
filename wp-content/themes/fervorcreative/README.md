@@ -81,6 +81,15 @@ Capabilities column icons are uploads. SVGs are inlined, so an SVG whose root an
 
 The source files live in the project's `assets/capability-icons/` folder.
 
+### In-view reveals
+
+Content fades up 20px into place once its top passes 90% of the way down the viewport, plays once, and is staggered by `--reveal-stagger` (`src/scss/_reveal.scss`, `src/js/modules/reveal.js`). Anything on screen at load reveals straight away. Nothing is hidden without JS, with reduced motion, or in the editor.
+
+| Attribute | Behavior |
+|---|---|
+| `data-reveal` | On a wrapper: its direct children reveal in turn |
+| `data-reveal-item` | On a single element, such as a grid card: items that come into view together reveal in turn |
+
 ### Adding a block
 
 ```

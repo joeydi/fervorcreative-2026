@@ -22,7 +22,7 @@ $services = fervor_get_project_services( $project_id );
 
 ?>
 <section<?php fervor_block_attrs( $block, array( 'project-masthead' ) ); ?>>
-	<div class="project-masthead__inner container">
+	<div class="project-masthead__inner container" data-reveal>
 		<h1 class="project-masthead__title"><?php echo esc_html( get_the_title( $project_id ) ); ?></h1>
 
 		<?php if ( $tagline || $intro ) : ?>

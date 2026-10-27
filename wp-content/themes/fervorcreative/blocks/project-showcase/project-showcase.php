@@ -48,7 +48,7 @@ $sizes = 1 === count( $items ) ? '(min-width: 1440px) 1420px, 100vw' : '(min-wid
 			$size  = ! empty( $item['video_file']['width'] ) ? $item['video_file'] : wp_get_attachment_metadata( $item['image'] );
 			$ratio = ! empty( $size['width'] ) && ! empty( $size['height'] ) ? round( $size['width'] / $size['height'], 4 ) : 0;
 			?>
-			<figure class="project-showcase__item"<?php echo $ratio ? ' style="--ratio: ' . esc_attr( $ratio ) . '"' : ''; ?>>
+			<figure class="project-showcase__item" data-reveal-item<?php echo $ratio ? ' style="--ratio: ' . esc_attr( $ratio ) . '"' : ''; ?>>
 				<?php if ( ! empty( $item['video_file']['url'] ) ) : ?>
 					<video
 						class="project-showcase__video"

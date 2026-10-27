@@ -16,7 +16,7 @@ $copy        = get_field( 'copy' );
 
 ?>
 <section<?php fervor_block_attrs( $block, array( 'section-intro', 'section' ) ); ?>>
-	<div class="container">
+	<div class="container" data-reveal>
 		<?php if ( $eyebrow ) : ?>
 			<p class="section-intro__eyebrow"><?php echo esc_html( $eyebrow ); ?></p>
 		<?php endif; ?>

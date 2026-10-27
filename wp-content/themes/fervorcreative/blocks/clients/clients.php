@@ -23,7 +23,7 @@ $classes = array(
 <section<?php fervor_block_attrs( $block, $classes ); ?>>
 	<div class="container">
 		<?php if ( $eyebrow || $heading ) : ?>
-			<div class="clients__header">
+			<div class="clients__header" data-reveal>
 				<?php if ( $eyebrow ) : ?>
 					<p class="clients__eyebrow"><?php echo esc_html( $eyebrow ); ?></p>
 				<?php endif; ?>
@@ -36,7 +36,7 @@ $classes = array(
 		<?php if ( $logos ) : ?>
 			<ul class="clients__logos">
 				<?php foreach ( $logos as $logo_id ) : ?>
-					<li class="clients__logo">
+					<li class="clients__logo" data-reveal-item>
 						<?php
 						echo wp_get_attachment_image(
 							$logo_id,

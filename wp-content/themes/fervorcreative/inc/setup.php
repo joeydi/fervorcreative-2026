@@ -83,6 +83,18 @@ JS;
 add_action( 'wp_head', 'fervor_print_header_reveal_script' );
 
 /**
+ * Turn on in-view reveals (src/js/modules/reveal.js) before the first paint.
+ *
+ * Content only starts hidden under .has-reveal, so it stays visible without
+ * JS, with reduced motion, and in the editor. It's inline in the head so
+ * nothing on screen shows and then blinks out while main.js loads.
+ */
+function fervor_print_reveal_script() {
+	wp_print_inline_script_tag( "if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('has-reveal');" );
+}
+add_action( 'wp_head', 'fervor_print_reveal_script' );
+
+/**
  * Enqueue editor styles inside the block editor iframe.
  */
 function fervor_enqueue_editor_assets() {

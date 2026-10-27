@@ -1,0 +1,25 @@
+// In-view reveals: reveal.js adds .is-revealed as things scroll into view and
+// sets --reveal-index to stagger them. Nothing is hidden until the head script
+// adds .has-reveal (see fervor_print_reveal_script()), so content stays visible
+// without JS, with reduced motion, and in the editor.
+//
+// An animation rather than a transition, so revealed elements keep their own
+// hover transitions.
+
+.has-reveal {
+    [data-reveal] > :not(.is-revealed),
+    [data-reveal-item]:not(.is-revealed) {
+        opacity: 0;
+    }
+
+    .is-revealed {
+        animation: reveal 600ms var(--ease-out) calc(var(--reveal-index, 0) * var(--reveal-stagger)) backwards;
+    }
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        translate: 0 20px;
+    }
+}

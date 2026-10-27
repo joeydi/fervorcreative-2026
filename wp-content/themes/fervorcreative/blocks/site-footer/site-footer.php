@@ -41,7 +41,7 @@ $classes = array(
 
 	<div class="site-footer__inner container">
 		<?php if ( $cta_heading || $cta_link ) : ?>
-			<div class="site-footer__cta">
+			<div class="site-footer__cta" data-reveal>
 				<?php if ( $cta_heading ) : ?>
 					<h2 class="site-footer__heading"><?php echo esc_html( $cta_heading ); ?></h2>
 				<?php endif; ?>

@@ -20,12 +20,12 @@ if ( ! $members ) {
 <section<?php fervor_block_attrs( $block, array( 'team', 'section' ) ); ?>>
 	<div class="container">
 		<?php if ( $eyebrow ) : ?>
-			<h2 class="team__eyebrow"><?php echo esc_html( $eyebrow ); ?></h2>
+			<h2 class="team__eyebrow" data-reveal-item><?php echo esc_html( $eyebrow ); ?></h2>
 		<?php endif; ?>
 
 		<ul class="team__grid">
 			<?php foreach ( $members as $member ) : ?>
-				<li class="team__member">
+				<li class="team__member" data-reveal-item>
 					<figure class="team__photo">
 						<?php
 						if ( $member['photo'] ) {

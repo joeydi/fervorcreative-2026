@@ -23,7 +23,7 @@ $classes = array(
 <section<?php fervor_block_attrs( $block, $classes ); ?>>
 	<div class="container">
 		<?php if ( $eyebrow || $heading ) : ?>
-			<div class="capabilities__header">
+			<div class="capabilities__header" data-reveal>
 				<?php if ( $eyebrow ) : ?>
 					<p class="capabilities__eyebrow"><?php echo esc_html( $eyebrow ); ?></p>
 				<?php endif; ?>
@@ -36,7 +36,7 @@ $classes = array(
 		<?php if ( $columns ) : ?>
 			<div class="capabilities__columns">
 				<?php foreach ( $columns as $column ) : ?>
-					<div class="capabilities__column">
+					<div class="capabilities__column" data-reveal-item>
 						<?php $icon_svg = fervor_get_svg_attachment( (int) $column['icon'] ); ?>
 						<?php if ( $icon_svg ) : ?>
 							<span class="capabilities__icon" aria-hidden="true" data-capability-icon><?php echo $icon_svg; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- sanitized by fervor_get_svg_attachment. ?></span>

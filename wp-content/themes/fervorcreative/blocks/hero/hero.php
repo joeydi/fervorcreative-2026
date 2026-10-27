@@ -49,7 +49,7 @@ $classes = array(
 	</div>
 
 	<?php if ( $title ) : ?>
-		<div class="hero__content container">
+		<div class="hero__content container" data-reveal>
 			<h1 class="hero__title"><?php echo esc_html( $title ); ?></h1>
 		</div>
 	<?php endif; ?>

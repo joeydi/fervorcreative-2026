@@ -15,7 +15,9 @@
     }
 
     // 4:3 tiles, five across from lg. Flex rather than grid so a short last
-    // row centers.
+    // row centers. The whole list multiplies, not each logo, because a logo
+    // fading in (data-reveal-item) is isolated from the background until its
+    // animation ends.
     &__logos {
         --columns: 3;
         --column-gap: #{fluid(20, 48)};
@@ -27,6 +29,7 @@
         margin: 0;
         padding: 0;
         list-style: none;
+        mix-blend-mode: multiply;
 
         @include md {
             --columns: 4;
@@ -47,6 +50,5 @@
         height: 100%;
         object-fit: contain;
         filter: grayscale(1);
-        mix-blend-mode: multiply;
     }
 }

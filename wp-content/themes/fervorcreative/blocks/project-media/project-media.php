@@ -24,7 +24,7 @@ $sizes = 'full' === $layout ? '(min-width: 1249px) 1200px, 100vw' : '(min-width:
 	<div class="project-media__inner container">
 		<div class="project-media__grid">
 			<?php foreach ( $items as $item ) : ?>
-				<figure class="project-media__item">
+				<figure class="project-media__item" data-reveal-item>
 					<?php if ( $item['video'] ) : ?>
 						<div class="project-media__embed"><?php echo $item['video']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- oEmbed HTML from ACF. ?></div>
 					<?php elseif ( ! empty( $item['video_file']['url'] ) ) : ?>

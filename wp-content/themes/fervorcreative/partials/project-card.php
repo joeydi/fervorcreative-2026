@@ -23,7 +23,7 @@ $sizes = array(
 );
 
 ?>
-<article <?php fervor_attrs( array( 'class' => array( 'project-card', 'project-card--' . $size ) ) ); ?>>
+<article <?php fervor_attrs( array( 'class' => array( 'project-card', 'project-card--' . $size ), 'data-reveal-item' => true ) ); ?>>
 	<a class="project-card__link" href="<?php echo esc_url( get_permalink( $project_id ) ); ?>">
 		<figure class="project-card__media">
 			<?php
