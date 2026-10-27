@@ -373,6 +373,7 @@ return array(
     'AC\\Formatter\\Date\\Timestamp' => $baseDir . '/classes/Formatter/Date/Timestamp.php',
     'AC\\Formatter\\DottedPassword' => $baseDir . '/classes/Formatter/DottedPassword.php',
     'AC\\Formatter\\EmptyValue' => $baseDir . '/classes/Formatter/EmptyValue.php',
+    'AC\\Formatter\\EscapeHtml' => $baseDir . '/classes/Formatter/EscapeHtml.php',
     'AC\\Formatter\\ExplodeToCollection' => $baseDir . '/classes/Formatter/ExplodeToCollection.php',
     'AC\\Formatter\\ExtendedValueLink' => $baseDir . '/classes/Formatter/ExtendedValueLink.php',
     'AC\\Formatter\\FallBack' => $baseDir . '/classes/Formatter/FallBack.php',

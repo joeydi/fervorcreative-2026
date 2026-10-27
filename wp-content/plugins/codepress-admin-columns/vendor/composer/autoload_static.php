@@ -417,6 +417,7 @@ class ComposerStaticInitAdminColumns
         'AC\\Formatter\\Date\\Timestamp' => __DIR__ . '/../..' . '/classes/Formatter/Date/Timestamp.php',
         'AC\\Formatter\\DottedPassword' => __DIR__ . '/../..' . '/classes/Formatter/DottedPassword.php',
         'AC\\Formatter\\EmptyValue' => __DIR__ . '/../..' . '/classes/Formatter/EmptyValue.php',
+        'AC\\Formatter\\EscapeHtml' => __DIR__ . '/../..' . '/classes/Formatter/EscapeHtml.php',
         'AC\\Formatter\\ExplodeToCollection' => __DIR__ . '/../..' . '/classes/Formatter/ExplodeToCollection.php',
         'AC\\Formatter\\ExtendedValueLink' => __DIR__ . '/../..' . '/classes/Formatter/ExtendedValueLink.php',
         'AC\\Formatter\\FallBack' => __DIR__ . '/../..' . '/classes/Formatter/FallBack.php',
