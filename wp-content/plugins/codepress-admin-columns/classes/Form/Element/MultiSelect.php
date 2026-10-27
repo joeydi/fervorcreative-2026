@@ -1,0 +1,21 @@
+<?php
+
+declare(strict_types=1);
+
+namespace AC\Form\Element;
+
+class MultiSelect extends Select
+{
+    public function __construct(string $name, array $options = [])
+    {
+        parent::__construct($name, $options);
+
+        $this->set_attribute('multiple', 'multiple');
+    }
+
+    protected function selected($value): bool
+    {
+        return in_array($value, (array)$this->get_value(), true);
+    }
+
+}

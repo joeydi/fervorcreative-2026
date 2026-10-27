@@ -1,0 +1,43 @@
+<?php
+
+declare(strict_types=1);
+
+namespace AC\Meta;
+
+use AC\MetaType;
+use InvalidArgumentException;
+
+final class QueryMetaFactory
+{
+    /**
+     * @throws InvalidArgumentException When the meta type is not supported by the query builder.
+     */
+    public function create(string $meta_key, MetaType $meta_type): Query
+    {
+        $query = Query::from_meta_type($meta_type);
+        $query
+            ->select('meta_value')
+            ->distinct()
+            ->join()
+            ->where('meta_value', '!=', '')
+            ->where('meta_key', $meta_key)
+            ->order_by('meta_value');
+
+        return $query;
+    }
+
+    public function create_with_post_type(string $meta_key, string $post_type): Query
+    {
+        return $this
+            ->create($meta_key, MetaType::create_post_meta())
+            ->where_post_type($post_type);
+    }
+
+    public function create_with_post_types(string $meta_key, array $post_types): Query
+    {
+        return $this
+            ->create($meta_key, MetaType::create_post_meta())
+            ->where_post_types($post_types);
+    }
+
+}

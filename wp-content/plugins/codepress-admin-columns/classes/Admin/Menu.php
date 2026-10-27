@@ -1,0 +1,45 @@
+<?php
+
+declare(strict_types=1);
+
+namespace AC\Admin;
+
+use AC\Admin\Type\MenuItem;
+
+class Menu
+{
+    /**
+     * @var MenuItem[]
+     */
+    private array $items;
+
+    public function __construct(array $items = [])
+    {
+        array_map([$this, 'add_item'], $items);
+    }
+
+    public function add_item(Type\MenuItem $item): self
+    {
+        $this->items[$item->get_slug()] = $item;
+
+        return $this;
+    }
+
+    public function remove_item(string $slug): self
+    {
+        unset($this->items[$slug]);
+
+        return $this;
+    }
+
+    public function get_items(): array
+    {
+        return $this->items;
+    }
+
+    public function get_item_by_slug(string $slug): ?Type\MenuItem
+    {
+        return $this->items[$slug] ?? null;
+    }
+
+}

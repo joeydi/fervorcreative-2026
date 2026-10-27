@@ -1,0 +1,210 @@
+<?php
+
+declare(strict_types=1);
+
+namespace AC\Helper;
+
+use AC\Type\Link;
+use WP_HTML_Tag_Processor;
+
+class Html extends Creatable
+{
+    public function get_attribute_as_string(string $key, ?string $value = null): string
+    {
+        return Strings::create()->is_not_empty($value)
+            ? sprintf('%s="%s"', $key, esc_attr(trim((string)$value)))
+            : $key;
+    }
+
+    public function get_inline_styles(array $attributes): string
+    {
+        $style = '';
+
+        foreach ($attributes as $key => $value) {
+            $style .= $key . ':' . $value . '; ';
+        }
+
+        return $style;
+    }
+
+    public function link(string $url, ?string $label = null, array $attributes = []): string
+    {
+        if (! $url) {
+            return $label ?? '';
+        }
+
+        if (null === $label) {
+            $label = urldecode($url);
+        }
+
+        if (! $label) {
+            return '';
+        }
+
+        if (! $this->contains_html($label)) {
+            $label = esc_html($label);
+        }
+
+        $tooltip = null;
+
+        if (array_key_exists('tooltip', $attributes)) {
+            $tooltip = (string)$attributes['tooltip'];
+
+            unset($attributes['tooltip']);
+        }
+
+        $protocols = wp_allowed_protocols();
+        $protocols[] = 'skype';
+        $protocols[] = 'call';
+
+        $link = new Link(
+            $url,
+            $label,
+            $this->filter_attributes($attributes),
+            $protocols
+        );
+
+        if (null !== $tooltip) {
+            $link = $link->with_tooltip($tooltip);
+        }
+
+        return $link->render();
+    }
+
+    public function get_tooltip_attr(string $content): string
+    {
+        if (! $content) {
+            return '';
+        }
+
+        return 'data-ac-tip="' . esc_attr($content) . '"';
+    }
+
+    public function tooltip(string $label, string $tooltip): string
+    {
+        if (Strings::create()->is_not_empty($label) && $tooltip) {
+            $label = sprintf(
+                '<span %s>%s</span>',
+                $this->get_tooltip_attr($tooltip),
+                $label
+            );
+        }
+
+        return $label;
+    }
+
+    public function codearea(string $string, int $max_chars = 1000): string
+    {
+        if (! $string) {
+            return '';
+        }
+
+        $contents = Mbstring::substr(
+            $string,
+            0,
+            $max_chars
+        );
+
+        return '<textarea style="color: #808080; width: 100%; min-height: 60px;" readonly>' . esc_textarea($contents) . '</textarea>';
+    }
+
+    private function filter_attributes(array $attributes): array
+    {
+        $filtered = [];
+
+        foreach ($attributes as $attribute => $value) {
+            if (
+                in_array($attribute, ['title', 'id', 'class', 'style', 'target', 'rel', 'download'], true) ||
+                'data-' === substr($attribute, 0, 5)) {
+                $filtered[$attribute] = $value;
+            }
+        }
+
+        return $filtered;
+    }
+
+    public function get_links(string $string): ?array
+    {
+        // Just do a very simple check to check for possible links
+        if (false === strpos($string, '<a')) {
+            return null;
+        }
+
+        $hrefs = [];
+
+        $processor = new WP_HTML_Tag_Processor($string);
+
+        while ($processor->next_tag(['tag_name' => 'a'])) {
+            $href = $processor->get_attribute('href');
+
+            if (! is_string($href) || 0 === strpos($href, '#')) {
+                continue;
+            }
+
+            $hrefs[] = $href;
+        }
+
+        return $hrefs;
+    }
+
+    private function contains_html(string $string): bool
+    {
+        return $string && $string !== strip_tags($string);
+    }
+
+    public function divided(array $array): string
+    {
+        $array = Arrays::create()->filter($array);
+
+        return implode('<span class="ac-divider"></span>', $array);
+    }
+
+    /**
+     * Small HTML block with grey background and rounded corners
+     */
+    public function small_block(array $items): string
+    {
+        $blocks = [];
+
+        foreach ($items as $item) {
+            if ($item && is_scalar($item)) {
+                $blocks[] = sprintf('<span class="ac-small-block">%s</span>', $item);
+            }
+        }
+
+        return implode('', $blocks);
+    }
+
+    /**
+     * Return round HTML span
+     */
+    public function rounded(string $string): string
+    {
+        return sprintf('<span class="ac-rounded">%s</span>', $string);
+    }
+
+    /**
+     * @deprecated 7.0.9
+     */
+    public function get_internal_external_links(): ?array
+    {
+        _deprecated_function(__METHOD__, '7.0.9');
+
+        return [];
+    }
+
+    public function strip_attributes(string $html): string
+    {
+        _deprecated_function(__METHOD__, '7.0.9');
+
+        return $html;
+    }
+
+    public function more(array $array, int $limit = 10, string $glue = ', '): string
+    {
+        _deprecated_function(__METHOD__, '7.0.11');
+
+        return implode($glue, $array);
+    }
+
+}

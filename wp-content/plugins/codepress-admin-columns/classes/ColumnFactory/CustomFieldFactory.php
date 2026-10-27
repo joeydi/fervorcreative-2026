@@ -1,0 +1,145 @@
+<?php
+
+declare(strict_types=1);
+
+namespace AC\ColumnFactory;
+
+use AC;
+use AC\Column\BaseColumnFactory;
+use AC\Column\Context;
+use AC\Column\CustomFieldContext;
+use AC\Formatter\Aggregate;
+use AC\FormatterCollection;
+use AC\Setting\ComponentCollection;
+use AC\Setting\ComponentFactory;
+use AC\Setting\ComponentFactory\ColumnInfo;
+use AC\Setting\ComponentFactory\FieldType;
+use AC\Setting\Config;
+use AC\Setting\DefaultSettingsBuilder;
+use AC\Type\TableScreenContext;
+
+class CustomFieldFactory extends BaseColumnFactory
+{
+    private ComponentFactory\CustomFieldFactory $custom_field_factory;
+
+    private FieldType $field_type;
+
+    private TableScreenContext $table_context;
+
+    private ComponentFactory\BeforeAfter $before_after;
+
+    private ComponentFactory\Pro\TogglePromotionFactory $pro_promotion_factory;
+
+    public function __construct(
+        DefaultSettingsBuilder $default_settings_builder,
+        ComponentFactory\CustomFieldFactory $custom_field_factory,
+        TableScreenContext $table_context,
+        FieldType $field_type,
+        ComponentFactory\BeforeAfter $before_after,
+        ComponentFactory\Pro\TogglePromotionFactory $pro_promotion_factory
+    ) {
+        parent::__construct(
+            $default_settings_builder
+        );
+
+        $this->custom_field_factory = $custom_field_factory;
+        $this->field_type = $field_type;
+        $this->table_context = $table_context;
+        $this->before_after = $before_after;
+        $this->pro_promotion_factory = $pro_promotion_factory;
+    }
+
+    protected function get_settings(Config $config): ComponentCollection
+    {
+        $items = [];
+
+        $meta_key = $config->get('field', '');
+
+        if ('' !== $meta_key) {
+            $items[] = ['label' => __('Meta Key', 'codepress-admin-columns'), 'value' => $meta_key];
+        }
+
+        $components = [
+            $this->custom_field_factory->create($this->table_context)->create($config),
+            $this->field_type->create($config),
+        ];
+
+        if (! empty($items)) {
+            $components[] = (new ColumnInfo($items))->create($config);
+        }
+
+        $components[] = $this->before_after->create($config);
+        $components[] = $this->pro_promotion_factory->create(__('Enable Editing', 'codepress-admin-columns'), 'editing')->create($config);
+        $components[] = $this->pro_promotion_factory->create(__('Enable Bulk Editing', 'codepress-admin-columns'), 'bulk-edit')->create($config);
+        $components[] = $this->pro_promotion_factory->create(__('Enable Export', 'codepress-admin-columns'), 'export')->create($config);
+        $components[] = $this->pro_promotion_factory->create(__('Enable Smart Filtering', 'codepress-admin-columns'), 'search')->create($config);
+        $components[] = $this->pro_promotion_factory->create(__('Enable Filtering', 'codepress-admin-columns'), 'filter')->create($config);
+        $components[] = $this->pro_promotion_factory->create(__('Enable Sorting', 'codepress-admin-columns'), 'sorting')->create($config);
+
+        return new ComponentCollection($components);
+    }
+
+    public function get_column_type(): string
+    {
+        return 'column-meta';
+    }
+
+    public function get_label(): string
+    {
+        return __('Custom Field', 'codepress-admin-columns');
+    }
+
+    private function get_meta_key(Config $config): string
+    {
+        return (string)$config->get('field', '');
+    }
+
+    private function get_field_type(Config $config): string
+    {
+        return (string)$config->get('field_type', '');
+    }
+
+    protected function get_context(Config $config): Context
+    {
+        return new CustomFieldContext(
+            $config,
+            $this->get_label(),
+            $this->get_field_type($config),
+            $this->get_meta_key($config),
+            $this->table_context
+        );
+    }
+
+    protected function get_formatters(Config $config): FormatterCollection
+    {
+        $formatters = parent::get_formatters($config);
+
+        switch ($this->get_field_type($config)) {
+            case FieldType::TYPE_COUNT:
+                return $formatters->prepend(
+                    Aggregate::from_array([
+                        new AC\Formatter\MetaValueCollection(
+                            $this->table_context->get_meta_type(),
+                            $this->get_meta_key($config)
+                        ),
+                        new AC\Formatter\Count(),
+                    ])
+                );
+            case FieldType::TYPE_META_COUNT:
+                return $formatters->prepend(
+                    Aggregate::from_array([
+                        new AC\Formatter\MetaCollection(
+                            $this->table_context->get_meta_type(),
+                            $this->get_meta_key($config)
+                        ),
+                        new AC\Formatter\Count(),
+                    ])
+                );
+        }
+
+        return $formatters->prepend(
+            new AC\Formatter\Meta($this->table_context->get_meta_type(), $this->get_meta_key($config))
+        );
+    }
+
+}

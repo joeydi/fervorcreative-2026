@@ -1,0 +1,53 @@
+<?php
+
+declare(strict_types=1);
+
+namespace AC;
+
+use LogicException;
+
+class RequestHandlerFactory
+{
+    /**
+     * @var RequestHandler[]
+     */
+    private array $request_handlers;
+
+    private Request $request;
+
+    public function __construct(Request $request)
+    {
+        $this->request = $request;
+    }
+
+    public function add(string $action, RequestHandler $request_handler): self
+    {
+        $this->request_handlers[$action] = $request_handler;
+
+        return $this;
+    }
+
+    public function is_request(): bool
+    {
+        return null !== $this->get_request_handler();
+    }
+
+    private function get_request_handler(): ?RequestHandler
+    {
+        $action = $this->request->get('action') ?: $this->request->get('ac_action');
+
+        return $this->request_handlers[(string)$action] ?? null;
+    }
+
+    public function create(): RequestHandler
+    {
+        $request_handler = $this->get_request_handler();
+
+        if (null === $request_handler) {
+            throw new LogicException('Invalid request.');
+        }
+
+        return $request_handler;
+    }
+
+}
