@@ -98,6 +98,40 @@
                     "library": "all",
                     "mime_types": "mp4,webm",
                     "parent_repeater": "field_fc_project_media_items"
+                },
+                {
+                    "key": "field_fc_project_media_items_slides",
+                    "label": "Slideshow images (optional)",
+                    "name": "slides",
+                    "type": "gallery",
+                    "instructions": "Turns this image into a slideshow: the image above shows first, then these. Slides crop to the first image's shape.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_fc_project_media_items_image",
+                                "operator": "!=empty"
+                            },
+                            {
+                                "field": "field_fc_project_media_items_video",
+                                "operator": "==empty"
+                            },
+                            {
+                                "field": "field_fc_project_media_items_video_file",
+                                "operator": "==empty"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "id",
+                    "preview_size": "medium",
+                    "library": "all",
+                    "insert": "append",
+                    "parent_repeater": "field_fc_project_media_items"
                 }
             ]
         }
@@ -120,5 +154,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1793106353
+    "modified": 1793123700
 }

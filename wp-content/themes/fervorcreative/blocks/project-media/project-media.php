@@ -19,6 +19,12 @@ if ( ! $items ) {
 
 $sizes = 'full' === $layout ? '(min-width: 1249px) 1200px, 100vw' : '(min-width: 768px) 50vw, 100vw';
 
+$image_attrs = array(
+	'class'   => 'project-media__image',
+	'loading' => 'lazy',
+	'sizes'   => $sizes,
+);
+
 ?>
 <section<?php fervor_block_attrs( $block, array( 'project-media', 'project-media--' . $layout ) ); ?>>
 	<div class="project-media__inner container">
@@ -38,19 +44,30 @@ $sizes = 'full' === $layout ? '(min-width: 1249px) 1200px, 100vw' : '(min-width:
 							loop
 							playsinline
 							aria-hidden="true"></video>
-					<?php else : ?>
+					<?php elseif ( ! empty( $item['slides'] ) ) : ?>
 						<?php
-						echo wp_get_attachment_image(
-							$item['image'],
-							'2048x2048',
-							false,
-							array(
-								'class'   => 'project-media__image',
-								'loading' => 'lazy',
-								'sizes'   => $sizes,
-							)
-						);
+						// A slideshow opens on the item's image, and every slide crops to its shape.
+						$slides = array_merge( array( $item['image'] ), array_map( 'intval', (array) $item['slides'] ) );
+						$meta   = wp_get_attachment_metadata( $item['image'] );
+						$ratio  = ! empty( $meta['width'] ) && ! empty( $meta['height'] ) ? $meta['width'] . ' / ' . $meta['height'] : '';
 						?>
+						<div
+							class="project-media__slideshow"
+							<?php echo $ratio ? 'style="--ratio: ' . esc_attr( $ratio ) . '"' : ''; ?>
+							data-carousel
+							data-carousel-autoplay="3000"
+							data-carousel-duration="800"
+							data-carousel-loop
+							aria-roledescription="<?php esc_attr_e( 'carousel', 'fervorcreative' ); ?>"
+							aria-label="<?php echo esc_attr( sprintf( /* translators: %s: project title */ __( '%s images', 'fervorcreative' ), get_the_title() ) ); ?>">
+							<div class="project-media__track" data-carousel-track>
+								<?php foreach ( $slides as $slide ) : ?>
+									<div class="project-media__slide"><?php echo wp_get_attachment_image( $slide, '2048x2048', false, $image_attrs ); ?></div>
+								<?php endforeach; ?>
+							</div>
+						</div>
+					<?php else : ?>
+						<?php echo wp_get_attachment_image( $item['image'], '2048x2048', false, $image_attrs ); ?>
 					<?php endif; ?>
 				</figure>
 			<?php endforeach; ?>

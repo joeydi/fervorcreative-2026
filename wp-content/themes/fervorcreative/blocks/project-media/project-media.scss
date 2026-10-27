@@ -29,6 +29,50 @@
         width: 100%;
     }
 
+    // A scroll-snap track of slides the carousel module autoplays (see carousel.js).
+    &__slideshow {
+        aspect-ratio: var(--ratio, 4 / 5);
+    }
+
+    &__track {
+        position: relative;
+        display: grid;
+        grid-auto-columns: 100%;
+        grid-auto-flow: column;
+        height: 100%;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    &__slide {
+        position: relative;
+        // Clip, not hidden: a hidden overflow is a scroll container, which the
+        // image's view timeline would track instead of the track.
+        overflow: clip;
+        scroll-snap-align: start;
+
+        .project-media__image {
+            @include cover;
+        }
+    }
+
+    // The leaving image drifts back half a slide as its slide scrolls out, so
+    // it moves at half speed and the next slide covers it. Browsers without
+    // scroll-driven animations get a plain slide.
+    @supports (animation-timeline: view()) {
+        &__slide .project-media__image {
+            animation: project-media-slide-exit linear both;
+            animation-timeline: view(inline);
+            animation-range: exit;
+        }
+    }
+
     &__embed {
         position: relative;
         aspect-ratio: 16 / 9;
@@ -39,5 +83,11 @@
             width: 100%;
             height: 100%;
         }
+    }
+}
+
+@keyframes project-media-slide-exit {
+    to {
+        translate: 50% 0;
     }
 }
