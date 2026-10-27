@@ -11,10 +11,20 @@
     position: relative;
     z-index: 20;
     color: var(--color-foreground);
-    background-color: var(--site-header-bg);
-    transition:
-        color var(--duration) var(--ease-out),
-        background-color var(--duration) var(--ease-out);
+    transition: color var(--duration) var(--ease-out);
+
+    // The white bar sits at its scrolled height and slides down from above,
+    // so it doesn't grow or shrink along with the header.
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto;
+        z-index: -1;
+        height: 80px;
+        background-color: var(--color-white);
+        translate: 0 -100%;
+        transition: translate var(--duration) var(--ease-out);
+    }
 
     // Fixed on the front end only, so it stays in the flow in the editor.
     :where(body:not(.editor-styles-wrapper)) & {
@@ -26,6 +36,15 @@
     &.is-scrolled {
         --site-header-height: 80px;
         --site-header-bg: var(--color-white);
+
+        &::before {
+            translate: none;
+        }
+    }
+
+    // The open menu panel brings its own background.
+    &.is-open:not(.is-closing)::before {
+        translate: 0 -100%;
     }
 
     &__inner {
