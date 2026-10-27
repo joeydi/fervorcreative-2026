@@ -16,7 +16,11 @@
     }
 
     &__main {
-        grid-column: 1 / span 6;
+        grid-column: 1 / span 7;
+
+        @include xl {
+            grid-column: 1 / span 6;
+        }
     }
 
     &__title {
@@ -39,7 +43,7 @@
     }
 
     &__services {
-        grid-column: 8 / -1;
+        grid-column: 9 / -1;
 
         @include xl {
             grid-column: 10 / -1;
