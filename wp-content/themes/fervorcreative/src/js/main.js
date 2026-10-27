@@ -4,6 +4,7 @@ import carousel from './modules/carousel';
 import header from './modules/header';
 import menu from './modules/menu';
 import reveal from './modules/reveal';
+import slideshow from './modules/slideshow';
 import styleGuide from './modules/style-guide';
 import tabs from './modules/tabs';
 
@@ -12,6 +13,7 @@ carousel();
 header();
 menu();
 reveal();
+slideshow();
 styleGuide();
 tabs();
 

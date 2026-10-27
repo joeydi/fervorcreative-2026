@@ -54,17 +54,16 @@ $image_attrs = array(
 						<div
 							class="project-media__slideshow"
 							<?php echo $ratio ? 'style="--ratio: ' . esc_attr( $ratio ) . '"' : ''; ?>
-							data-carousel
-							data-carousel-autoplay="3000"
-							data-carousel-duration="800"
-							data-carousel-loop
+							data-slideshow
+							data-slideshow-autoplay="3000"
+							data-slideshow-duration="800"
 							aria-roledescription="<?php esc_attr_e( 'carousel', 'fervorcreative' ); ?>"
 							aria-label="<?php echo esc_attr( sprintf( /* translators: %s: project title */ __( '%s images', 'fervorcreative' ), get_the_title() ) ); ?>">
-							<div class="project-media__track" data-carousel-track>
-								<?php foreach ( $slides as $slide ) : ?>
-									<div class="project-media__slide"><?php echo wp_get_attachment_image( $slide, '2048x2048', false, $image_attrs ); ?></div>
-								<?php endforeach; ?>
-							</div>
+							<?php foreach ( $slides as $slide ) : ?>
+								<div class="project-media__slide" role="group" aria-roledescription="<?php esc_attr_e( 'slide', 'fervorcreative' ); ?>">
+									<?php echo wp_get_attachment_image( $slide, '2048x2048', false, $image_attrs + array( 'draggable' => 'false' ) ); ?>
+								</div>
+							<?php endforeach; ?>
 						</div>
 					<?php else : ?>
 						<?php echo wp_get_attachment_image( $item['image'], '2048x2048', false, $image_attrs ); ?>
