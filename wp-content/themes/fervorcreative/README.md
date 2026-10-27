@@ -63,7 +63,7 @@ The header overlays the page in white when the first block in the content is a H
 | Team | About |
 | Testimonials | About, projects |
 | Info Columns | Contact |
-| Project Media | Projects: one or two images or videos with an optional side label |
+| Project Media | Projects: one or two images, embedded videos, or muted looping MP4s, with an optional side label |
 | Project Text | Projects |
 | Site Header, Site Footer, Project Masthead, Project Pagination, Not Found, Style Guide | Templates only (hidden from the inserter) |
 

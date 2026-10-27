@@ -71,7 +71,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "50",
+                        "width": "34",
                         "class": "",
                         "id": ""
                     },
@@ -89,12 +89,30 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "50",
+                        "width": "33",
                         "class": "",
                         "id": ""
                     },
                     "width": "",
                     "height": "",
+                    "parent_repeater": "field_fc_project_media_items"
+                },
+                {
+                    "key": "field_fc_project_media_items_video_file",
+                    "label": "Video file (optional)",
+                    "name": "video_file",
+                    "type": "file",
+                    "instructions": "Muted, looping MP4 shown instead of the image. The image becomes its poster.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "33",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "library": "all",
+                    "mime_types": "mp4,webm",
                     "parent_repeater": "field_fc_project_media_items"
                 }
             ]
@@ -118,5 +136,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1792947693
+    "modified": 1793061000
 }
