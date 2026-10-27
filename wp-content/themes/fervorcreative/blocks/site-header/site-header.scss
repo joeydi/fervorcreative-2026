@@ -14,6 +14,8 @@
     z-index: 20;
     color: var(--color-foreground);
     transition: color var(--duration) var(--ease-out);
+    // Snapshotted apart from the page, so it holds still between pages.
+    view-transition-name: site-header;
 
     // The white bar sits at its scrolled height and slides down from above,
     // so it doesn't grow or shrink along with the header.

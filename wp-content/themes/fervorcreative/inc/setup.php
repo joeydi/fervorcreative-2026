@@ -36,6 +36,53 @@ function fervor_enqueue_assets() {
 add_action( 'wp_enqueue_scripts', 'fervor_enqueue_assets' );
 
 /**
+ * Carry the header's scrolled state across page view transitions.
+ *
+ * Leaving a scrolled page, the next page's header starts scrolled and drops
+ * into place (header.js toggles the same class) as the new page fades in.
+ * It's inline in the head because `pagereveal` can fire before main.js runs.
+ */
+function fervor_print_header_reveal_script() {
+	$script = <<<'JS'
+(() => {
+	const key = 'fervor-header-scrolled';
+	const header = () => document.querySelector('[data-header]');
+
+	addEventListener('pageswap', (event) => {
+		if (event.viewTransition && header()?.classList.contains('is-scrolled')) {
+			try {
+				sessionStorage.setItem(key, '1');
+			} catch {}
+		}
+	});
+
+	addEventListener('pagereveal', (event) => {
+		let fromScrolled = false;
+
+		try {
+			fromScrolled = sessionStorage.getItem(key) === '1';
+			sessionStorage.removeItem(key);
+		} catch {}
+
+		const root = header();
+
+		if (!fromScrolled || !event.viewTransition || !root || root.classList.contains('is-scrolled')) {
+			return;
+		}
+
+		// Jump straight to the scrolled state for the new page's first frame.
+		root.classList.add('is-scrolled');
+		root.getAnimations({ subtree: true }).forEach((animation) => animation.finish());
+		event.viewTransition.ready.then(() => root.classList.toggle('is-scrolled', scrollY > 0));
+	});
+})();
+JS;
+
+	wp_print_inline_script_tag( $script );
+}
+add_action( 'wp_head', 'fervor_print_header_reveal_script' );
+
+/**
  * Enqueue editor styles inside the block editor iframe.
  */
 function fervor_enqueue_editor_assets() {
