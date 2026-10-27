@@ -173,6 +173,22 @@ function fervor_svg_allowed_html() {
 }
 
 /**
+ * Get an uploaded SVG attachment as inline markup.
+ *
+ * @param int $attachment_id Attachment ID.
+ * @return string Sanitized SVG markup, or empty string if the attachment isn't an SVG.
+ */
+function fervor_get_svg_attachment( $attachment_id ) {
+	if ( ! $attachment_id || 'image/svg+xml' !== get_post_mime_type( $attachment_id ) ) {
+		return '';
+	}
+
+	$file = get_attached_file( $attachment_id );
+
+	return $file && file_exists( $file ) ? wp_kses( file_get_contents( $file ), fervor_svg_allowed_html() ) : ''; // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+}
+
+/**
  * Get an inline SVG icon from the theme's /icons/ directory.
  *
  * @param string $icon Icon path relative to /icons/, without extension (e.g. 'arrow-right', 'social/instagram').

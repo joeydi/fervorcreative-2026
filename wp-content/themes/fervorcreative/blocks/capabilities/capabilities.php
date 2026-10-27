@@ -37,7 +37,10 @@ $classes = array(
 			<div class="capabilities__columns">
 				<?php foreach ( $columns as $column ) : ?>
 					<div class="capabilities__column">
-						<?php if ( $column['icon'] ) : ?>
+						<?php $icon_svg = fervor_get_svg_attachment( (int) $column['icon'] ); ?>
+						<?php if ( $icon_svg ) : ?>
+							<span class="capabilities__icon" aria-hidden="true" data-capability-icon><?php echo $icon_svg; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- sanitized by fervor_get_svg_attachment. ?></span>
+						<?php elseif ( $column['icon'] ) : ?>
 							<?php echo wp_get_attachment_image( $column['icon'], 'thumbnail', false, array( 'class' => 'capabilities__icon', 'alt' => '' ) ); ?>
 						<?php endif; ?>
 

@@ -67,6 +67,19 @@ The header overlays the page in white when the first block in the content is a H
 | Project Text | Projects |
 | Site Header, Site Footer, Project Masthead, Project Pagination, Not Found, Style Guide | Templates only (hidden from the inserter) |
 
+### Capability icons
+
+Capabilities column icons are uploads. SVGs are inlined, so an SVG whose root and parts carry these classes animates as its column scrolls into view and on hover (`blocks/capabilities/capability-icons.scss`, `src/js/modules/capability-icons.js`). Numbered or modified parts also carry the base class (`fc-icon__ring fc-icon__ring--1`). Any other SVG or image just shows as is.
+
+| Root class | Parts |
+|---|---|
+| `fc-icon fc-icon--bullseye-dart` | `fc-icon__ring--1` to `--3` (center out), `fc-icon__dart` |
+| `fc-icon fc-icon--laptop-code` | `fc-icon__code--1`, `--2`: stroked brackets, 182 units long, hidden until it plays |
+| `fc-icon fc-icon--play-pause` | `fc-icon__play`, `fc-icon__bar--1`, `--2` |
+| `fc-icon fc-icon--angle` | `fc-icon__leg--h`, `--v` pivoting on 16, 464; `fc-icon__arc--1` to `--3` |
+
+The source files live in the project's `assets/capability-icons/` folder.
+
 ### Adding a block
 
 ```

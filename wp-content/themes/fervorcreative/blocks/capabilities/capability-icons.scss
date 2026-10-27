@@ -1,0 +1,225 @@
+// Capability icon animations. The icons are uploaded SVGs whose parts carry
+// fc-icon__* classes (see the README); capability-icons.js adds .is-playing to
+// the icon wrapper to run them. Lengths are in the SVG's viewBox units.
+
+.fc-icon {
+    overflow: visible;
+}
+
+// Bullseye, dart: the dart flies in and sticks, the rings ripple out from the
+// hit, then the dart fades away.
+.fc-icon--bullseye-dart .fc-icon__dart {
+    opacity: 0;
+    // Cuts the rings away around the dart so it reads against them.
+    stroke: var(--capabilities-background, var(--color-background));
+    stroke-width: 32px;
+    paint-order: stroke;
+}
+
+.fc-icon__ring {
+    transform-origin: 256px 256px;
+}
+
+.is-playing .fc-icon--bullseye-dart {
+    .fc-icon__dart {
+        animation: fc-icon-dart 1400ms both;
+    }
+
+    .fc-icon__ring {
+        --pulse: 1.08;
+
+        animation: fc-icon-pulse 600ms var(--ease-out) both;
+    }
+
+    @for $i from 1 through 3 {
+        .fc-icon__ring--#{$i} {
+            animation-delay: #{300 + $i * 50}ms;
+        }
+    }
+}
+
+@keyframes fc-icon-dart {
+    0% {
+        opacity: 0;
+        translate: 240px -240px;
+        animation-timing-function: cubic-bezier(0.5, 0, 0.75, 0);
+    }
+
+    8% {
+        opacity: 1;
+    }
+
+    25% {
+        translate: 0 0;
+        animation-timing-function: ease-out;
+    }
+
+    30% {
+        translate: -12px 12px;
+    }
+
+    38%,
+    75% {
+        opacity: 1;
+        translate: 0 0;
+    }
+
+    100% {
+        opacity: 0;
+        translate: 0 0;
+    }
+}
+
+@keyframes fc-icon-pulse {
+    0%,
+    100% {
+        scale: 1;
+    }
+
+    20% {
+        scale: 0.9;
+    }
+
+    50% {
+        scale: var(--pulse);
+    }
+}
+
+// Laptop, code: a plain laptop until it plays, then the brackets draw on, left
+// then right, hold, and draw off again. The 400-unit gap keeps each bracket's
+// round caps out of sight at both ends.
+.fc-icon__code {
+    stroke-dasharray: 182 400;
+    stroke-dashoffset: 200;
+}
+
+.is-playing .fc-icon__code {
+    animation: fc-icon-code 1600ms both;
+}
+
+.is-playing .fc-icon__code--2 {
+    animation-delay: 150ms;
+}
+
+@keyframes fc-icon-code {
+    0% {
+        stroke-dashoffset: 200;
+        animation-timing-function: var(--ease-out);
+    }
+
+    30%,
+    65% {
+        stroke-dashoffset: 0;
+        animation-timing-function: cubic-bezier(0.5, 0, 0.75, 0);
+    }
+
+    90%,
+    100% {
+        stroke-dashoffset: -200;
+    }
+}
+
+// Play/pause: the play button winds up and jumps forward, bumping the bars
+// along, then everything settles back.
+.is-playing .fc-icon--play-pause {
+    .fc-icon__play {
+        animation: fc-icon-play 1100ms both;
+    }
+
+    .fc-icon__bar--1 {
+        --bump: 64px;
+
+        animation: fc-icon-bump 1100ms both;
+    }
+
+    .fc-icon__bar--2 {
+        --bump: 40px;
+
+        animation: fc-icon-bump 1100ms 100ms both;
+    }
+}
+
+@keyframes fc-icon-play {
+    0% {
+        translate: 0 0;
+        animation-timing-function: ease-out;
+    }
+
+    15% {
+        translate: -24px 0;
+        animation-timing-function: cubic-bezier(0.5, 0, 0.75, 0);
+    }
+
+    30% {
+        translate: 96px 0;
+        animation-timing-function: cubic-bezier(0.45, 0, 0.2, 1);
+    }
+
+    100% {
+        translate: 0 0;
+    }
+}
+
+@keyframes fc-icon-bump {
+    0%,
+    30% {
+        translate: 0 0;
+        animation-timing-function: var(--ease-out);
+    }
+
+    42% {
+        translate: var(--bump) 0;
+        animation-timing-function: cubic-bezier(0.45, 0, 0.2, 1);
+    }
+
+    100% {
+        translate: 0 0;
+    }
+}
+
+// Angle: the bottom leg swings down and all the way around, the upright leg
+// follows it, and they meet back at the start as the arc dashes go off and
+// back on clockwise.
+.fc-icon__leg {
+    transform-origin: 16px 464px;
+}
+
+.is-playing .fc-icon--angle {
+    .fc-icon__leg {
+        animation: fc-icon-sweep 1200ms cubic-bezier(0.65, 0, 0.35, 1) both;
+    }
+
+    .fc-icon__leg--v {
+        animation-delay: 300ms;
+    }
+
+    .fc-icon__arc {
+        animation: fc-icon-arc 1800ms both;
+    }
+
+    // Clockwise, from the upright leg down to the bottom one.
+    @for $i from 1 through 2 {
+        .fc-icon__arc--#{$i} {
+            animation-delay: #{(3 - $i) * 100}ms;
+        }
+    }
+}
+
+@keyframes fc-icon-sweep {
+    to {
+        rotate: 360deg;
+    }
+}
+
+@keyframes fc-icon-arc {
+    0%,
+    90%,
+    100% {
+        opacity: 1;
+    }
+
+    8%,
+    80% {
+        opacity: 0;
+    }
+}

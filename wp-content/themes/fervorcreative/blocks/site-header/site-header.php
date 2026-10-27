@@ -9,14 +9,9 @@
  * @package Fervor
  */
 
-$logo_id = (int) get_field( 'logo', 'option' );
-$menu    = fervor_get_menu_items( 'primary' );
-
-$logo_svg = '';
-if ( $logo_id && 'image/svg+xml' === get_post_mime_type( $logo_id ) ) {
-	$logo_file = get_attached_file( $logo_id );
-	$logo_svg  = $logo_file && file_exists( $logo_file ) ? wp_kses( file_get_contents( $logo_file ), fervor_svg_allowed_html() ) : ''; // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
-}
+$logo_id  = (int) get_field( 'logo', 'option' );
+$logo_svg = fervor_get_svg_attachment( $logo_id );
+$menu     = fervor_get_menu_items( 'primary' );
 
 $current_url = is_singular() ? untrailingslashit( get_permalink() ) : '';
 $work_url    = untrailingslashit( home_url( '/work' ) );
@@ -28,7 +23,7 @@ $work_url    = untrailingslashit( home_url( '/work' ) );
 	<div class="site-header__inner container">
 		<a class="site-header__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
 			<?php if ( $logo_svg ) : ?>
-				<?php echo $logo_svg; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- sanitized above. ?>
+				<?php echo $logo_svg; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- sanitized by fervor_get_svg_attachment. ?>
 				<span class="visually-hidden"><?php bloginfo( 'name' ); ?></span>
 			<?php elseif ( $logo_id ) : ?>
 				<?php echo wp_get_attachment_image( $logo_id, 'medium', false, array( 'alt' => get_bloginfo( 'name' ) ) ); ?>

@@ -1,6 +1,13 @@
 @use "mixins" as *;
 
 .capabilities {
+    // Matches the section background; the dart icon cuts it around itself.
+    --capabilities-background: var(--color-background);
+
+    &.section--surface {
+        --capabilities-background: var(--color-surface);
+    }
+
     &__header {
         margin-bottom: var(--space-fluid-xl);
     }
@@ -17,7 +24,7 @@
     &__columns {
         display: grid;
         grid-template-columns: minmax(0, 1fr);
-        gap: var(--space-fluid-xl) var(--space-column-gap);
+        row-gap: var(--space-fluid-xl);
 
         @include md {
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -28,11 +35,24 @@
         }
     }
 
+    // Ruled columns, border to border, like the numbered carousel's slides.
+    &__column {
+        padding: 0 fluid(24, 36) var(--space-sm);
+        border-left: 1px solid var(--color-border);
+    }
+
+    // Uploaded SVGs are inlined so they can animate (capability-icons.scss).
     &__icon {
-        width: 16px;
-        height: 16px;
+        display: block;
+        width: auto;
+        height: 24px;
         margin-bottom: var(--space-sm);
-        object-fit: contain;
+
+        svg {
+            display: block;
+            width: auto;
+            height: 100%;
+        }
     }
 
     &__title {
