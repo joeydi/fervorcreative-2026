@@ -5,7 +5,9 @@
 }
 
 .site-header {
-    --site-header-height: var(--header-height);
+    --site-header-bar-height: 80px;
+    // How far the items sit below the bar while the header is at full height.
+    --site-header-offset: calc((var(--header-height) - var(--site-header-bar-height)) / 2);
     --site-header-bg: transparent;
 
     position: relative;
@@ -20,7 +22,7 @@
         position: absolute;
         inset: 0 0 auto;
         z-index: -1;
-        height: 80px;
+        height: var(--site-header-bar-height);
         background-color: var(--color-white);
         translate: 0 -100%;
         transition: translate var(--duration) var(--ease-out);
@@ -32,9 +34,9 @@
         inset: var(--wp-admin--admin-bar--height, 0px) 0 auto;
     }
 
-    // Once the page scrolls (header.js), it shrinks onto a white bar.
+    // Once the page scrolls (header.js), the items rise onto a white bar.
     &.is-scrolled {
-        --site-header-height: 80px;
+        --site-header-offset: 0px;
         --site-header-bg: var(--color-white);
 
         &::before {
@@ -52,14 +54,40 @@
         align-items: center;
         justify-content: space-between;
         gap: var(--space-md);
-        min-height: var(--site-header-height);
-        transition: min-height 400ms var(--ease-out);
+        min-height: var(--site-header-bar-height);
+    }
+
+    // All move at once, but the toggle and each menu item take 150ms longer
+    // than the one before, so the logo lands first.
+    &__logo,
+    &__toggle {
+        translate: 0 var(--site-header-offset);
+        transition: translate 400ms var(--ease-out);
+    }
+
+    &__toggle {
+        transition-duration: 550ms;
+    }
+
+    // Only in the desktop nav; the full-screen menu lays its links out below.
+    &__menu li {
+        @include md {
+            translate: 0 var(--site-header-offset);
+            transition: translate 400ms var(--ease-out);
+
+            @for $i from 1 through 6 {
+                &:nth-child(#{$i}) {
+                    transition-duration: #{400 + $i * 150}ms;
+                }
+            }
+        }
     }
 
     &__logo {
         display: block;
         color: var(--color-primary);
         transition:
+            translate 400ms var(--ease-out),
             opacity var(--duration) var(--ease-out),
             color var(--duration) var(--ease-out);
 
@@ -223,11 +251,11 @@
     }
 
     // The open panel wraps the nav onto its own line, so give the logo
-    // and toggle the full header height to keep them where they were.
+    // and toggle the bar's height to keep them where they were.
     &.is-open &__logo {
         display: flex;
         align-items: center;
-        height: var(--site-header-height);
+        height: var(--site-header-bar-height);
     }
 
     &.is-open:not(.is-closing) &__logo {
@@ -235,7 +263,7 @@
     }
 
     &.is-open &__toggle {
-        height: var(--site-header-height);
+        height: var(--site-header-bar-height);
     }
 
     &.is-open:not(.is-closing) &__toggle path {
@@ -267,6 +295,8 @@
         display: block;
         flex-basis: 100%;
         padding-block: var(--space-2xl);
+        // Clear the logo row, which sits lower while the header is at full height.
+        margin-top: calc(var(--site-header-offset) * 2);
     }
 
     &.is-open:not(.is-closing) &__menu li {
