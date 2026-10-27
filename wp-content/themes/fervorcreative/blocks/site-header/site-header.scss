@@ -149,6 +149,8 @@
     }
 
     &__link {
+        --duration: 600ms;
+
         position: relative;
         display: block;
         padding-block: var(--space-2xs);
@@ -156,7 +158,9 @@
         font-weight: 300;
         letter-spacing: -0.015em;
         line-height: 1;
-        transition: opacity var(--duration) var(--ease-out);
+        // A slow ease-in-out barely moves at first, and the underline waits
+        // 200ms, so sweeping across the menu doesn't flicker each link.
+        transition: opacity var(--duration) var(--ease-in-out);
 
         @include md {
             font-size: 20px;
@@ -165,6 +169,8 @@
         }
 
         &::after {
+            --duration: 200ms;
+
             content: "";
             position: absolute;
             left: 0;
@@ -174,10 +180,12 @@
             background-color: var(--color-primary);
             transform: scaleX(0);
             transform-origin: left;
-            transition: transform var(--duration) var(--ease-out);
+            transition: transform var(--duration) var(--ease-in-out) 200ms;
         }
 
         &:hover::after {
+            --duration: 400ms;
+
             transform: scaleX(1);
         }
     }

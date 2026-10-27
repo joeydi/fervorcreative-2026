@@ -65,6 +65,8 @@
     --header-height: #{fluid(80, 200)};
 
     // Motion
+    --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
     --ease-out: cubic-bezier(0.16, 0.97, 0.36, 1);
+    --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
     --duration: 200ms;
 }
