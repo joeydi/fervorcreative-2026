@@ -171,7 +171,7 @@ $spacing = fervor_style_guide_tokens( '--space-' );
 						<?php foreach ( $tokens as $name => $value ) : ?>
 							<tr>
 								<td><code><?php echo esc_html( $name ); ?></code></td>
-								<td><?php echo esc_html( fervor_style_guide_value( $value ) ); ?></td>
+								<td><code><?php echo esc_html( fervor_style_guide_value( $value ) ); ?></code></td>
 								<td><code data-token="<?php echo esc_attr( $name ); ?>"></code></td>
 								<td class="style-guide__size-sample" style="font-size: var(<?php echo esc_attr( $name ); ?>)">Aa</td>
 							</tr>
@@ -194,7 +194,7 @@ $spacing = fervor_style_guide_tokens( '--space-' );
 							<span class="style-guide__swatch-color" style="background-color: var(<?php echo esc_attr( $name ); ?>)"></span>
 							<code class="style-guide__swatch-name"><?php echo esc_html( $name ); ?></code>
 							<?php if ( ! preg_match( '/^#[0-9a-f]{3,8}$/i', $value ) ) : ?>
-								<span class="style-guide__meta"><?php echo esc_html( $value ); ?></span>
+								<code class="style-guide__meta"><?php echo esc_html( $value ); ?></code>
 							<?php endif; ?>
 							<code class="style-guide__meta" data-token="<?php echo esc_attr( $name ); ?>" data-token-type="color"></code>
 						</li>
@@ -223,7 +223,7 @@ $spacing = fervor_style_guide_tokens( '--space-' );
 						<?php foreach ( $tokens as $name => $value ) : ?>
 							<tr>
 								<td><code><?php echo esc_html( $name ); ?></code></td>
-								<td><?php echo esc_html( fervor_style_guide_value( $value ) ); ?></td>
+								<td><code><?php echo esc_html( fervor_style_guide_value( $value ) ); ?></code></td>
 								<td><code data-token="<?php echo esc_attr( $name ); ?>"></code></td>
 								<td class="style-guide__bar-cell"><span class="style-guide__bar" style="width: var(<?php echo esc_attr( $name ); ?>)"></span></td>
 							</tr>

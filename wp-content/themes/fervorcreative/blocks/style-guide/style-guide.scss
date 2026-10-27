@@ -17,7 +17,6 @@
     &__note {
         max-width: 34em;
         margin: var(--space-fluid-lg) 0 0;
-        color: var(--color-muted);
         font-size: var(--font-size-small);
     }
 
@@ -55,7 +54,6 @@
 
     &__meta {
         margin: 0;
-        color: var(--color-muted);
         font-size: var(--font-size-small);
         line-height: 1.6;
     }
@@ -160,7 +158,6 @@
 
         th {
             padding: 0 var(--space-sm) var(--space-2xs) 0;
-            color: var(--color-muted);
             font-size: var(--font-size-small);
             font-weight: 500;
             text-align: left;
@@ -207,6 +204,8 @@
         flex-direction: column;
         gap: 2px;
         min-width: 0;
+        font-size: var(--font-size-small);
+        line-height: 1.6;
     }
 
     &__swatch-color {
@@ -217,7 +216,7 @@
     }
 
     &__swatch-name {
-        font-size: var(--font-size-small);
+        font-weight: 600;
         overflow-wrap: anywhere;
     }
 

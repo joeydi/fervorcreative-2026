@@ -11,10 +11,10 @@
 			"defaultGradients": false,
 			"defaultDuotone": false,
 			"palette": [
-				{ "name": "Red", "slug": "primary", "color": "#e2261c" },
-				{ "name": "Black", "slug": "foreground", "color": "#1a1a1a" },
+				{ "name": "Red", "slug": "primary", "color": "#d92720" },
+				{ "name": "Black", "slug": "foreground", "color": "#191919" },
 				{ "name": "White", "slug": "background", "color": "#ffffff" },
-				{ "name": "Light Gray", "slug": "surface", "color": "#f4f4f4" }
+				{ "name": "Light Gray", "slug": "surface", "color": "#f5f5f5" }
 			]
 		},
 		"typography": {

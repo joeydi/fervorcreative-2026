@@ -6,21 +6,17 @@
     --color-primary-hover: color-mix(in oklch, var(--color-primary) 85%, var(--color-black));
 
     // Neutral scale
-    --color-neutral-0: #ffffff;
-    --color-neutral-1: #f4f4f4;
-    --color-neutral-2: #e4e4e4;
-    --color-neutral-3: #c4c4c4;
-    --color-neutral-4: #8a8a8a;
-    --color-neutral-5: #5c5c5c;
-    --color-neutral-6: #2b2b2b;
-    --color-neutral-7: #1a1a1a;
+    --color-neutral-0: #ffffff; // Backgrounds, text on dark backgrounds
+    --color-neutral-1: #f5f5f5; // Light gray backgrounds, subtle text on dark backgrounds
+    --color-neutral-2: #dddddd; // Borders
+    --color-neutral-3: #afafaf; // Icons on dark backgrounds
+    --color-neutral-4: #191919; // Text
 
     // Semantic colors
     --color-white: #ffffff;
     --color-black: #000000;
     --color-background: var(--color-neutral-0);
-    --color-foreground: var(--color-neutral-7);
-    --color-muted: var(--color-neutral-5);
+    --color-foreground: var(--color-neutral-4);
     --color-surface: var(--color-neutral-1);
     --color-border: var(--color-neutral-2);
 
