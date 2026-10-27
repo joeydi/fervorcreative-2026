@@ -76,15 +76,19 @@
         transform: scale(1.03);
     }
 
-    &__title {
-        @include small;
+    &__title,
+    &__tagline {
         margin: 0;
-        font-weight: 600;
+        font-size: var(--font-size-base);
+        line-height: 1.3;
+    }
+
+    &__title {
+        font-weight: 500;
     }
 
     &__tagline {
-        @include small;
-        margin: 0;
+        font-weight: 300;
     }
 
     &__services {
