@@ -17,11 +17,11 @@
 
         @include lg {
             grid-column: 7 / -1;
-            max-width: 29em;
         }
     }
 
-    // Sits directly above the copy, at body size and line height.
+    // Sits directly above the copy, at body size and line height. Free to
+    // run the full column, past the copy's measure.
     &__heading {
         margin: 0;
         font-size: inherit;
@@ -30,6 +30,10 @@
     }
 
     &__copy {
+        @include lg {
+            max-width: 29em;
+        }
+
         > :last-child {
             margin-bottom: 0;
         }
