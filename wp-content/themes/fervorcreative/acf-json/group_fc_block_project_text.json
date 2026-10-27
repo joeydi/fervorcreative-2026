@@ -3,11 +3,11 @@
     "title": "Block: Project Text",
     "fields": [
         {
-            "key": "field_fc_project_text_label",
-            "label": "Label",
-            "name": "label",
+            "key": "field_fc_project_text_heading",
+            "label": "Heading",
+            "name": "heading",
             "type": "text",
-            "instructions": "Optional red label.",
+            "instructions": "Optional bold line above the copy.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -55,5 +55,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1792947693
+    "modified": 1793120400
 }

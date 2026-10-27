@@ -5,7 +5,7 @@
 	"title": "Project Text",
 	"category": "fervor",
 	"icon": "editor-paragraph",
-	"description": "Narrow column of copy with an optional side label.",
+	"description": "Narrow column of copy with an optional bold heading.",
 	"supports": {
 		"anchor": true,
 		"align": false,

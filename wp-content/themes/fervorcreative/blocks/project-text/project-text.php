@@ -9,8 +9,8 @@ if ( fervor_block_preview( $block, $is_preview ) ) {
 	return;
 }
 
-$label = get_field( 'label' );
-$copy  = get_field( 'copy' );
+$heading = get_field( 'heading' );
+$copy    = get_field( 'copy' );
 
 if ( ! $copy ) {
 	return;
@@ -19,8 +19,8 @@ if ( ! $copy ) {
 ?>
 <section<?php fervor_block_attrs( $block, array( 'project-text' ) ); ?>>
 	<div class="project-text__inner container" data-reveal>
-		<?php if ( $label ) : ?>
-			<p class="project-text__label"><?php echo esc_html( $label ); ?></p>
+		<?php if ( $heading ) : ?>
+			<h2 class="project-text__heading"><?php echo esc_html( $heading ); ?></h2>
 		<?php endif; ?>
 		<div class="project-text__copy"><?php echo wp_kses_post( $copy ); ?></div>
 	</div>
