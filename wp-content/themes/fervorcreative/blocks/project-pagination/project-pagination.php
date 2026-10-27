@@ -17,7 +17,7 @@ if ( ! $adjacent ) {
 
 ?>
 <nav<?php fervor_block_attrs( $block, array( 'project-pagination' ) ); ?> aria-label="<?php esc_attr_e( 'More projects', 'fervorcreative' ); ?>">
-	<div class="project-pagination__inner container">
+	<div class="project-pagination__inner container" data-reveal>
 		<a class="project-pagination__link project-pagination__link--prev" href="<?php echo esc_url( get_permalink( $adjacent['prev'] ) ); ?>" rel="prev">
 			<?php fervor_icon( 'arrow-left' ); ?>
 			<span><?php esc_html_e( 'Previous', 'fervorcreative' ); ?><span class="project-pagination__noun"> <?php esc_html_e( 'Project', 'fervorcreative' ); ?></span><span class="visually-hidden">: <?php echo esc_html( get_the_title( $adjacent['prev'] ) ); ?></span></span>

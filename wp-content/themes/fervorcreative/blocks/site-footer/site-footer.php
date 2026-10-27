@@ -52,7 +52,7 @@ $classes = array(
 			</div>
 		<?php endif; ?>
 
-		<div class="site-footer__meta">
+		<div class="site-footer__meta" data-reveal>
 			<?php if ( $address || $phone ) : ?>
 				<p class="site-footer__contact">
 					<?php if ( $address ) : ?>
