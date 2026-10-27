@@ -32,6 +32,12 @@
     &__tagline {
         @include subheading;
         margin-bottom: var(--space-lg);
+
+        // Room to run one column past the 6-column copy, so a longer
+        // tagline stays on one line.
+        @include xl {
+            margin-right: calc((100% + var(--space-column-gap)) / -6);
+        }
     }
 
     &__intro {
