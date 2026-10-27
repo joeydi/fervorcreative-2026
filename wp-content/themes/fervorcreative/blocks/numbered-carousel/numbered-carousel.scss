@@ -1,6 +1,9 @@
 @use "mixins" as *;
 
 .numbered-carousel {
+    // Lets slides size themselves off the container's columns (see __track).
+    container-type: inline-size;
+
     // Let the track bleed past the container's right edge.
     &__viewport {
         max-width: none;
@@ -8,10 +11,16 @@
         padding-left: max(var(--space-gutter), calc((100% - var(--container-max)) / 2));
     }
 
+    // Slides span grid columns, border to border: one slide per view, then
+    // two from md and three from lg.
     &__track {
+        --content-width: min(var(--container-max), 100cqw - var(--space-gutter) * 2);
+        --grid-column: calc((var(--content-width) - 11 * var(--space-column-gap)) / 12);
+        --span: 12;
+
         position: relative;
         display: grid;
-        grid-auto-columns: clamp(200px, 22vw, 280px);
+        grid-auto-columns: calc((var(--grid-column) + var(--space-column-gap)) * var(--span));
         grid-auto-flow: column;
         margin: 0;
         padding: 0 var(--space-gutter) 0 0;
@@ -25,27 +34,29 @@
         &::-webkit-scrollbar {
             display: none;
         }
+
+        @include md {
+            --span: 6;
+        }
+
+        @include lg {
+            --span: 4;
+        }
     }
 
     &__item {
-        padding: 0 var(--space-fluid-lg) var(--space-sm);
+        padding: 0 fluid(24, 56) var(--space-sm);
         border-left: 1px solid var(--color-border);
         scroll-snap-align: start;
     }
 
     &__number {
-        display: block;
+        @include numeral;
         margin-bottom: var(--space-md);
-        color: var(--color-primary);
-        font-family: var(--font-display);
-        font-size: 18px;
-        line-height: 1;
     }
 
     &__copy {
-        margin: 0;
-        font-family: var(--font-serif);
-        @include small;
+        @include subheading;
     }
 
     &__controls {

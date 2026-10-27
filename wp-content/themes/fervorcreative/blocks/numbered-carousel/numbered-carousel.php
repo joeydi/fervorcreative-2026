@@ -30,8 +30,8 @@ if ( ! $items ) {
 
 	<?php if ( count( $items ) > 1 ) : ?>
 		<div class="numbered-carousel__controls container">
-			<button class="circle-btn" type="button" data-carousel-prev aria-label="<?php esc_attr_e( 'Previous', 'fervorcreative' ); ?>"><?php fervor_icon( 'arrow-left' ); ?></button>
-			<button class="circle-btn" type="button" data-carousel-next aria-label="<?php esc_attr_e( 'Next', 'fervorcreative' ); ?>"><?php fervor_icon( 'arrow-right' ); ?></button>
+			<button class="circle-btn" type="button" data-carousel-prev aria-label="<?php esc_attr_e( 'Previous', 'fervorcreative' ); ?>"><?php fervor_icon( 'arrow-long-left' ); ?></button>
+			<button class="circle-btn" type="button" data-carousel-next aria-label="<?php esc_attr_e( 'Next', 'fervorcreative' ); ?>"><?php fervor_icon( 'arrow-long-right' ); ?></button>
 		</div>
 	<?php endif; ?>
 </section>

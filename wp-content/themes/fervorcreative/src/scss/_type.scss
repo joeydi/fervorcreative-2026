@@ -32,6 +32,10 @@ p {
     @include subheading;
 }
 
+.numeral {
+    @include numeral;
+}
+
 .serif {
     font-family: var(--font-serif);
 }

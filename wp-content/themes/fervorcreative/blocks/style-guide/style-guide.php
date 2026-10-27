@@ -61,6 +61,13 @@ $styles = array(
 		'sample' => __( 'Brand strategy and identity', 'fervorcreative' ),
 	),
 	array(
+		'name'   => __( 'Numeral', 'fervorcreative' ),
+		'class'  => 'numeral',
+		'detail' => '@include numeral — Good Condensed 700, primary, line height 1. Numbered list markers.',
+		'size'   => '--font-size-numeral',
+		'sample' => '01',
+	),
+	array(
 		'name'   => __( 'Eyebrow', 'fervorcreative' ),
 		'class'  => 'eyebrow',
 		'detail' => '@include eyebrow — Söhne 700, uppercase, line height 1.33, tracking 75',

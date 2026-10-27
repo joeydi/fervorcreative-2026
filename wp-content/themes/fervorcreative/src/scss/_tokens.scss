@@ -2,7 +2,7 @@
 
 :root {
     // Brand colors
-    --color-primary: #e2261c;
+    --color-primary: #D92720;
     --color-primary-hover: color-mix(in oklch, var(--color-primary) 85%, var(--color-black));
 
     // Neutral scale
@@ -34,6 +34,7 @@
     --font-size-base: #{fluid(18, 22)};
     --font-size-eyebrow: 18px;
     --font-size-subheading: 32px;
+    --font-size-numeral: 40px;
     --font-size-statement: #{fluid(36, 80)};
     --font-size-display: #{fluid(45, 100)};
 
