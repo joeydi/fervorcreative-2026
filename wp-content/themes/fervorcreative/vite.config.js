@@ -62,6 +62,7 @@ export default defineConfig(({ command, mode }) => ({
 			input: {
 				main: path.resolve(root, 'src/js/main.js'),
 				editor: path.resolve(root, 'src/js/editor.js'),
+				login: path.resolve(root, 'src/js/login.js'),
 			},
 		},
 	},

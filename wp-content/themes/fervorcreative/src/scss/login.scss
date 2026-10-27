@@ -1,0 +1,371 @@
+@use "fonts";
+@use "tokens";
+@use "mixins" as *;
+
+// wp-login.php (inc/login.php): a white card on the surface gray.
+// WordPress's login.css still loads underneath, so everything is scoped to
+// body.fervor-login to win on specificity.
+
+html:has(> .fervor-login) {
+    background-color: var(--color-surface);
+}
+
+body.fervor-login {
+    --login-field-height: 56px;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
+    // Keeps gray above and below the card when it fills the screen.
+    padding-block: var(--space-fluid-xl);
+    background-color: var(--color-surface);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    ::selection {
+        background-color: var(--color-primary);
+        color: var(--color-white);
+    }
+
+    a {
+        color: inherit;
+        transition: color var(--duration) var(--ease-out);
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 3px;
+        box-shadow: none;
+    }
+
+    #login {
+        // WordPress doesn't set border-box, and _base.scss isn't loaded here.
+        box-sizing: border-box;
+        width: min(100% - var(--space-gutter) * 2, 480px);
+        margin: auto;
+        padding: var(--space-fluid-lg);
+        background-color: var(--color-white);
+    }
+
+    // The session-expired modal in wp-admin is already framed.
+    &.interim-login {
+        padding-block: 0;
+    }
+
+    // Logo
+
+    .wp-login-logo {
+        display: flex;
+        margin: 0 0 var(--space-lg);
+    }
+
+    .wp-login-logo a {
+        display: block;
+        width: auto;
+        height: auto;
+        margin: 0;
+        overflow: visible;
+        background: none;
+        color: var(--color-primary);
+        font-size: 24px;
+        font-weight: 600;
+        text-indent: 0;
+
+        &:hover {
+            opacity: 0.8;
+        }
+
+        svg {
+            width: auto;
+            height: 30px;
+        }
+
+        path {
+            fill: currentColor;
+        }
+    }
+
+    .fervor-login__title {
+        @include subheading;
+        margin: 0 0 var(--space-lg);
+    }
+
+    // Notices
+
+    .message,
+    .notice,
+    .success,
+    #login_error {
+        margin: 0 0 var(--space-md);
+        padding: var(--space-sm);
+        border: 0;
+        border-left: 3px solid var(--color-foreground);
+        background-color: var(--color-surface);
+        box-shadow: none;
+        color: var(--color-foreground);
+        font-size: 14px;
+        line-height: 1.5;
+
+        a {
+            text-decoration: underline;
+            text-underline-offset: 0.2em;
+        }
+    }
+
+    #login_error,
+    .notice-error {
+        border-left-color: var(--color-primary);
+    }
+
+    // Form
+
+    #login form {
+        margin: 0;
+        padding: 0;
+        overflow: visible;
+        border: 0;
+        background: none;
+        box-shadow: none;
+
+        p,
+        .user-pass-wrap {
+            margin: 0 0 var(--space-md);
+        }
+    }
+
+    #login label {
+        display: block;
+        margin: 0 0 var(--space-2xs);
+        color: var(--color-foreground);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.4;
+    }
+
+    #login input:is([type="text"], [type="password"], [type="email"]) {
+        width: 100%;
+        min-height: var(--login-field-height);
+        margin: 0;
+        padding: 0 var(--space-sm);
+        border: 1px solid var(--color-border);
+        border-radius: 0;
+        background-color: var(--color-white);
+        box-shadow: none;
+        color: var(--color-foreground);
+        font-family: var(--font-sans);
+        font-size: 18px;
+        line-height: 1.4;
+        transition:
+            border-color var(--duration) var(--ease-out),
+            box-shadow var(--duration) var(--ease-out);
+
+        &:focus {
+            border-color: var(--color-primary);
+            outline: 0;
+            box-shadow: inset 0 0 0 1px var(--color-primary);
+        }
+
+        &:-webkit-autofill {
+            -webkit-text-fill-color: var(--color-foreground);
+            box-shadow: inset 0 0 0 100px var(--color-white);
+        }
+    }
+
+    #login .wp-pwd {
+        position: relative;
+
+        input {
+            padding-right: var(--login-field-height);
+        }
+    }
+
+    #login .button.wp-hide-pw {
+        display: grid;
+        place-items: center;
+        top: 0;
+        right: 0;
+        width: var(--login-field-height);
+        min-width: 0;
+        height: var(--login-field-height);
+        padding: 0;
+        border: 0;
+        background: none;
+        color: var(--color-muted);
+
+        &:hover {
+            color: var(--color-foreground);
+        }
+
+        &:focus-visible {
+            outline-offset: -6px;
+        }
+
+        .dashicons {
+            position: static;
+            width: 20px;
+            height: 20px;
+            font-size: 20px;
+        }
+    }
+
+    #login .forgetmenot {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2xs);
+        float: none;
+        margin: 0 0 var(--space-lg);
+
+        label {
+            margin: 0;
+            font-weight: 400;
+        }
+
+        .wp-tooltip__toggle {
+            color: var(--color-muted);
+
+            &:hover {
+                color: var(--color-foreground);
+            }
+        }
+    }
+
+    #login input[type="checkbox"] {
+        width: 20px;
+        min-width: 20px;
+        height: 20px;
+        margin: 0;
+        border: 1px solid var(--color-border);
+        border-radius: 0;
+        background-color: var(--color-white);
+        box-shadow: none;
+
+        &:checked {
+            border-color: var(--color-primary);
+            background-color: var(--color-primary);
+        }
+
+        &:checked::before {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            background-color: var(--color-white);
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M2.5 7.5l3 3 6-7' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E") center / 14px no-repeat;
+        }
+
+        &:focus {
+            border-color: var(--color-primary);
+        }
+    }
+
+    #login .indicator-hint,
+    #login .description {
+        color: var(--color-muted);
+        font-size: 14px;
+    }
+
+    #login #pass-strength-result {
+        margin: var(--space-2xs) 0 var(--space-md);
+        border-radius: 0;
+        font-size: 14px;
+    }
+
+    // Buttons share .btn from _buttons.scss.
+
+    #login p.submit {
+        margin: 0;
+    }
+
+    #login .button:is(.button-primary, .button-secondary):not(.wp-hide-pw) {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        float: none;
+        width: 100%;
+        min-height: 60px;
+        margin: 0;
+        padding: var(--space-xs) var(--space-xl);
+        border: 1px solid var(--color-primary);
+        border-radius: 0;
+        background-color: var(--color-primary);
+        box-shadow: none;
+        color: var(--color-white);
+        font-family: var(--font-sans);
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1;
+        text-shadow: none;
+        transition:
+            background-color var(--duration) var(--ease-out),
+            border-color var(--duration) var(--ease-out),
+            color var(--duration) var(--ease-out);
+
+        &:hover {
+            border-color: var(--color-primary-hover);
+            background-color: var(--color-primary-hover);
+        }
+    }
+
+    #login .button.button-secondary:not(.wp-hide-pw) {
+        background-color: transparent;
+        color: var(--color-primary);
+
+        &:hover {
+            border-color: var(--color-primary);
+            background-color: var(--color-primary);
+            color: var(--color-white);
+        }
+    }
+
+    #login .reset-pass-submit {
+        display: grid;
+        gap: var(--space-xs);
+    }
+
+    // Links below the form
+
+    #nav,
+    #backtoblog,
+    .privacy-policy-page-link {
+        margin: 0;
+        padding: 0;
+        color: var(--color-muted);
+        font-size: 14px;
+        text-align: left;
+
+        a {
+            color: inherit;
+            text-decoration: underline;
+            text-decoration-color: transparent;
+            text-underline-offset: 0.25em;
+            transition:
+                color var(--duration) var(--ease-out),
+                text-decoration-color var(--duration) var(--ease-out);
+
+            &:hover {
+                color: var(--color-foreground);
+                text-decoration-color: currentColor;
+            }
+        }
+    }
+
+    #nav {
+        margin-top: var(--space-lg);
+        padding-top: var(--space-md);
+        border-top: 1px solid var(--color-border);
+    }
+
+    #backtoblog {
+        margin-top: var(--space-2xs);
+    }
+
+    .privacy-policy-page-link {
+        margin-top: var(--space-lg);
+    }
+}
