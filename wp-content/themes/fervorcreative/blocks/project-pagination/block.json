@@ -5,7 +5,7 @@
 	"title": "Project Pagination",
 	"category": "fervor",
 	"icon": "leftright",
-	"description": "Previous and next project links. Used by the single project template.",
+	"description": "Previous and next project links and a link back to all work. Used by the single project template.",
 	"supports": {
 		"anchor": true,
 		"align": false,

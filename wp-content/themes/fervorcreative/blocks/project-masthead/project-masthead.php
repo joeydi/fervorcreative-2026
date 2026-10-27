@@ -23,15 +23,18 @@ $services = fervor_get_project_services( $project_id );
 ?>
 <section<?php fervor_block_attrs( $block, array( 'project-masthead' ) ); ?>>
 	<div class="project-masthead__inner container">
-		<div class="project-masthead__main">
-			<h1 class="project-masthead__title"><?php echo esc_html( get_the_title( $project_id ) ); ?></h1>
-			<?php if ( $tagline ) : ?>
-				<p class="project-masthead__tagline"><?php echo esc_html( $tagline ); ?></p>
-			<?php endif; ?>
-			<?php if ( $intro ) : ?>
-				<div class="project-masthead__intro"><?php echo wp_kses_post( wpautop( $intro ) ); ?></div>
-			<?php endif; ?>
-		</div>
+		<h1 class="project-masthead__title"><?php echo esc_html( get_the_title( $project_id ) ); ?></h1>
+
+		<?php if ( $tagline || $intro ) : ?>
+			<div class="project-masthead__main">
+				<?php if ( $tagline ) : ?>
+					<p class="project-masthead__tagline"><?php echo esc_html( $tagline ); ?></p>
+				<?php endif; ?>
+				<?php if ( $intro ) : ?>
+					<div class="project-masthead__intro"><?php echo wp_kses_post( wpautop( $intro ) ); ?></div>
+				<?php endif; ?>
+			</div>
+		<?php endif; ?>
 
 		<?php if ( $services ) : ?>
 			<div class="project-masthead__services">

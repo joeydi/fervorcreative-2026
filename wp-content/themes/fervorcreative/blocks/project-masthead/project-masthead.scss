@@ -1,12 +1,12 @@
 @use "mixins" as *;
 
 .project-masthead {
-    padding-block: var(--space-fluid-xl) var(--space-fluid-2xl);
+    padding-block: fluid(48, 105) var(--space-fluid-2xl);
 
     &__inner {
         display: flex;
         flex-direction: column;
-        row-gap: var(--space-lg);
+        row-gap: fluid(32, 58);
 
         @include md {
             display: grid;
@@ -21,17 +21,16 @@
 
     &__title {
         @include statement;
-        margin-bottom: var(--space-md);
+        grid-column: 1 / -1;
         color: var(--color-primary);
     }
 
     &__tagline {
-        margin: 0 0 var(--space-xs);
-        font-weight: 600;
+        @include subheading;
+        margin-bottom: var(--space-lg);
     }
 
     &__intro {
-        @include small;
         max-width: 34em;
 
         > :last-child {
@@ -40,15 +39,19 @@
     }
 
     &__services {
-        grid-column: 9 / -1;
-        padding-top: var(--space-xs);
+        grid-column: 8 / -1;
+
+        @include xl {
+            grid-column: 10 / -1;
+        }
     }
 
     &__list {
         margin: 0;
         padding: 0;
         list-style: none;
+        color: var(--color-muted);
         font-size: fluid(13, 14);
-        line-height: 1.9;
+        line-height: 2.15;
     }
 }

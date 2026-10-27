@@ -17,11 +17,11 @@
     }
 
     &__copy {
-        @include small;
         grid-column: 6 / -1;
 
         @include lg {
-            grid-column: 7 / span 5;
+            grid-column: 7 / -1;
+            max-width: 29em;
         }
 
         > :last-child {

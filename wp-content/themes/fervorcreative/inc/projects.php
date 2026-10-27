@@ -79,6 +79,17 @@ function fervor_get_adjacent_projects( $post_id ) {
 }
 
 /**
+ * Get the URL of the Work page (slug `work`), which lists all projects.
+ *
+ * @return string
+ */
+function fervor_get_work_url() {
+	$page = get_page_by_path( 'work' );
+
+	return $page ? get_permalink( $page ) : home_url( '/work/' );
+}
+
+/**
  * Group project IDs into the editorial grid's repeating row pattern:
  * a split row (one large + two stacked), a full row, a mirrored split row,
  * then another full row.
