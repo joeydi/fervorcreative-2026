@@ -23,9 +23,10 @@
     }
 
     &__link {
+        position: relative;
         display: flex;
         align-items: center;
-        gap: var(--space-2xs);
+        gap: var(--space-xs);
         font-family: var(--font-serif);
         font-size: fluid(22, 28);
         line-height: 1.2;
@@ -35,12 +36,37 @@
             color: var(--color-primary);
         }
 
+        // Enlarge the hit area without changing the layout.
+        &::after {
+            content: "";
+            position: absolute;
+            inset: -10px;
+        }
+
         svg {
             flex-shrink: 0;
             width: 24px;
-            height: 24px;
+            height: auto;
             color: var(--color-primary);
+            transition: translate var(--duration) var(--ease-out);
         }
+    }
+
+    // Arrows nudge outward, in the direction they point, and a little further on click.
+    &__link--prev:hover svg {
+        translate: -8px 0;
+    }
+
+    &__link--prev:active svg {
+        translate: -12px 0;
+    }
+
+    &__link--next:hover svg {
+        translate: 8px 0;
+    }
+
+    &__link--next:active svg {
+        translate: 12px 0;
     }
 
     &__link--prev {
