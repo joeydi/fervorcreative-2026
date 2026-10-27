@@ -44,3 +44,40 @@
         }
     }
 }
+
+// Three equal columns of short lists, each behind a rule.
+.info-columns.is-style-lists {
+    .section-intro + & {
+        margin-top: calc(var(--space-fluid-2xl) - var(--space-section));
+    }
+
+    .info-columns__grid {
+        grid-template-columns: minmax(0, 1fr);
+
+        @include md {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            column-gap: var(--space-column-gap);
+        }
+    }
+
+    .info-columns__column {
+        padding-left: fluid(20, 40);
+        border-left: 1px solid var(--color-border);
+    }
+
+    .info-columns__title {
+        @include eyebrow;
+        margin-bottom: var(--space-lg);
+    }
+
+    .info-columns__copy {
+        font-size: 16px;
+        line-height: 34px;
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+    }
+}

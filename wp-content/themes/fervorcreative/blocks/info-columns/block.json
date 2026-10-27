@@ -16,5 +16,16 @@
 		"blockVersion": 3,
 		"mode": "preview",
 		"renderTemplate": "info-columns.php"
-	}
+	},
+	"styles": [
+		{
+			"name": "default",
+			"label": "Columns",
+			"isDefault": true
+		},
+		{
+			"name": "lists",
+			"label": "Lists"
+		}
+	]
 }
