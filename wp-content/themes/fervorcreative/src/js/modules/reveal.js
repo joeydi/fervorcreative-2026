@@ -32,8 +32,11 @@ export default function reveal() {
 	}
 
 	// Anything on screen at load reveals straight away, even below the 80%
-	// line, so nothing in view waits for a scroll.
-	const onScreen = targets.filter((target) => target.getBoundingClientRect().top < window.innerHeight);
+	// line, so nothing in view waits for a scroll. Anything not rendered (in a
+	// hidden tab panel) waits for the observer to see it once it's shown.
+	const onScreen = targets.filter(
+		(target) => target.getClientRects().length && target.getBoundingClientRect().top < window.innerHeight
+	);
 
 	revealAll(onScreen);
 

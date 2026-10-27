@@ -5,6 +5,7 @@ import header from './modules/header';
 import menu from './modules/menu';
 import reveal from './modules/reveal';
 import styleGuide from './modules/style-guide';
+import tabs from './modules/tabs';
 
 capabilityIcons();
 carousel();
@@ -12,6 +13,7 @@ header();
 menu();
 reveal();
 styleGuide();
+tabs();
 
 // Dropped from production builds entirely.
 if (import.meta.env.DEV) {

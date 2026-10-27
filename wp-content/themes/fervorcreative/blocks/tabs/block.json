@@ -1,0 +1,22 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "fervor/tabs",
+	"title": "Tabs",
+	"category": "fervor",
+	"icon": "index-card",
+	"description": "A row of tab buttons, one per Tab block inside it, that switch between their content.",
+	"allowedBlocks": [ "fervor/tab" ],
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"customClassName": false,
+		"html": false,
+		"jsx": true
+	},
+	"acf": {
+		"blockVersion": 3,
+		"mode": "preview",
+		"renderTemplate": "tabs.php"
+	}
+}

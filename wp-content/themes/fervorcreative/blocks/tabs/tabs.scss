@@ -1,0 +1,58 @@
+@use "mixins" as *;
+
+// A little more room than a section gets on either side, so the tab row and
+// whatever follows the panels read as apart from the tab content.
+.tabs {
+    margin-block: var(--space-fluid-md) calc(var(--space-section) + var(--space-fluid-md));
+
+    &__list {
+        display: grid;
+        grid-auto-columns: minmax(0, 1fr);
+        grid-auto-flow: column;
+        gap: var(--space-column-gap);
+        margin-bottom: var(--space-section);
+    }
+
+    &__tab {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: fluid(64, 113);
+        padding: var(--space-xs);
+        border: 1px solid var(--color-primary-hover);
+        border-radius: 0;
+        background-color: transparent;
+        color: var(--color-primary);
+        font-family: var(--font-sans);
+        font-size: fluid(14, 24);
+        font-weight: 500;
+        line-height: 1.2;
+        text-align: center;
+        cursor: pointer;
+        transition:
+            background-color var(--duration) var(--ease-out),
+            border-color var(--duration) var(--ease-out),
+            color var(--duration) var(--ease-out);
+
+        &:hover {
+            background-color: color-mix(in srgb, var(--color-primary) 6%, transparent);
+        }
+
+        &[aria-selected="true"] {
+            border-color: var(--color-primary);
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            cursor: default;
+        }
+    }
+
+    &__panel:focus-visible {
+        outline-offset: calc(var(--space-gutter) / -2);
+    }
+
+    // Editor only: names each tab's content, since every panel shows at once.
+    &__editor-label {
+        @include eyebrow;
+        margin-block: var(--space-xl) 0;
+    }
+}
