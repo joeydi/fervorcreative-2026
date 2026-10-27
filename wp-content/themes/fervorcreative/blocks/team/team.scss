@@ -3,7 +3,9 @@
 .team {
     &__eyebrow {
         @include eyebrow;
-        margin-bottom: var(--space-fluid-lg);
+        // The shared eyebrow margin plus the space above a statement heading's
+        // capitals, so the photos sit as far down as the headings do elsewhere.
+        margin-bottom: fluid(32, 70);
     }
 
     &__grid {

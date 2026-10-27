@@ -1,4 +1,5 @@
 @use "variables";
+@use "functions" as *;
 @forward "functions";
 
 // Breakpoints are mobile first: base styles are the smallest layout, and each
@@ -35,7 +36,7 @@
 
 @mixin eyebrow {
     display: block;
-    margin: 0 0 var(--space-md);
+    margin: 0 0 fluid(24, 52);
     color: var(--color-primary);
     font-family: var(--font-sans);
     font-size: var(--font-size-eyebrow);
