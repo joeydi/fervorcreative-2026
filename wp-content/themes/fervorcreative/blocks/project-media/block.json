@@ -5,7 +5,7 @@
 	"title": "Project Media",
 	"category": "fervor",
 	"icon": "format-image",
-	"description": "One or two images or videos, with an optional side label.",
+	"description": "One or two images or videos.",
 	"supports": {
 		"anchor": true,
 		"align": false,

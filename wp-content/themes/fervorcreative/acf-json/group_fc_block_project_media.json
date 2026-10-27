@@ -28,22 +28,6 @@
             "default_value": "full"
         },
         {
-            "key": "field_fc_project_media_label",
-            "label": "Label",
-            "name": "label",
-            "type": "text",
-            "instructions": "Optional red side label.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": ""
-        },
-        {
             "key": "field_fc_project_media_items",
             "label": "Items",
             "name": "items",
@@ -136,5 +120,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1793061000
+    "modified": 1793106353
 }

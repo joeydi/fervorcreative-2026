@@ -10,7 +10,6 @@ if ( fervor_block_preview( $block, $is_preview ) ) {
 }
 
 $layout = get_field( 'layout' ) ?: 'full';
-$label  = get_field( 'label' );
 $items  = fervor_get_populated_items( get_field( 'items' ), array( 'image', 'video', 'video_file' ) );
 $items  = array_slice( $items, 0, 'full' === $layout ? 1 : 2 );
 
@@ -23,10 +22,6 @@ $sizes = 'full' === $layout ? '(min-width: 1249px) 1200px, 100vw' : '(min-width:
 ?>
 <section<?php fervor_block_attrs( $block, array( 'project-media', 'project-media--' . $layout ) ); ?>>
 	<div class="project-media__inner container">
-		<?php if ( $label ) : ?>
-			<p class="project-media__label"><?php echo esc_html( $label ); ?></p>
-		<?php endif; ?>
-
 		<div class="project-media__grid">
 			<?php foreach ( $items as $item ) : ?>
 				<figure class="project-media__item">
