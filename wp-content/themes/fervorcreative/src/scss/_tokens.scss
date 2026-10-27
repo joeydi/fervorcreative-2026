@@ -10,13 +10,15 @@
     --color-neutral-1: #f5f5f5; // Light gray backgrounds, subtle text on dark backgrounds
     --color-neutral-2: #dddddd; // Borders
     --color-neutral-3: #afafaf; // Icons on dark backgrounds
-    --color-neutral-4: #191919; // Text
+    --color-neutral-4: #757575; // Muted text
+    --color-neutral-5: #191919; // Text
 
     // Semantic colors
     --color-white: #ffffff;
     --color-black: #000000;
     --color-background: var(--color-neutral-0);
-    --color-foreground: var(--color-neutral-4);
+    --color-foreground: var(--color-neutral-5);
+    --color-muted: var(--color-neutral-4);
     --color-surface: var(--color-neutral-1);
     --color-border: var(--color-neutral-2);
 
