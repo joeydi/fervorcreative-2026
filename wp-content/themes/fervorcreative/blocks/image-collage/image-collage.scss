@@ -1,6 +1,9 @@
 @use "mixins" as *;
 
 .image-collage {
+    // Lets the grid size gaps off the container's columns (see __grid).
+    container-type: inline-size;
+
     &__grid {
         display: flex;
         flex-direction: column;
@@ -9,6 +12,9 @@
 
         @include md {
             display: grid;
+            --content-width: min(var(--container-max), 100cqw - var(--space-gutter) * 2);
+            --grid-column: calc((var(--content-width) - 11 * var(--space-column-gap)) / 12);
+
             grid-template-columns: repeat(12, minmax(0, 1fr));
             column-gap: var(--space-column-gap);
         }
@@ -39,17 +45,15 @@
         }
     }
 
-    // Three images: the third tucks under the second.
+    // Three images: the third tucks under the second, one grid column below
+    // it, and the first sits centered beside the pair.
     &--count-3 &__item:nth-child(1) {
         grid-row: 1 / span 2;
-    }
-
-    &--count-3 &__item:nth-child(2) {
-        grid-column: 8 / span 4;
+        align-self: center;
     }
 
     &--count-3 &__item:nth-child(3) {
-        grid-column: 8 / span 3;
+        grid-column: 8 / span 4;
         grid-row: 2;
     }
 
@@ -59,9 +63,8 @@
             margin-top: var(--space-fluid-2xl);
         }
 
-        // Three images: left image sits lower.
-        &--count-3 &__item:nth-child(1) {
-            margin-top: var(--space-fluid-2xl);
+        &--count-3 &__grid {
+            row-gap: calc(var(--grid-column) + var(--space-column-gap));
         }
     }
 }
