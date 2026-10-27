@@ -1,0 +1,116 @@
+{
+    "key": "group_fc_block_project_showcase",
+    "title": "Block: Project Showcase",
+    "fields": [
+        {
+            "key": "field_fc_project_showcase_background",
+            "label": "Background image",
+            "name": "background",
+            "type": "image",
+            "instructions": "Fills the full width behind the items.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_fc_project_showcase_rounded",
+            "label": "Rounded corners",
+            "name": "rounded",
+            "type": "true_false",
+            "instructions": "Round the corners of the items.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1
+        },
+        {
+            "key": "field_fc_project_showcase_items",
+            "label": "Items",
+            "name": "items",
+            "type": "repeater",
+            "instructions": "One item spans the content width. Two or three sit side by side at a quarter width each.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "collapsed": "",
+            "button_label": "Add Item",
+            "min": 0,
+            "max": 3,
+            "sub_fields": [
+                {
+                    "key": "field_fc_project_showcase_items_image",
+                    "label": "Image",
+                    "name": "image",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "id",
+                    "preview_size": "medium",
+                    "library": "all",
+                    "parent_repeater": "field_fc_project_showcase_items"
+                },
+                {
+                    "key": "field_fc_project_showcase_items_video_file",
+                    "label": "Video file (optional)",
+                    "name": "video_file",
+                    "type": "file",
+                    "instructions": "Muted, looping MP4 shown instead of the image. The image becomes its poster.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "library": "all",
+                    "mime_types": "mp4,webm",
+                    "parent_repeater": "field_fc_project_showcase_items"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "fervor/project-showcase"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1793104000
+}

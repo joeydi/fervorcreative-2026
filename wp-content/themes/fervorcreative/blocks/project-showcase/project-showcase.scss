@@ -1,0 +1,69 @@
+@use "mixins" as *;
+
+.project-showcase {
+    position: relative;
+    container-type: inline-size;
+    margin-top: var(--space-section);
+    margin-bottom: calc(var(--space-section) + var(--space-fluid-md));
+    padding-block: calc(var(--space-section) + var(--space-lg));
+    overflow: hidden;
+    background-color: var(--color-surface);
+
+    // Stacked showcases butt up against each other.
+    &:has(+ .project-showcase) {
+        margin-bottom: 0;
+    }
+
+    + .project-showcase {
+        margin-top: 0;
+    }
+
+    &__background {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    // Items stay side by side at every size. The gap grows from the column gap to an
+    // eighth of the container, where three items land at a quarter width each.
+    &__inner {
+        --showcase-width: min(100cqi - var(--space-gutter) * 2, var(--container-max));
+        --showcase-gap: min(#{fluid(20, 178)}, var(--showcase-width) / 8);
+        // Tallest an item gets: a three-up card at tall email/phone proportions.
+        --showcase-max-height: calc((var(--showcase-width) - var(--showcase-gap) * 2) / 3 * 1.91);
+
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        gap: var(--showcase-gap);
+    }
+
+    // Each item starts at the width that reaches the max height, then shrinks to fit:
+    // landscape items fill the row out to the container edges, portrait items stop
+    // at the max height.
+    &__item {
+        flex: 0 1 calc(var(--showcase-max-height) * var(--ratio, 10));
+        min-width: 0;
+        margin: 0;
+    }
+
+    // A single item fills the row unless it's portrait enough to pass 1280px tall.
+    &--count-1 &__item {
+        --showcase-max-height: 1280px;
+    }
+
+    &__image,
+    &__video {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    &--rounded &__image,
+    &--rounded &__video {
+        border-radius: fluid(12, 20);
+    }
+}

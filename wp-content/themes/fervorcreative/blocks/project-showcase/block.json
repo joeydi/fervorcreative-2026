@@ -1,0 +1,20 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "fervor/project-showcase",
+	"title": "Project Showcase",
+	"category": "fervor",
+	"icon": "cover-image",
+	"description": "One to three images or videos over a full-width background image.",
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"customClassName": false,
+		"html": false
+	},
+	"acf": {
+		"blockVersion": 3,
+		"mode": "preview",
+		"renderTemplate": "project-showcase.php"
+	}
+}
