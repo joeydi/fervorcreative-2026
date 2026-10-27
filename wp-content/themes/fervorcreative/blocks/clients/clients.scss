@@ -14,33 +14,37 @@
         max-width: 13.5em;
     }
 
+    // 4:3 tiles, five across from lg. Flex rather than grid so a short last
+    // row centers.
     &__logos {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: var(--space-fluid-xl) var(--space-column-gap);
-        align-items: center;
+        --columns: 3;
+        --column-gap: #{fluid(20, 48)};
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: fluid(16, 30) var(--column-gap);
         margin: 0;
         padding: 0;
         list-style: none;
 
         @include md {
-            grid-template-columns: repeat(4, minmax(0, 1fr));
+            --columns: 4;
         }
 
         @include lg {
-            grid-template-columns: repeat(5, minmax(0, 1fr));
+            --columns: 5;
         }
     }
 
     &__logo {
-        display: grid;
-        place-items: center;
+        flex: 0 0 calc((100% - (var(--columns) - 1) * var(--column-gap)) / var(--columns));
+        aspect-ratio: 4 / 3;
     }
 
     &__image {
-        width: auto;
-        max-width: min(120px, 100%);
-        max-height: 44px;
+        width: 100%;
+        height: 100%;
         object-fit: contain;
         filter: grayscale(1);
         mix-blend-mode: multiply;

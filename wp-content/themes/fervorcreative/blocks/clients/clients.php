@@ -40,7 +40,7 @@ $classes = array(
 						<?php
 						echo wp_get_attachment_image(
 							$logo_id,
-							'medium',
+							'medium_large',
 							false,
 							array(
 								'class'   => 'clients__image',
