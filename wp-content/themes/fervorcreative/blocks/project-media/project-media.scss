@@ -60,6 +60,175 @@
         visibility: hidden;
     }
 
+    // A play button over the still; once playing, the full video covers it
+    // and the controls sit on a scrim, fading out when left alone (see
+    // player.js).
+    &__player {
+        position: relative;
+        cursor: pointer;
+
+        &.is-idle {
+            cursor: none;
+        }
+    }
+
+    &__stage {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background-color: var(--color-black);
+        opacity: 0;
+        transition: opacity var(--duration) var(--ease-out);
+
+        .is-started & {
+            opacity: 1;
+        }
+
+        // Vimeo's iframe would swallow the clicks and movement the frame
+        // listens for.
+        video,
+        iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        video {
+            object-fit: cover;
+        }
+    }
+
+    &__controls {
+        position: absolute;
+        inset: auto 0 0;
+        z-index: 2;
+        display: flex;
+        gap: fluid(16, 40);
+        align-items: center;
+        padding: fluid(16, 44);
+        color: var(--color-white);
+        pointer-events: none;
+        transition: opacity 400ms var(--ease-out);
+
+        > * {
+            pointer-events: auto;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset: auto 0 0;
+            z-index: -1;
+            height: calc(100% + #{fluid(60, 140)});
+            background: easing-gradient(to top, #000, 0.6);
+            opacity: 0;
+            transition: opacity 400ms var(--ease-out);
+        }
+
+        .is-started &::before {
+            opacity: 1;
+        }
+
+        .is-idle & {
+            opacity: 0;
+        }
+    }
+
+    &__toggle {
+        display: grid;
+        flex: none;
+        place-items: center;
+        width: fluid(36, 44);
+        aspect-ratio: 1;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        background-color: var(--color-white);
+        color: var(--color-black);
+        cursor: pointer;
+        transition: scale var(--duration) var(--ease-out);
+
+        &:hover {
+            scale: 1.08;
+        }
+
+        svg {
+            width: 50%;
+        }
+
+        // While the full video loads.
+        [aria-busy="true"] > .project-media__controls > & {
+            animation: project-media-loading 800ms var(--ease-in-out) infinite alternate;
+        }
+    }
+
+    &__mute {
+        display: grid;
+        flex: none;
+        place-items: center;
+        width: fluid(24, 32);
+        aspect-ratio: 1;
+        margin-left: auto;
+        padding: 0;
+        border: 0;
+        background: none;
+        color: inherit;
+        cursor: pointer;
+    }
+
+    &__icon {
+        display: contents;
+    }
+
+    &__player:not(.is-playing) &__icon--pause,
+    &__player.is-playing &__icon--play,
+    &__mute[aria-pressed="true"] &__icon--sound,
+    &__mute:not([aria-pressed="true"]) &__icon--muted {
+        display: none;
+    }
+
+    // The bar is the range's background: the played part solid, the rest
+    // translucent, with the thumb hidden. A taller box makes it easy to grab.
+    &__progress {
+        --track: 3px;
+        flex: 1;
+        min-width: 0;
+        height: 20px;
+        margin: 0;
+        background:
+            linear-gradient(var(--color-white), var(--color-white)) 0 50% / calc(var(--progress, 0) * 100%) var(--track) no-repeat,
+            linear-gradient(rgb(255 255 255 / 0.4), rgb(255 255 255 / 0.4)) 0 50% / 100% var(--track) no-repeat;
+        cursor: pointer;
+        appearance: none;
+
+        &:hover,
+        &:active {
+            --track: 5px;
+        }
+
+        &::-webkit-slider-thumb {
+            width: 1px;
+            height: 20px;
+            opacity: 0;
+            appearance: none;
+        }
+
+        &::-moz-range-thumb {
+            width: 1px;
+            height: 20px;
+            border: 0;
+            opacity: 0;
+        }
+    }
+
+    // Before the video starts, only the play button shows.
+    &__player:not(.is-started) &__progress,
+    &__player:not(.is-started) &__mute {
+        visibility: hidden;
+    }
+
     &__embed {
         position: relative;
         aspect-ratio: 16 / 9;
@@ -70,5 +239,11 @@
             width: 100%;
             height: 100%;
         }
+    }
+}
+
+@keyframes project-media-loading {
+    to {
+        opacity: 0.5;
     }
 }

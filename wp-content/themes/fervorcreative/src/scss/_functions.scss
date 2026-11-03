@@ -17,3 +17,18 @@
 
     @return clamp(#{$min-value}px, #{$intercept}px + #{$slope * 100}vw, #{$max-value}px);
 }
+
+// A gradient from $color to transparent whose opacity follows an ease-in-out
+// sine rather than falling off linearly, so it fades without a visible edge
+// (an "easing gradient").
+@function easing-gradient($direction, $color, $alpha: 1, $steps: 12) {
+    $stops: ();
+
+    @for $i from 0 through $steps {
+        $t: math.div($i, $steps);
+        $eased: math.div(1 - math.cos(math.$pi * $t), 2);
+        $stops: append($stops, rgba($color, $alpha * (1 - $eased)) math.percentage($t), comma);
+    }
+
+    @return linear-gradient($direction, $stops);
+}
