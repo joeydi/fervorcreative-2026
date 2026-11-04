@@ -18,7 +18,7 @@ if ( ! $items ) {
 $has_multiple = count( $items ) > 1;
 
 ?>
-<section<?php fervor_block_attrs( $block, array( 'testimonials', 'section' ) ); ?><?php echo $has_multiple ? ' data-carousel data-carousel-autoplay="8000"' : ''; ?> aria-label="<?php esc_attr_e( 'Testimonials', 'fervorcreative' ); ?>">
+<section<?php fervor_block_attrs( $block, array( 'testimonials', 'section' ) ); ?><?php echo $has_multiple ? ' data-carousel data-carousel-autoplay="8000" data-carousel-auto-height' : ''; ?> aria-label="<?php esc_attr_e( 'Testimonials', 'fervorcreative' ); ?>">
 	<div class="container" data-reveal>
 		<div class="testimonials__track" data-carousel-track>
 			<?php foreach ( $items as $item ) : ?>

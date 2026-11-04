@@ -10,6 +10,9 @@
  *
  * Add data-carousel-autoplay="7000" to advance automatically (paused on hover/focus,
  * and while off screen).
+ *
+ * Add data-carousel-auto-height to size the track to the slide in view, blending
+ * between neighbouring slides' heights as it scrolls. Slides should be align-self: start.
  */
 function initCarousel(root) {
 	const track = root.querySelector('[data-carousel-track]');
@@ -61,9 +64,23 @@ function initCarousel(root) {
 			})
 		: [];
 
+	const autoHeight = root.hasAttribute('data-carousel-auto-height');
+
+	const updateHeight = () => {
+		const step = slides.length > 1 ? slideLeft(slides[1]) : 0;
+		const position = step ? Math.max(0, Math.min(track.scrollLeft / step, slides.length - 1)) : 0;
+		const from = Math.floor(position);
+		const to = Math.min(from + 1, slides.length - 1);
+		const a = slides[from].offsetHeight;
+		const b = slides[to].offsetHeight;
+		track.style.height = `${a + (b - a) * (position - from)}px`;
+	};
+
 	const update = () => {
 		const maxScroll = track.scrollWidth - track.clientWidth - 1;
 		const index = currentIndex();
+
+		if (autoHeight) updateHeight();
 
 		if (prev) prev.disabled = track.scrollLeft <= 1;
 		if (next) next.disabled = track.scrollLeft >= maxScroll;
@@ -84,6 +101,10 @@ function initCarousel(root) {
 		{ passive: true }
 	);
 	window.addEventListener('resize', update);
+	if (autoHeight) {
+		const observer = new ResizeObserver(updateHeight);
+		slides.forEach((slide) => observer.observe(slide));
+	}
 	update();
 
 	const delay = Number(root.dataset.carouselAutoplay);
