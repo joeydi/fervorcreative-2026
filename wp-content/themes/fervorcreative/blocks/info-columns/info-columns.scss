@@ -45,7 +45,8 @@
     }
 }
 
-// Three equal columns of short lists, each behind a rule.
+// Three equal columns of short lists, ruled border to border like the
+// capabilities block's columns.
 .info-columns.is-style-lists {
     .section-intro + & {
         margin-top: calc(var(--space-fluid-2xl) - var(--space-section));
@@ -53,15 +54,16 @@
 
     .info-columns__grid {
         grid-template-columns: minmax(0, 1fr);
+        row-gap: var(--space-fluid-xl);
 
         @include md {
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            column-gap: var(--space-column-gap);
+            column-gap: 0;
         }
     }
 
     .info-columns__column {
-        padding-left: fluid(20, 40);
+        padding: 0 fluid(24, 36) var(--space-sm);
         border-left: 1px solid var(--color-border);
     }
 
@@ -72,7 +74,7 @@
 
     .info-columns__copy {
         font-size: 16px;
-        line-height: 34px;
+        line-height: 2;
 
         ul {
             margin: 0;
