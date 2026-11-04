@@ -12,6 +12,11 @@
 		"customClassName": false,
 		"html": false
 	},
+	"attributes": {
+		"className": {
+			"type": "string"
+		}
+	},
 	"acf": {
 		"blockVersion": 3,
 		"mode": "preview",
