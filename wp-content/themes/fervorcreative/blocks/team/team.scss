@@ -23,7 +23,7 @@
 
     &__photo {
         position: relative;
-        margin-bottom: var(--space-md);
+        margin-bottom: var(--space-xs);
         // The headshots' own proportions, so they tile edge to edge uncropped.
         aspect-ratio: 1892 / 1400;
         overflow: hidden;
