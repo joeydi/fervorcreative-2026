@@ -96,9 +96,13 @@ add_action( 'wp_head', 'fervor_print_reveal_script' );
 
 /**
  * Enqueue editor styles inside the block editor iframe.
+ *
+ * The hook also fires for the admin page around the iframe, where the
+ * theme's global styles would restyle the editor UI. Core turns off
+ * editor scripts and styles only while collecting the iframe's assets.
  */
 function fervor_enqueue_editor_assets() {
-	if ( ! is_admin() ) {
+	if ( ! is_admin() || wp_should_load_block_editor_scripts_and_styles() ) {
 		return;
 	}
 
