@@ -11,6 +11,8 @@
  * Add data-slideshow-autoplay="3000" to hold each slide that long between
  * moves (paused while pressed, hovered, focused, off screen or in a hidden
  * tab), and data-slideshow-duration="800" for the length of each move.
+ * Add data-slideshow-intro to open one slide back and move on to the first
+ * as it comes into view, so it reads as a slideshow at a glance.
  *
  * Slides follow a dragging mouse, a swiping finger or sideways trackpad
  * scrolling, then carry on with the momentum they're let go with and settle
@@ -98,9 +100,10 @@ function initSlideshow(root) {
 	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 	const delay = reduceMotion ? 0 : Number(root.dataset.slideshowAutoplay) || 0;
 	const duration = Number(root.dataset.slideshowDuration) || 800;
+	const intro = !reduceMotion && root.hasAttribute('data-slideshow-intro');
 
 	// Where the slideshow is, in slides. Everything moves by changing this.
-	let position = 0;
+	let position = intro ? -1 : 0;
 	let current = -1;
 
 	// A slide's offset from the current position, wrapped to [-count/2, count/2),
@@ -380,6 +383,25 @@ function initSlideshow(root) {
 			schedule();
 		}
 	}).observe(root);
+
+	// The intro moves on as the slideshow reveals (the same line as reveal.js),
+	// unless something has already moved it.
+	if (intro) {
+		const introObserver = new IntersectionObserver(
+			([entry]) => {
+				if (!entry.isIntersecting) {
+					return;
+				}
+
+				introObserver.disconnect();
+				if (position === -1 && !drag && !wheel && !animation) {
+					animateTo(0, duration, easeInOut);
+				}
+			},
+			{ rootMargin: '0px 0px -10% 0px' }
+		);
+		introObserver.observe(root);
+	}
 
 	render();
 	root.classList.add('is-ready');

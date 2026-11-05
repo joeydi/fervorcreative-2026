@@ -101,6 +101,7 @@ if ( ! function_exists( 'fervor_project_media_still' ) ) {
 							data-slideshow
 							data-slideshow-autoplay="3000"
 							data-slideshow-duration="800"
+							data-slideshow-intro
 							aria-roledescription="<?php esc_attr_e( 'carousel', 'fervorcreative' ); ?>"
 							aria-label="<?php echo esc_attr( sprintf( /* translators: %s: project title */ __( '%s images', 'fervorcreative' ), get_the_title() ) ); ?>">
 							<?php foreach ( $slides as $slide ) : ?>
