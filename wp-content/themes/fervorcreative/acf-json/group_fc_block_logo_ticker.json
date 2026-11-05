@@ -50,7 +50,7 @@
                     "key": "field_fc_logo_ticker_logos_size",
                     "label": "Size",
                     "name": "size",
-                    "type": "select",
+                    "type": "range",
                     "instructions": "Logo height. Adjust so logos of different shapes look balanced.",
                     "required": 0,
                     "conditional_logic": 0,
@@ -59,26 +59,12 @@
                         "class": "",
                         "id": ""
                     },
-                    "choices": {
-                        "100": "100px",
-                        "110": "110px",
-                        "120": "120px",
-                        "130": "130px",
-                        "140": "140px",
-                        "150": "150px",
-                        "160": "160px",
-                        "170": "170px",
-                        "180": "180px",
-                        "190": "190px",
-                        "200": "200px"
-                    },
-                    "default_value": "150",
-                    "return_format": "value",
-                    "multiple": 0,
-                    "allow_null": 0,
-                    "ui": 0,
-                    "ajax": 0,
-                    "placeholder": "",
+                    "default_value": 150,
+                    "min": 100,
+                    "max": 200,
+                    "step": 10,
+                    "prepend": "",
+                    "append": "px",
                     "parent_repeater": "field_fc_logo_ticker_logos"
                 }
             ]
@@ -102,5 +88,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1793895659
+    "modified": 1793907200
 }
