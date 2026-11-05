@@ -3,11 +3,19 @@
 .logo-ticker {
     margin-block: var(--space-fluid-2xl);
 
-    // Logos run edge to edge of the box and are clipped by it.
+    // Logos run edge to edge of the box and are clipped by it. Horizontal
+    // drags and swipes are ticker.js's; vertical ones scroll the page.
     &__box {
         overflow: clip;
         padding-block: fluid(48, 200);
         background-color: var(--color-surface);
+        touch-action: pan-y;
+        cursor: grab;
+
+        &.is-dragging {
+            cursor: grabbing;
+            user-select: none;
+        }
     }
 
     // One set's width includes every logo's trailing gap, so ticker.js can
