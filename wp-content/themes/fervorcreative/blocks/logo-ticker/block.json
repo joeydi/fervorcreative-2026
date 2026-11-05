@@ -1,0 +1,20 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "fervor/logo-ticker",
+	"title": "Logo Ticker",
+	"category": "fervor",
+	"icon": "images-alt2",
+	"description": "Continuously scrolling strip of logos that speeds up and reverses with the page scroll.",
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"customClassName": false,
+		"html": false
+	},
+	"acf": {
+		"blockVersion": 3,
+		"mode": "preview",
+		"renderTemplate": "logo-ticker.php"
+	}
+}

@@ -8,6 +8,7 @@ import reveal from './modules/reveal';
 import slideshow from './modules/slideshow';
 import styleGuide from './modules/style-guide';
 import tabs from './modules/tabs';
+import ticker from './modules/ticker';
 
 capabilityIcons();
 carousel();
@@ -18,6 +19,7 @@ reveal();
 slideshow();
 styleGuide();
 tabs();
+ticker();
 
 // Dropped from production builds entirely.
 if (import.meta.env.DEV) {

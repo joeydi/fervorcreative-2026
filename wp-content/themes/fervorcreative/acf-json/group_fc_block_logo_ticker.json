@@ -1,0 +1,106 @@
+{
+    "key": "group_fc_block_logo_ticker",
+    "title": "Block: Logo Ticker",
+    "fields": [
+        {
+            "key": "field_fc_logo_ticker_logos",
+            "label": "Logos",
+            "name": "logos",
+            "type": "repeater",
+            "instructions": "Logos scroll continuously, speeding up as the page scrolls down and reversing when it scrolls up.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "collapsed": "",
+            "button_label": "Add Logo",
+            "min": 0,
+            "max": 0,
+            "sub_fields": [
+                {
+                    "key": "field_fc_logo_ticker_logos_image",
+                    "label": "Image",
+                    "name": "image",
+                    "type": "image",
+                    "instructions": "Transparent PNG or SVG works best. Set alt text in the media library.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "70",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "id",
+                    "library": "all",
+                    "preview_size": "medium",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "parent_repeater": "field_fc_logo_ticker_logos"
+                },
+                {
+                    "key": "field_fc_logo_ticker_logos_size",
+                    "label": "Size",
+                    "name": "size",
+                    "type": "select",
+                    "instructions": "Logo height. Adjust so logos of different shapes look balanced.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "100": "100px",
+                        "110": "110px",
+                        "120": "120px",
+                        "130": "130px",
+                        "140": "140px",
+                        "150": "150px",
+                        "160": "160px",
+                        "170": "170px",
+                        "180": "180px",
+                        "190": "190px",
+                        "200": "200px"
+                    },
+                    "default_value": "150",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "parent_repeater": "field_fc_logo_ticker_logos"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "fervor/logo-ticker"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1793895659
+}

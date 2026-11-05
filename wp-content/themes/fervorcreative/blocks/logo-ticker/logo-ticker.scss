@@ -1,0 +1,49 @@
+@use "mixins" as *;
+
+.logo-ticker {
+    margin-block: var(--space-fluid-2xl);
+
+    // Logos run edge to edge of the box and are clipped by it.
+    &__box {
+        overflow: clip;
+        padding-block: fluid(48, 200);
+        background-color: var(--color-surface);
+    }
+
+    // One set's width includes every logo's trailing gap, so ticker.js can
+    // wrap the offset by that width with no seam.
+    &__track {
+        --ticker-gap: #{fluid(48, 120)};
+
+        display: flex;
+        align-items: center;
+        width: max-content;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        will-change: transform;
+    }
+
+    &__logo {
+        --logo-scale: 0.6;
+
+        flex: none;
+        padding-inline-end: var(--ticker-gap);
+
+        @include md {
+            --logo-scale: 0.8;
+        }
+
+        @include lg {
+            --logo-scale: 1;
+        }
+    }
+
+    // Height is the editor's balancing choice (100–200), width follows.
+    &__image {
+        display: block;
+        width: auto;
+        max-width: none;
+        height: calc(var(--logo-height, 150) * 1px * var(--logo-scale));
+    }
+}
