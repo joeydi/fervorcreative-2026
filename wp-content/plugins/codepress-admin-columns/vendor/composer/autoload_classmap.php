@@ -370,6 +370,7 @@ return array(
     'AC\\Formatter\\Date\\DateObject' => $baseDir . '/classes/Formatter/Date/DateObject.php',
     'AC\\Formatter\\Date\\LocalizedDateFormat' => $baseDir . '/classes/Formatter/Date/LocalizedDateFormat.php',
     'AC\\Formatter\\Date\\TimeDifference' => $baseDir . '/classes/Formatter/Date/TimeDifference.php',
+    'AC\\Formatter\\Date\\TimeElement' => $baseDir . '/classes/Formatter/Date/TimeElement.php',
     'AC\\Formatter\\Date\\Timestamp' => $baseDir . '/classes/Formatter/Date/Timestamp.php',
     'AC\\Formatter\\DottedPassword' => $baseDir . '/classes/Formatter/DottedPassword.php',
     'AC\\Formatter\\EmptyValue' => $baseDir . '/classes/Formatter/EmptyValue.php',

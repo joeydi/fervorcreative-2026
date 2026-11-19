@@ -414,6 +414,7 @@ class ComposerStaticInitAdminColumns
         'AC\\Formatter\\Date\\DateObject' => __DIR__ . '/../..' . '/classes/Formatter/Date/DateObject.php',
         'AC\\Formatter\\Date\\LocalizedDateFormat' => __DIR__ . '/../..' . '/classes/Formatter/Date/LocalizedDateFormat.php',
         'AC\\Formatter\\Date\\TimeDifference' => __DIR__ . '/../..' . '/classes/Formatter/Date/TimeDifference.php',
+        'AC\\Formatter\\Date\\TimeElement' => __DIR__ . '/../..' . '/classes/Formatter/Date/TimeElement.php',
         'AC\\Formatter\\Date\\Timestamp' => __DIR__ . '/../..' . '/classes/Formatter/Date/Timestamp.php',
         'AC\\Formatter\\DottedPassword' => __DIR__ . '/../..' . '/classes/Formatter/DottedPassword.php',
         'AC\\Formatter\\EmptyValue' => __DIR__ . '/../..' . '/classes/Formatter/EmptyValue.php',
