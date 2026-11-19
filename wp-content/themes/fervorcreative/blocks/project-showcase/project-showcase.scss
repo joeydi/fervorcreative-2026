@@ -64,6 +64,7 @@
 
     &--rounded &__image,
     &--rounded &__video {
-        border-radius: fluid(12, 20);
+        // Big enough to trim the ~7%-of-width corners baked into the promo videos.
+        border-radius: fluid(14, 30);
     }
 }
