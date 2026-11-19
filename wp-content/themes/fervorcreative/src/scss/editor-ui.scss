@@ -1,0 +1,58 @@
+// Block editor UI around the canvas iframe: resizable Settings sidebar.
+//
+// Core sets `width: 280px` inline on the sidebar and on the wrapper it animates
+// open and closed. The wrapper is only overridden once it has settled at 280px,
+// so the open/close slide still runs.
+@media (min-width: 782px) {
+    .interface-complementary-area,
+    .interface-complementary-area__fill[style*="width: 280px"] {
+        width: var(--fervor-sidebar-width, 280px) !important;
+    }
+}
+
+.fervor-sidebar-resizer {
+    display: none;
+
+    @media (min-width: 782px) {
+        display: block;
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        bottom: 0;
+        left: 0; // the sidebar clips overflow, so the hit area sits inside it
+        width: 8px;
+        cursor: col-resize;
+        touch-action: none;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 2px;
+            background: var(--wp-admin-theme-color, #3858e9);
+            opacity: 0;
+            transition: opacity 0.15s;
+        }
+
+        &:hover::after,
+        &:focus-visible::after,
+        .is-resizing-sidebar &::after {
+            opacity: 1;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+.is-resizing-sidebar {
+    cursor: col-resize;
+    user-select: none;
+
+    iframe {
+        pointer-events: none;
+    }
+}

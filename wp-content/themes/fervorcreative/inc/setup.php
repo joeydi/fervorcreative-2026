@@ -112,6 +112,15 @@ function fervor_enqueue_editor_assets() {
 add_action( 'enqueue_block_assets', 'fervor_enqueue_editor_assets' );
 
 /**
+ * Enqueue tweaks for the editor UI around the canvas iframe, such as the
+ * resizable Settings sidebar. This hook doesn't fire inside the iframe.
+ */
+function fervor_enqueue_editor_ui_assets() {
+	fervor_vite_enqueue( 'fervor-editor-ui', 'src/js/editor-ui.js' );
+}
+add_action( 'enqueue_block_editor_assets', 'fervor_enqueue_editor_ui_assets' );
+
+/**
  * Preconnect to Adobe Fonts so the kit and its font files start loading sooner.
  *
  * @param array  $urls          URLs to print for the relation type.
