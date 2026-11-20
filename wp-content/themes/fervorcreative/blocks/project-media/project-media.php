@@ -78,6 +78,7 @@ if ( ! function_exists( 'fervor_project_media_still' ) ) {
 								<button type="button" class="project-media__toggle" data-player-toggle aria-label="<?php esc_attr_e( 'Play video', 'fervorcreative' ); ?>" data-label-pause="<?php esc_attr_e( 'Pause video', 'fervorcreative' ); ?>">
 									<span class="project-media__icon project-media__icon--play"><?php fervor_icon( 'play' ); ?></span>
 									<span class="project-media__icon project-media__icon--pause"><?php fervor_icon( 'pause' ); ?></span>
+									<span class="project-media__icon project-media__icon--loading"><?php fervor_icon( 'spinner' ); ?></span>
 								</button>
 								<input type="range" class="project-media__progress" data-player-progress min="0" max="1" step="any" value="0" aria-label="<?php esc_attr_e( 'Seek', 'fervorcreative' ); ?>">
 								<button type="button" class="project-media__mute" data-player-mute aria-pressed="false" aria-label="<?php esc_attr_e( 'Mute', 'fervorcreative' ); ?>">

@@ -157,10 +157,15 @@
         svg {
             width: 50%;
         }
+    }
 
-        // While the full video loads.
-        [aria-busy="true"] > .project-media__controls > & {
-            animation: project-media-loading 800ms var(--ease-in-out) infinite alternate;
+    // While the full video loads, a spinning arc stands in for the play icon.
+    &__icon--loading svg {
+        animation: project-media-loading 800ms linear infinite;
+
+        // The reduced-motion reset would make it flicker; hold it still.
+        @media (prefers-reduced-motion: reduce) {
+            animation: none;
         }
     }
 
@@ -184,6 +189,8 @@
 
     &__player:not(.is-playing) &__icon--pause,
     &__player.is-playing &__icon--play,
+    &__player[aria-busy="true"] &__icon--play,
+    &__player:not([aria-busy="true"]) &__icon--loading,
     &__mute[aria-pressed="true"] &__icon--sound,
     &__mute:not([aria-pressed="true"]) &__icon--muted {
         display: none;
@@ -244,6 +251,6 @@
 
 @keyframes project-media-loading {
     to {
-        opacity: 0.5;
+        rotate: 1turn;
     }
 }

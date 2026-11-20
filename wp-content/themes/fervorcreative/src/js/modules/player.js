@@ -184,16 +184,22 @@ function initPlayer(root) {
 
 	// Starting with sound needs the press that started it; if the browser
 	// won't allow it by the time the video's ready, play muted instead.
+	// The spinner shows until it plays, or stops if it never does.
 	const play = async () => {
-		loading ||= load();
-		await loading;
 		try {
-			await media.play();
+			loading ||= load();
+			await loading;
+			try {
+				await media.play();
+			} catch (error) {
+				if (error?.name !== 'NotAllowedError') throw error;
+				await media.setMuted(true);
+				on.muted(true);
+				await media.play();
+			}
 		} catch (error) {
-			if (error?.name !== 'NotAllowedError') throw error;
-			await media.setMuted(true);
-			on.muted(true);
-			await media.play();
+			root.removeAttribute('aria-busy');
+			throw error;
 		}
 	};
 
