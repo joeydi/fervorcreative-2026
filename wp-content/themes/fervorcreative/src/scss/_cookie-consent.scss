@@ -1,0 +1,152 @@
+// ClearOpt cookie banner and preferences modal, restyled to the brand.
+// The plugin is set to the dark theme, floating box, "wordpress_blue" accent;
+// these selectors match its own so they win by coming later.
+
+.clearopt-accent--wordpress_blue {
+    --pp-accent: var(--color-primary);
+    --pp-accent-hover: var(--color-primary);
+    --pp-accent-focus: var(--color-primary);
+}
+
+// Mirrors .btn in _buttons.scss.
+%clearopt-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 180px;
+    min-height: 60px;
+    margin-bottom: 0;
+    padding: var(--space-xs) var(--space-xl);
+    border: 0;
+    border-radius: 0;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    box-shadow: none;
+    cursor: pointer;
+    transition: background-color var(--duration) var(--ease-out);
+
+    // Undo the plugin's lift-and-shadow hover; its focus outline stays.
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: var(--color-primary);
+        color: var(--color-white);
+        box-shadow: none;
+        transform: none;
+    }
+
+    &:hover {
+        background-color: var(--color-primary-hover);
+    }
+}
+
+.clearopt-cookie-dialog--dark.clearopt-cookie-dialog--full_width,
+.clearopt-cookie-dialog--dark.clearopt-cookie-dialog--floating_box {
+    border: 0;
+    border-top: 2px solid var(--color-primary);
+    border-radius: 0;
+    background: rgb(16 16 16 / 0.88);
+    color: var(--color-white);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+}
+
+.clearopt-cookie-dialog--dark {
+    p,
+    a {
+        color: var(--color-white);
+        font-family: var(--font-sans);
+        font-size: 16px;
+        letter-spacing: 0.01em;
+        text-decoration: none;
+    }
+
+    .clearopt-message {
+        padding-right: 0;
+        text-align: center;
+
+        a {
+            border-bottom: 1px solid var(--color-white);
+            font-weight: inherit;
+        }
+    }
+
+    a:hover,
+    a:focus {
+        color: var(--color-white);
+    }
+
+    .clearopt-cookie-dialog__actions {
+        margin-top: var(--space-md);
+    }
+
+    button {
+        @extend %clearopt-button;
+    }
+}
+
+.clearopt-preferences-link {
+    border-bottom: 1px solid var(--color-white);
+    font-weight: normal;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        color: var(--color-primary);
+    }
+}
+
+.clearopt-cookie-modal--dark {
+    .clearopt-cookie-modal__panel {
+        border: 0;
+        border-radius: 0;
+    }
+
+    .clearopt-cookie-modal__panel button:not(.clearopt-cookie-modal__close) {
+        @extend %clearopt-button;
+    }
+
+    // All three share one row; they wrap only when the panel is too narrow.
+    .clearopt-cookie-modal__panel .clearopt-cookie-modal__actions button:not(.clearopt-cookie-modal__close) {
+        flex: 1 1 auto;
+        min-width: 0;
+        padding-inline: var(--space-md);
+    }
+
+    .clearopt-cookie-modal__panel h2 {
+        font-family: var(--font-display);
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .clearopt-cookie-modal__option label {
+        font-family: var(--font-serif);
+        font-size: 24px;
+        font-weight: 400;
+    }
+
+    button.clearopt-cookie-modal__close,
+    button.clearopt-cookie-modal__close:focus {
+        border: 0;
+        background: transparent;
+        color: var(--color-primary);
+        font-family: inherit;
+        font-size: 60px;
+        font-weight: 400;
+    }
+
+    .clearopt-cookie-modal__option-copy p {
+        color: var(--color-white);
+    }
+}
+
+.clearopt-cookie-modal__panel h2,
+.clearopt-cookie-modal__option label {
+    color: var(--color-white);
+}

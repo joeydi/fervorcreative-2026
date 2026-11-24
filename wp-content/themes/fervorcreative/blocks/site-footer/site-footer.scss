@@ -80,6 +80,23 @@ $footer-max: 1920px;
         list-style: none;
     }
 
+    &__legal {
+        margin: 0;
+        font-size: var(--font-size-small);
+        line-height: 1.6;
+
+        a {
+            color: var(--color-neutral-3);
+            text-decoration: underline;
+            text-underline-offset: 0.2em;
+            transition: color var(--duration) var(--ease-out);
+
+            &:hover {
+                color: var(--color-white);
+            }
+        }
+    }
+
     &__social-link {
         display: block;
         color: var(--color-neutral-3);

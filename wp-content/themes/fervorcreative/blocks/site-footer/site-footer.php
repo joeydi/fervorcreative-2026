@@ -75,6 +75,11 @@ $classes = array(
 					<?php endforeach; ?>
 				</ul>
 			<?php endif; ?>
+
+			<?php // ClearOpt opens its preferences modal from links to #privacy-settings. ?>
+			<p class="site-footer__legal">
+				<a href="#privacy-settings"><?php esc_html_e( 'Cookie Preferences', 'fervorcreative' ); ?></a>
+			</p>
 		</div>
 	</div>
 </div>
