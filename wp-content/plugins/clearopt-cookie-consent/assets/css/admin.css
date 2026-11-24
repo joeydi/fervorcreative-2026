@@ -1,0 +1,1206 @@
+.clearopt-main-settings.postbox > h3,
+.clearopt-banner-settings.postbox > h3,
+.clearopt-sidebar .postbox > h3 {
+    padding-top: 8px;
+}
+
+.clearopt-banner-settings .form-table,
+.clearopt-preference-settings .form-table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+/* Force min-width on admin select dropdowns */
+
+.clearopt-banner-settings select {
+  min-width: 180px;
+}
+
+/* Prevent text input overflow */
+
+.clearopt-banner-settings input[type="url"] {
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+}
+
+/* ClearOpt toggle switch */
+
+.clearopt-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  vertical-align: middle;
+}
+
+.clearopt-switch input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.clearopt-switch__slider {
+  position: absolute;
+  inset: 0;
+  background: #c3c4c7;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.clearopt-switch__slider::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease;
+}
+
+.clearopt-switch input:checked + .clearopt-switch__slider {
+  background: #146ef5;
+}
+
+.clearopt-switch input:checked + .clearopt-switch__slider::before {
+  transform: translateX(20px);
+}
+
+.clearopt-switch input:focus-visible + .clearopt-switch__slider {
+  outline: 2px solid #2271b1;
+  outline-offset: 2px;
+}
+
+/* Cookie Category Grid Cards */
+
+.clearopt-cookie-categories {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.clearopt-cookie-category {
+  min-height: 100px;
+  padding: 20px 22px;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: left;
+  padding: 14px 12px;
+  background: #f6f7f7;
+  border: 1px solid #dcdcde;
+  border-radius: 6px;
+}
+
+.clearopt-cookie-category__count {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 600;
+  line-height: 1;
+  color: #1d2327;
+  font-size: 36px;
+}
+
+.clearopt-cookie-category__label {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: #50575e;
+  margin-top: 7px;
+  line-height: 1.2;
+}
+
+.clearopt-cookie-details {
+  margin: 16px 0;
+}
+
+/* Cookie Summary Spacing */
+
+.clearopt-cookie-details summary {
+  cursor: pointer;
+  border: 0;
+  outline: none;
+  box-shadow: none;
+}
+
+.clearopt-cookie-details summary:focus-visible {
+  outline: none;
+  box-shadow: none;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.clearopt-cookie-details__content {
+  margin-top: 12px;
+}
+
+.clearopt-cookie-details__group + .clearopt-cookie-details__group {
+  margin-top: 18px;
+}
+
+.clearopt-cookie-details__heading {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.clearopt-service-details {
+  margin-top: 16px;
+}
+
+.clearopt-service-details__item {
+  padding: 18px 20px;
+  margin-bottom: 14px;
+  background: #f6f7f7;
+  border: 1px solid #dcdcde;
+  border-radius: 6px;
+}
+
+.clearopt-service-details__title-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.clearopt-service-details__name {
+  margin-bottom: 0;
+  font-size: 16px;
+}
+
+.clearopt-service-details__meta {
+  display: block;
+  margin-bottom: 12px;
+  color: #646970;
+  font-size: 13px;
+}
+
+.clearopt-service-details__cookies {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.clearopt-service-details__cookies strong {
+  margin-right: 2px;
+}
+
+.clearopt-cookie-details__item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 10px;
+}
+
+.clearopt-cookie-details__item:last-child {
+  margin-bottom: 0;
+}
+
+/* Cookie Health Badges */
+
+.clearopt-cookie-health {
+  display: inline-block;
+  width: fit-content;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.clearopt-cookie-health--green {
+  background: #edfaef;
+  color: #1e6b2d;
+}
+
+.clearopt-cookie-health--yellow {
+  background: #fff8e5;
+  color: #8a5a00;
+}
+
+.clearopt-cookie-health--red {
+  background: #fce8e8;
+  color: #a12622;
+}
+
+/* Health Status Summary */
+
+.clearopt-scan-health {
+  margin: 16px 0;
+  padding: 10px 12px;
+  border-radius: 6px;
+}
+
+.clearopt-scan-health--green {
+  background: #edfaef;
+  color: #1e6b2d;
+}
+
+.clearopt-scan-health--yellow {
+  background: #fff8e5;
+  color: #8a5a00;
+}
+
+.clearopt-scan-health--red {
+  background: #fce8e8;
+  color: #a12622;
+}
+
+.clearopt-cookie-health--dismissed {
+  background: #e5f3ff;
+  color: #135e96;
+}
+
+/* Cookie Results Display */
+
+.clearopt-cookie-details__provider {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #646970;
+}
+
+.clearopt-cookie-details__state {
+  display: block;
+  font-size: 12px;
+  color: #646970;
+}
+
+.clearopt-cookie-health-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.clearopt-cookie-review {
+  padding: 3px 8px;
+  background: #fff;
+  border: 1px solid #c3c4c7;
+  border-radius: 999px;
+  color: #2271b1;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.clearopt-cookie-review:hover {
+  background: #f6f7f7;
+  border-color: #8c8f94;
+}
+
+.clearopt-cookie-review:focus-visible {
+  outline: 2px solid #2271b1;
+  outline-offset: 2px;
+}
+
+.clearopt-cookie-review-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.clearopt-cookie-review-actions__label {
+  margin-right: 2px;
+  font-size: 12px;
+}
+
+.clearopt-cookie-action {
+  padding: 3px 8px;
+  background: #fff;
+  border: 1px solid #c3c4c7;
+  border-radius: 999px;
+  color: #2271b1;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.clearopt-cookie-action:hover {
+  background: #f6f7f7;
+  border-color: #8c8f94;
+}
+
+.clearopt-cookie-action:focus-visible {
+  outline: 2px solid #2271b1;
+  outline-offset: 2px;
+}
+
+.clearopt-cookie-details__item {
+  padding: 12px;
+  background: #f6f7f7;
+  border: 1px solid #dcdcde;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.clearopt-cookie-details__item code {
+  display: block;
+  margin-bottom: 0;
+  padding: 0;
+  background: transparent;
+  font-size: 14px;
+}
+
+.clearopt-cookie-health-row {
+  margin-bottom: 8px;
+}
+
+.clearopt-cookie-details__domain {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  color: #646970;
+}
+
+.clearopt-cookie-diagnostic {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: #646970;
+  font-style: italic;
+}
+
+.clearopt-cookie-details__title-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.clearopt-cookie-details__title-row code {
+  margin-bottom: 0;
+}
+
+/* New Dashboard */
+
+/* ClearOpt App Header */
+
+.clearopt-app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  padding: 1.5rem 0 1.25rem;
+}
+
+.clearopt-app-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.clearopt-app-header__mark {
+  display: block;
+  width: 3.5rem;
+  height: 3.5rem;
+  background-image: url('../img/cookie-compliance.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: translateY(-8px);
+}
+
+.clearopt-app-header__brand-copy h1 {
+  margin: 0;
+  padding: 0;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  font-weight: 600;
+  color: #1d2327;
+}
+
+.clearopt-app-header__brand-copy p {
+  margin: 0;
+  color: #646970;
+  font-size: 0.875rem;
+}
+
+/* ClearOpt App Navigation */
+
+.clearopt-app-nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  min-height: 52px;
+  margin: 0;
+  padding: 12px 18px;
+  box-sizing: border-box;
+  background: #fff;
+  border-top: 1px solid #e2e7ec;
+  border-bottom: 1px solid #e2e7ec;
+}
+
+.clearopt-app-nav__item {
+  position: relative;
+  display: inline-block;
+  padding: 0;
+  color: #3c434a;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.clearopt-app-nav__item:hover,
+.clearopt-app-nav__item:focus {
+  color: #1766f4;
+}
+
+.clearopt-app-nav__item--active {
+  color: #1d2327;
+  /* font-weight: 600; */
+}
+
+.clearopt-app-nav__item::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  width: calc(100% + 8px);
+  height: 4px;
+  background: transparent;
+  transform: translateX(-50%);
+}
+
+.clearopt-app-nav__item--active span {
+  text-shadow: 0.10px 0 currentColor, -0.10px 0 currentColor;
+}
+
+/* .clearopt-app-nav__item--active::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -20px;
+  left: 0;
+  height: 5px;
+  background: #1766f4;
+} */
+
+.clearopt-app-nav__item--active::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  width: calc(100% + 8px);
+  height: 4px;
+  background: #1766f4;
+  transform: translateX(-50%);
+}
+
+.clearopt-app-nav__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.clearopt-app-nav__icon {
+  flex: 0 0 auto;
+  color: #111827;
+}
+
+/* Dashboard Columns */
+
+/* ClearOpt Dashboard Columns */
+
+.clearopt-settings-layout {
+  display: grid;
+  grid-template-columns: 360px minmax(0, 1fr);
+  grid-template-areas: "sidebar main";
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.clearopt-sidebar {
+  grid-area: sidebar;
+}
+
+.clearopt-main {
+  grid-area: main;
+}
+
+.clearopt-sidebar {
+  order: 1;
+  flex: 0 0 320px;
+  width: auto !important;
+  float: none !important;
+  box-sizing: border-box;
+
+  padding: 12px 12px;
+
+  background: #fff;
+  border: 1px solid #e2e7ec;
+  border-radius: 12px;
+}
+
+.clearopt-main {
+  order: 2;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto !important;
+  float: none !important;
+  box-sizing: border-box;
+
+  padding: 12px 12px;
+
+  background: #fff;
+  border: 1px solid #e2e7ec;
+  border-radius: 12px;
+}
+
+/* ClearOpt Main Admin Page */
+
+.clearopt-workspace {
+  max-width: 1440px;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+/* Hide Navbar */
+
+.clearopt-app-nav {
+  background-color: white;
+  margin: 0;
+  border: 1px solid #e2e7ec;
+  border-radius: 12px;
+  gap: 2rem;
+}
+
+/* Save Settings Button */
+
+.clearopt-app-save-status {
+  margin-left: auto;
+  color: #50575e;
+  font-size: 13px;
+}
+
+.clearopt-app-save {
+  padding: 10px 18px;
+  border: 1px solid #1766f4;
+  border-radius: 6px;
+  background: #1766f4;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.clearopt-app-save:hover,
+.clearopt-app-save:focus {
+  background: #0f5be7;
+  border-color: #0f5be7;
+  color: #fff;
+}
+
+/* Nav Tabs */
+
+/* ClearOpt Tab Views */
+
+.clearopt-workspace--overview .clearopt-tab-banner,
+.clearopt-workspace--overview .clearopt-tab-integrations {
+  display: none;
+}
+
+.clearopt-workspace--banner .clearopt-tab-overview,
+.clearopt-workspace--banner .clearopt-tab-integrations {
+  display: none;
+}
+
+.clearopt-workspace--integrations .clearopt-tab-overview,
+.clearopt-workspace--integrations .clearopt-tab-banner {
+  display: none;
+}
+
+.clearopt-workspace--integrations .clearopt-sidebar {
+  display: none;
+}
+
+.clearopt-workspace--integrations .clearopt-settings-layout {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "main";
+}
+
+.clearopt-scan-health--neutral {
+  background: #f6f7f7;
+  color: #50575e;
+}
+
+/* Scan My Site */
+
+.clearopt-cloud-status,
+.clearopt-default-settings,
+.clearopt-menu-link,
+.clearopt-usage,
+.clearopt-service-review,
+.clearopt-integration-settings,
+.clearopt-banner-settings,
+.clearopt-banner-status,
+.clearopt-banner-layout,
+.clearopt-banner-style,
+.clearopt-preference-settings {
+  border: 0;
+  box-shadow: none;
+}
+
+.clearopt-cloud-status {
+  margin-bottom: 0;
+}
+
+.clearopt-cloud-connected {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 18px;
+  margin-bottom: 20px;
+  background: #f0fbf2;
+  border-radius: 10px;
+}
+
+.clearopt-cloud-connected__icon {
+  width: 48px;
+  height: 48px;
+  font-size: 48px;
+  line-height: 48px;
+  color: #16a34a;
+}
+
+.clearopt-cloud-connected__text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.clearopt-cloud-connected__text strong {
+  color: #159447;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.clearopt-cloud-connected__text span {
+  color: #344054;
+  font-size: 14px;
+}
+
+.clearopt-cloud-connected__icon {
+  width: 40px;
+  height: 40px;
+  font-size: 40px;
+  line-height: 40px;
+  color: #16a34a;
+  flex: 0 0 40px;
+}
+
+.clearopt-scan-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  min-height: 75px;
+  padding: 15px 20px 30px 5px;
+  border: 0;
+  border-radius: 10px;
+  background: #1769ff;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+}
+
+.clearopt-scan-button::after {
+  content: "Check for cookies and third-party services";
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  left: 15px;
+  font-size: 12px;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+.clearopt-scan-button:hover,
+.clearopt-scan-button:focus {
+  background: #0f5ee8;
+  color: #fff;
+}
+
+.clearopt-cookie-category--allowed {
+  background: #f0fbf2;
+  border-color: #cdeed7;
+}
+
+.clearopt-cookie-category--allowed .clearopt-cookie-category__count {
+  color: #16833d;
+}
+
+.clearopt-cookie-category--allowed .clearopt-cookie-category__label {
+  color: #26733c;
+}
+
+.clearopt-cookie-category {
+  position: relative;
+}
+
+.clearopt-cookie-category__icon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #dff6e5;
+  color: #22a447;
+  font-size: 18px;
+}
+
+.clearopt-cookie-category--attention {
+  background: #f6f7f7;
+  border-color: #dcdcde;
+}
+
+.clearopt-cookie-category--attention .clearopt-cookie-category__count {
+  color: #1d2327;;
+}
+
+.clearopt-cookie-category--attention .clearopt-cookie-category__label {
+  color: #1d2327;
+}
+
+.clearopt-cookie-category--attention .clearopt-cookie-category__icon {
+  background: #eceef1;
+  color: #5a647b;
+}
+
+.clearopt-cookie-category--unknown {
+  background: #f6f7f7;
+  border-color: #dcdcde;
+}
+
+.clearopt-cookie-category--unknown .clearopt-cookie-category__count {
+  color: #1d2327;
+}
+
+.clearopt-cookie-category--unknown .clearopt-cookie-category__label {
+  color: #1d2327;
+}
+
+.clearopt-cookie-category--unknown .clearopt-cookie-category__icon {
+  background: #eceef1;
+  color: #5a647b;
+}
+
+.clearopt-cookie-category--total {
+  background: #f6f7f7;
+  border-color: #dcdcde;
+}
+
+.clearopt-cookie-category--total .clearopt-cookie-category__count {
+  color: #1d2327;
+}
+
+.clearopt-cookie-category--total .clearopt-cookie-category__label {
+  color: #1d2327;
+}
+
+.clearopt-cookie-category--total .clearopt-cookie-category__icon {
+  background: #eceef1;
+  color: #5a647b;
+}
+
+.clearopt-cookie-category__description {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.35;
+  font-weight: 400;
+  color: #667085;
+}
+
+.clearopt-scan-health--success {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 76px;
+  padding: 16px 20px;
+  border-radius: 10px;
+}
+
+/* Scan result status underneath the service scan cards */
+
+.clearopt-scan-health__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  border-radius: 50%;
+  background: #2fb344;
+  color: #fff;
+  font-size: 20px;
+}
+
+.clearopt-scan-health__content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.clearopt-scan-health__content strong {
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.clearopt-scan-health__content span {
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+.clearopt-scan-health--yellow .clearopt-scan-health__icon {
+  background: #d98b00;
+}
+
+.clearopt-scan-health--neutral .clearopt-scan-health__icon {
+  background: #eceef1;
+  color: #5a647b;
+}
+
+.clearopt-scan-health--red {
+  background: #fff1f0;
+  color: #8a332e;
+}
+
+.clearopt-scan-health--red .clearopt-scan-health__icon {
+  background: #d63638;
+  color: #fff;
+}
+
+/* Service Scan */
+
+.clearopt-service-review__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.clearopt-service-review__heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+/* .clearopt-service-review__heading .dashicons {
+  width: 36px;
+  height: 36px;
+  font-size: 36px;
+  line-height: 36px;
+} */
+
+.clearopt-service-review__heading h3 {
+  margin: 0 0 4px;
+  /* font-size: 24px;
+  line-height: 1.2; */
+}
+
+.clearopt-service-review__heading p {
+  margin: 0;
+  color: #646970;
+  font-size: 14px;
+}
+
+.clearopt-service-review__actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex: 0 0 auto;
+}
+
+.clearopt-service-review__last-scan {
+  color: #646970;
+  white-space: nowrap;
+}
+
+.clearopt-service-review__last-scan strong {
+  font-weight: 400;
+}
+
+.clearopt-service-review__scan {
+  width: auto;
+  min-height: 0;
+  padding: 10px 16px;
+  border: 1px solid #2271b1;
+  border-radius: 8px;
+  background: #fff;
+  color: #2271b1;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.clearopt-service-review__scan::after {
+  display: none;
+}
+
+.clearopt-service-review__scan:hover,
+.clearopt-service-review__scan:focus {
+  background: #f0f6fc;
+  color: #135e96;
+}
+
+/* Scan result service icons */
+
+.clearopt-service-details__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.clearopt-service-details__icon {
+  flex: 0 0 64px;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: #f6f7f7;
+}
+
+.clearopt-service-details__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.clearopt-service-icon--google-analytics {
+  background: #fff8f1;
+  color: #f9ab00;
+}
+
+.clearopt-service-icon--google-analytics i {
+  font-size: 34px;
+}
+
+.clearopt-service-icon--meta {
+  background: #eef4ff;
+  color: #0866ff;
+}
+
+.clearopt-service-icon--meta i {
+  font-size: 36px;
+}
+
+.clearopt-service-icon--cloudflare {
+  background: #fff7ed;
+  color: #f6821f;
+}
+
+.clearopt-service-icon--cloudflare i {
+  font-size: 38px;
+}
+
+.clearopt-service-icon--clearopt {
+  background: #eef9f1;
+  color: #16833b;
+}
+
+.clearopt-service-icon--magellan,
+.clearopt-service-icon--tapad {
+  background: #f5efff;
+  color: #7c3aed;
+}
+
+.clearopt-service-icon--magellan i,
+.clearopt-service-icon--tapad i {
+  font-size: 34px;
+}
+
+.clearopt-service-icon--clearopt i {
+  font-size: 36px;
+}
+
+.clearopt-service-icon--unknown {
+  background: #fff8e1;
+  color: #9a6700;
+}
+
+.clearopt-service-icon--unknown i {
+  font-size: 28px;
+}
+
+.clearopt-cookie-icon--necessary {
+  background: #eef9f1;
+  color: #16833b;
+}
+
+.clearopt-cookie-icon--analytics {
+  background: #fff8f1;
+  color: #f9ab00;
+}
+
+.clearopt-cookie-icon--marketing {
+  background: #f5efff;
+  color: #7c3aed;
+}
+
+.clearopt-cookie-icon--unknown {
+  background: #fff8e1;
+  color: #9a6700;
+}
+
+.clearopt-cookie-icon--necessary i,
+.clearopt-cookie-icon--analytics i,
+.clearopt-cookie-icon--marketing i,
+.clearopt-cookie-icon--unknown i {
+  font-size: 30px;
+}
+
+/* Get Support Button */
+
+.clearopt-app-header {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.clearopt-app-header__actions {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  padding-top: 6px;
+}
+
+.clearopt-app-header__support {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 18px;
+  border: 1px solid #c3c4c7;
+  border-radius: 8px;
+  background: #fff;
+  color: #2c3338;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.clearopt-app-header__support:hover,
+.clearopt-app-header__support:focus {
+  border-color: #2271b1;
+  color: #2271b1;
+  background: #f6f7f7;
+}
+
+.clearopt-app-header__support i {
+  font-size: 16px;
+}
+
+/* Default Settings */
+
+.clearopt-default-settings .inside {
+  padding-top: 4px;
+}
+
+.clearopt-default-settings .form-table {
+  width: 100%;
+  margin: 0;
+  table-layout: auto;
+  border-collapse: collapse;
+}
+
+.clearopt-default-settings .clearopt-default-setting {
+  display: table-row;
+}
+
+.clearopt-default-settings .clearopt-default-setting > td {
+  width: 100%;
+  padding: 18px 0;
+  border-bottom: 1px solid #e2e7ec;
+  vertical-align: top;
+}
+
+/* .clearopt-default-settings .clearopt-default-setting:last-child > td {
+  border-bottom: 0;
+} */
+
+.clearopt-default-setting__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.clearopt-default-setting__header > label:first-child {
+  min-width: 0;
+  margin: 0;
+}
+
+.clearopt-default-setting__header strong {
+  display: block;
+  margin: 0;
+  color: #3c434a;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.clearopt-default-setting__header .clearopt-switch {
+  flex: 0 0 auto;
+  margin: 0;
+}
+
+.clearopt-default-setting .description {
+  display: block;
+  margin: 8px 0 0;
+  max-width: none;
+  color: #646970;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.clearopt-default-setting__header select {
+  flex: 0 0 auto;
+  min-width: 110px;
+}
+
+@media screen and (max-width: 782px) {
+  .clearopt-default-setting__header {
+    gap: 12px;
+  }
+
+  .clearopt-default-settings .clearopt-default-setting > td {
+    padding: 16px 0;
+  }
+}
