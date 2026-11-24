@@ -34,7 +34,6 @@ $sizes = 1 === count( $items ) ? '(min-width: 1440px) 1420px, 100vw' : '(min-wid
 			false,
 			array(
 				'class'   => 'project-showcase__background',
-				'alt'     => '',
 				'loading' => 'lazy',
 				'sizes'   => '100vw',
 			)

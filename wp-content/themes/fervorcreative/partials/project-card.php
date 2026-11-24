@@ -34,7 +34,6 @@ $sizes = array(
 					false,
 					array(
 						'class' => 'project-card__image',
-						'alt'   => '',
 						'sizes' => $sizes[ $size ] ?? $sizes['small'],
 					)
 				);

@@ -22,7 +22,7 @@ $classes = array(
 ?>
 <div<?php fervor_block_attrs( $block, $classes ); ?>>
 	<?php if ( $cta_image ) : ?>
-		<div class="site-footer__media" aria-hidden="true">
+		<div class="site-footer__media">
 			<?php
 			echo wp_get_attachment_image(
 				$cta_image,
@@ -30,7 +30,6 @@ $classes = array(
 				false,
 				array(
 					'class'   => 'site-footer__image',
-					'alt'     => '',
 					'loading' => 'lazy',
 					'sizes'   => '100vw',
 				)

@@ -35,7 +35,6 @@ if ( ! $members ) {
 								false,
 								array(
 									'class'   => 'team__image',
-									'alt'     => '',
 									'loading' => 'lazy',
 									'sizes'   => '(min-width: 768px) 33vw, 50vw',
 								)
