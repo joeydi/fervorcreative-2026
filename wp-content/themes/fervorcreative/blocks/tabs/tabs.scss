@@ -11,6 +11,9 @@
         grid-auto-flow: column;
         gap: var(--space-column-gap);
         margin-bottom: var(--space-section);
+        // Clears the fixed header's scrolled bar (80px) when a #tab link
+        // scrolls here (src/js/modules/tabs.js).
+        scroll-margin-top: calc(var(--wp-admin--admin-bar--height, 0px) + 80px + var(--space-fluid-md));
     }
 
     &__tab {
