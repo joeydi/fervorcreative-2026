@@ -67,6 +67,8 @@ $jump_links = array(
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<?php // Block templates print the title as they render; this PHP template prints its own (Yoast's, via wp_get_document_title()). ?>
+	<title><?php echo esc_html( wp_get_document_title() ); ?></title>
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
