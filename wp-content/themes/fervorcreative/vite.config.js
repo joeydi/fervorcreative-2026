@@ -64,6 +64,7 @@ export default defineConfig(({ command, mode }) => ({
 				editor: path.resolve(root, 'src/js/editor.js'),
 				'editor-ui': path.resolve(root, 'src/js/editor-ui.js'),
 				login: path.resolve(root, 'src/js/login.js'),
+				'boise-state': path.resolve(root, 'src/js/boise-state.js'),
 			},
 		},
 	},

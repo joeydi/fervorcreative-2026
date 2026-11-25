@@ -46,6 +46,14 @@ How it works:
 | `single-project.html` | Header, Project Masthead, post content, Project Pagination, footer |
 | `404.html` | Header, Not Found, footer |
 | `page-style-guide.html` | Header, Style Guide, footer. Applies to the page with the slug `style-guide`. |
+| `boise-state.php` | PHP page template "Boise State" (pick it in the page's Template setting): the one-off "New to blue" landing page. Hard-coded sections with its own minimal header and the global footer. Hero image, partner logo, and Gravity Forms form ID are page fields. |
+
+### Boise State page
+
+- Markup: `templates/boise-state.php`. Hooks: `inc/boise-state.php`. Styles: `src/scss/boise-state.scss`. Script: `src/js/boise-state.js` (stat count-up).
+- `boise-state.js` is its own Vite entry, enqueued only on this template next to `main.js`, so the page's CSS doesn't ship to other pages.
+- Gravity Forms assets load only here: the plugin enqueues nothing on pages without a form, and `inc/boise-state.php` enqueues the chosen form's scripts in the head. The form uses Gravity Forms' legacy "Gravity Forms 2.5" theme rather than Orbital (`gform_form_theme_slug`), overridden to the brand in `boise-state.scss`.
+- Hero intro, image parallax, and the scrolling word column are CSS (scroll-driven animations where supported); nothing moves with reduced motion.
 
 The header overlays the page in white when the first block in the content is a Hero; otherwise it sits on white with a red logo. Below 768px (`md`) the menu collapses behind a toggle that opens a full-screen panel (`src/js/modules/menu.js`).
 

@@ -1,0 +1,726 @@
+// Boise State landing page (templates/boise-state.php). Loaded only on that
+// page through src/js/boise-state.js, after main.scss, so tokens, mixins,
+// .container, .btn, and the reveal keyframes are all available.
+
+@use "mixins" as *;
+
+$header-height: 80px;
+
+// Scroll-driven motion is an enhancement: browsers without it, and anyone
+// who prefers reduced motion, get the static layout.
+@mixin scroll-motion {
+    @media (prefers-reduced-motion: no-preference) {
+        @supports (animation-timeline: scroll()) {
+            @content;
+        }
+    }
+}
+
+html:has(.boise-header) {
+    scroll-behavior: smooth;
+}
+
+// Header
+
+.boise-header {
+    position: sticky;
+    top: var(--wp-admin--admin-bar--height, 0px);
+    z-index: 20;
+    background-color: var(--color-white);
+
+    &__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-md);
+        min-height: $header-height;
+    }
+
+    &__logo {
+        display: block;
+        color: var(--color-primary);
+
+        svg,
+        img {
+            width: auto;
+            height: fluid(22, 26);
+        }
+
+        svg :is(path, rect, polygon, circle) {
+            fill: currentColor;
+        }
+    }
+
+    // Below md the hero carries the jump links instead.
+    &__nav {
+        display: none;
+
+        @include md {
+            display: flex;
+            gap: var(--space-2xs);
+        }
+    }
+
+    &__button {
+        min-width: 0;
+        min-height: 48px;
+        padding-inline: var(--space-md);
+        font-size: 15px;
+    }
+}
+
+// Hero
+
+.boise-hero {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    min-height: clamp(560px, 54vw, 866px);
+    overflow: hidden;
+    background-color: var(--color-neutral-5);
+    color: var(--color-white);
+
+    &__media {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-color: rgb(0 0 0 / 0.3);
+        }
+    }
+
+    &__image {
+        @include cover;
+    }
+
+    &__content {
+        padding-block: var(--space-fluid-2xl);
+    }
+
+    &__kicker {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: fluid(20, 30);
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        line-height: 1.4;
+        text-transform: uppercase;
+    }
+
+    &__title {
+        margin: 0.05em 0 0 -0.04em;
+        font-family: var(--font-sans);
+        font-size: fluid(64, 200);
+        font-weight: 400;
+        letter-spacing: -0.04em;
+        line-height: 1;
+    }
+
+    &__logo {
+        margin-top: fluid(24, 48);
+
+        svg,
+        img {
+            width: fluid(200, 342);
+            height: auto;
+        }
+    }
+
+    &__copy {
+        max-width: 30em;
+        margin: fluid(32, 64) 0 0;
+
+        strong {
+            font-weight: 600;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2xs);
+        margin-top: var(--space-lg);
+
+        @include md {
+            display: none;
+        }
+    }
+
+    &__button {
+        min-width: 0;
+        padding-inline: var(--space-md);
+    }
+}
+
+// The hero's content steps in on load, unless motion is reduced (.has-reveal).
+.has-reveal .boise-hero__content > * {
+    animation: reveal 800ms var(--ease-out) backwards;
+
+    @for $i from 1 through 5 {
+        &:nth-child(#{$i}) {
+            animation-delay: #{($i - 1) * 150}ms;
+        }
+    }
+}
+
+// Image and content drift apart as the hero scrolls away.
+@include scroll-motion {
+    .boise-hero__media {
+        animation: boise-drift-down linear both;
+        animation-range: 0 100vh;
+        animation-timeline: scroll(root);
+    }
+
+    .boise-hero__content {
+        animation: boise-drift-up linear both;
+        animation-range: 0 100vh;
+        animation-timeline: scroll(root);
+    }
+}
+
+@keyframes boise-drift-down {
+    to {
+        translate: 0 25%;
+    }
+}
+
+@keyframes boise-drift-up {
+    to {
+        translate: 0 -85px;
+    }
+}
+
+// Stats
+
+.boise-stats {
+    position: relative;
+    isolation: isolate;
+    padding-block: var(--space-section);
+    overflow: hidden;
+
+    // The angled gray band behind the section.
+    &__bg {
+        position: absolute;
+        inset-block: 0;
+        left: 5%;
+        z-index: -1;
+        width: min(900px, 90%);
+        background-color: var(--color-surface);
+        clip-path: polygon(35.1% 0, 100% 0, 66.3% 100%, 0 100%);
+
+        @include lg {
+            left: 12%;
+        }
+    }
+
+    &__intro {
+        display: grid;
+        gap: var(--space-fluid-lg) var(--space-column-gap);
+        align-items: start;
+
+        @include lg {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    &__heading {
+        @include statement;
+    }
+
+    &__copy {
+        max-width: 32em;
+        margin: 0;
+
+        strong {
+            font-weight: 600;
+        }
+    }
+
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-fluid-xl) var(--space-column-gap);
+        margin: var(--space-fluid-2xl) 0 0;
+        padding: 0;
+        list-style: none;
+
+        @include lg {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    &__value {
+        @include numeral;
+        font-size: fluid(56, 80);
+        font-variant-numeric: tabular-nums;
+    }
+
+    &__label {
+        display: block;
+        max-width: 12em;
+        margin-top: var(--space-xs);
+        font-family: var(--font-serif);
+        font-size: fluid(16, 20);
+        line-height: 1.3;
+    }
+}
+
+// We get blue
+
+.boise-callout {
+    padding-block: 40px;
+    overflow: hidden;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+
+    &__inner {
+        display: grid;
+        gap: var(--space-fluid-2xl) var(--space-column-gap);
+        align-items: center;
+        container-type: inline-size;
+
+        @include lg {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    &__intro {
+        max-width: 600px;
+    }
+
+    &__intro > :last-child {
+        margin-bottom: 0;
+    }
+
+    &__heading {
+        @include statement;
+        margin-bottom: var(--space-fluid-lg);
+    }
+
+    // Capped so the longest word (about 6.2em) fits its column.
+    &__words {
+        font-size: min(#{fluid(48, 110)}, 100cqi / 6.2);
+
+        @include lg {
+            font-size: min(#{fluid(48, 110)}, (50cqi - var(--space-column-gap) / 2) / 6.2);
+        }
+    }
+
+    &__track {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3em;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__word {
+        color: rgb(255 255 255 / 0.6);
+        font-family: var(--font-sans);
+        font-weight: 700;
+        line-height: 1;
+        text-transform: uppercase;
+    }
+}
+
+// Section parallax from lg, matching the old site: each section is its own
+// view timeline, running from when its top enters the viewport.
+@include scroll-motion {
+    @include lg {
+        .boise-stats,
+        .boise-callout,
+        .boise-services,
+        .boise-contact {
+            view-timeline: --boise-section block;
+        }
+
+        // The gray band slides right as the section passes.
+        .boise-stats__bg {
+            animation: boise-stats-bg linear both;
+            animation-timeline: --boise-section;
+            animation-range: cover 0% cover 100%;
+        }
+
+        // The words rise 80% of their height as the section passes, centered
+        // in the section when the section is centered in the viewport.
+        .boise-callout__track {
+            animation: boise-words linear both;
+            animation-timeline: --boise-section;
+            animation-range: cover 0% cover 100%;
+        }
+
+        // The intro drifts down against the scroll.
+        .boise-services__intro {
+            animation: boise-services-intro linear both;
+            animation-timeline: --boise-section;
+            animation-range: cover 0% cover 100%;
+        }
+
+        // The darker band slides right by 30% of its width.
+        .boise-contact__bg {
+            animation: boise-contact-bg linear both;
+            animation-timeline: --boise-section;
+            animation-range: cover 0% cover 100%;
+        }
+    }
+}
+
+@keyframes boise-stats-bg {
+    from {
+        translate: -50px 0;
+    }
+
+    to {
+        translate: 200px 0;
+    }
+}
+
+@keyframes boise-words {
+    from {
+        translate: 0 40%;
+    }
+
+    to {
+        translate: 0 -40%;
+    }
+}
+
+@keyframes boise-services-intro {
+    from {
+        translate: 0 -50px;
+    }
+
+    to {
+        translate: 0 50px;
+    }
+}
+
+@keyframes boise-contact-bg {
+    from {
+        translate: -20% 0;
+    }
+
+    to {
+        translate: 10% 0;
+    }
+}
+
+// We can help
+
+.boise-services {
+    padding-block: var(--space-section);
+
+    &__inner {
+        display: grid;
+        gap: var(--space-fluid-2xl) var(--space-column-gap);
+        align-items: center;
+
+        @include lg {
+            grid-template-columns: 6fr 5fr;
+            column-gap: calc(var(--space-column-gap) + 8%);
+        }
+    }
+
+    &__intro > :last-child {
+        margin-bottom: 0;
+    }
+
+    &__heading {
+        @include statement;
+        margin-bottom: var(--space-fluid-lg);
+    }
+
+    &__group + &__group {
+        max-width: 370px;
+        margin-top: var(--space-xl);
+        padding-top: var(--space-xl);
+        border-top: 1px dashed var(--color-neutral-3);
+    }
+
+    &__group-title {
+        display: flex;
+        align-items: center;
+        gap: var(--space-xs);
+        margin: 0 0 var(--space-xs);
+        color: var(--color-primary);
+        font-family: var(--font-display);
+        font-size: fluid(22, 26);
+        font-weight: 700;
+        letter-spacing: 0.025em;
+        line-height: 1.2;
+        text-transform: uppercase;
+    }
+
+    &__icon svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    &__list {
+        margin: 0;
+        padding-left: 1.1em;
+        font-family: var(--font-serif);
+        font-size: fluid(18, 20);
+        line-height: 1.4;
+
+        li + li {
+            margin-top: var(--space-2xs);
+        }
+    }
+}
+
+// Let's work together
+
+.boise-contact {
+    position: relative;
+    isolation: isolate;
+    padding-block: var(--space-section);
+    overflow: hidden;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+
+    // The darker angled band behind the section.
+    &__bg {
+        position: absolute;
+        inset-block: 0;
+        left: -20%;
+        z-index: -1;
+        width: min(760px, 120%);
+        background-color: color-mix(in oklch, var(--color-primary) 90%, var(--color-black));
+        clip-path: polygon(48.06% 0, 100% 0, 53.07% 100%, 0 100%);
+
+        @include lg {
+            left: 8%;
+        }
+    }
+
+    &__inner {
+        display: grid;
+        gap: var(--space-fluid-2xl) var(--space-column-gap);
+        align-items: center;
+
+        @include lg {
+            grid-template-columns: 5fr 6fr;
+            column-gap: calc(var(--space-column-gap) + 8%);
+        }
+    }
+
+    &__intro > :last-child {
+        margin-bottom: 0;
+    }
+
+    &__heading {
+        @include statement;
+        max-width: 7em;
+        margin-bottom: var(--space-fluid-lg);
+    }
+}
+
+// Jump-link targets clear the sticky header.
+.boise-stats,
+.boise-contact {
+    scroll-margin-top: $header-height;
+}
+
+// Gravity Forms markup can't carry BEM classes, so its own selectors are
+// scoped to the form wrapper. The form is set to the "gravity-theme" form
+// theme (inc/boise-state.php); adding the wrapper's .gravity-theme class
+// outranks that theme's rules, which print after this stylesheet.
+.boise-contact__form .gform_wrapper.gravity-theme {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: 16px;
+
+    .gform_fields {
+        row-gap: var(--space-md);
+    }
+
+    .gfield_label,
+    .gfield_label.gform-field-label {
+        display: block;
+        margin: 0 0 var(--space-2xs);
+        color: var(--color-white);
+        font-family: var(--font-sans);
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.4;
+    }
+
+    // The labels carry their own asterisks.
+    .gfield_required,
+    .gform_required_legend {
+        display: none;
+    }
+
+    // The "What service(s)…" HTML field heads the two checkbox lists.
+    .gfield--type-html {
+        margin-bottom: calc(var(--space-md) * -1 + var(--space-2xs));
+
+        .gfield_label {
+            margin: 0;
+        }
+    }
+
+    input:is([type="text"], [type="email"]),
+    textarea {
+        width: 100%;
+        min-height: 50px;
+        padding: var(--space-xs) var(--space-sm);
+        border: 0;
+        border-radius: 0;
+        background-color: var(--color-white);
+        box-shadow: none;
+        color: var(--color-foreground);
+        font-family: var(--font-sans);
+        font-size: 16px;
+        line-height: 1.4;
+
+        &:focus {
+            outline: 2px solid var(--color-white);
+            outline-offset: 2px;
+        }
+    }
+
+    textarea {
+        height: 120px;
+        resize: vertical;
+    }
+
+    .gfield--type-checkbox .gfield_label {
+        font-weight: 600;
+    }
+
+    .gfield_checkbox {
+        display: grid;
+        gap: var(--space-2xs);
+    }
+
+    .gchoice {
+        display: flex;
+        align-items: flex-start;
+        gap: var(--space-xs);
+    }
+
+    // Round checkboxes, as in the design.
+    .gfield-choice-input {
+        flex: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        margin: 1px 0 0;
+        border: 1px solid var(--color-white);
+        border-radius: 50%;
+        background: transparent;
+        cursor: pointer;
+
+        &::before {
+            content: none;
+        }
+
+        &:checked {
+            background-color: var(--color-white);
+            box-shadow: inset 0 0 0 3px var(--color-primary);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-white);
+            outline-offset: 2px;
+        }
+    }
+
+    .gchoice label {
+        max-width: none;
+        margin: 0;
+        color: var(--color-white);
+        font-size: 15px;
+        line-height: 1.4;
+        cursor: pointer;
+    }
+
+    .gform_footer {
+        margin: var(--space-lg) 0 0;
+        padding: 0;
+    }
+
+    .gform_button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 150px;
+        min-height: 60px;
+        padding: var(--space-xs) var(--space-xl);
+        border: 2px solid var(--color-white);
+        border-radius: 0;
+        background-color: transparent;
+        box-shadow: none;
+        color: var(--color-white);
+        font-family: var(--font-sans);
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1;
+        cursor: pointer;
+        transition:
+            background-color var(--duration) var(--ease-out),
+            color var(--duration) var(--ease-out);
+
+        &:hover,
+        &:focus-visible {
+            background-color: var(--color-white);
+            color: var(--color-primary);
+        }
+    }
+
+    // Errors and confirmation, legible on red.
+    .gform_validation_errors {
+        margin: 0 0 var(--space-md);
+        padding: var(--space-sm);
+        border: 0;
+        border-radius: 0;
+        background-color: var(--color-white);
+        box-shadow: none;
+
+        .gform-icon {
+            display: none;
+        }
+
+        > h2 {
+            margin: 0;
+            color: var(--color-primary);
+            font-family: var(--font-sans);
+            font-size: 16px;
+            font-weight: 500;
+        }
+    }
+
+    .gfield_error input:is([type="text"], [type="email"]),
+    .gfield_error textarea {
+        border: 0;
+        box-shadow: inset 0 0 0 2px var(--color-neutral-5);
+    }
+
+    .gfield_error .gfield_label {
+        color: var(--color-white);
+    }
+
+    .gfield_validation_message,
+    .validation_message {
+        margin-top: var(--space-2xs);
+        padding: 0;
+        border: 0;
+        background: none;
+        color: var(--color-white);
+        font-size: 14px;
+        font-weight: 500;
+    }
+}
+
+.boise-contact__form .gform_confirmation_message {
+    @include subheading;
+    color: var(--color-white);
+}

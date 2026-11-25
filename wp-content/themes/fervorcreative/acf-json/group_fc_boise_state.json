@@ -1,0 +1,80 @@
+{
+    "key": "group_fc_boise_state",
+    "title": "Boise State Page",
+    "fields": [
+        {
+            "key": "field_fc_boise_state_hero_image",
+            "label": "Hero Image",
+            "name": "hero_image",
+            "type": "image",
+            "instructions": "Full-width background behind the “New to blue” heading. It's darkened for the white text.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_fc_boise_state_partner_logo",
+            "label": "Partner Logo",
+            "name": "partner_logo",
+            "type": "image",
+            "instructions": "Shown under the heading on the dark hero, so use a white version. SVGs are inlined.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_fc_boise_state_form",
+            "label": "Contact Form ID",
+            "name": "contact_form",
+            "type": "number",
+            "instructions": "Gravity Forms form ID for the “Let's work together!” section (Forms → Forms, ID column).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": 1,
+            "max": "",
+            "step": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "templates/boise-state.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1795600000
+}
