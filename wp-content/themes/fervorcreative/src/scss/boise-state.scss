@@ -420,7 +420,7 @@ html:has(.boise-header) {
             animation-range: cover 0% cover 100%;
         }
 
-        // The darker band slides right by 30% of its width.
+        // The darker band slides right by 30% of its width, as on the old site.
         .boise-contact__bg {
             animation: boise-contact-bg linear both;
             animation-timeline: --boise-section;
@@ -461,11 +461,11 @@ html:has(.boise-header) {
 
 @keyframes boise-contact-bg {
     from {
-        translate: -20% 0;
+        translate: -70% 0;
     }
 
     to {
-        translate: 10% 0;
+        translate: -40% 0;
     }
 }
 
@@ -543,19 +543,18 @@ html:has(.boise-header) {
     background-color: var(--color-primary);
     color: var(--color-white);
 
-    // The darker angled band behind the section.
+    // The darker angled band behind the section: the old site's 759 × 875
+    // contact-bg.svg shape and color, kept in proportion at the section's full
+    // height and set off from the center line by part of its own width.
     &__bg {
         position: absolute;
         inset-block: 0;
-        left: -20%;
+        left: 50%;
         z-index: -1;
-        width: min(760px, 120%);
-        background-color: color-mix(in oklch, var(--color-primary) 90%, var(--color-black));
+        aspect-ratio: 759 / 875;
+        background-color: color-mix(in srgb, var(--color-primary) 92%, var(--color-black));
         clip-path: polygon(48.06% 0, 100% 0, 53.07% 100%, 0 100%);
-
-        @include lg {
-            left: 8%;
-        }
+        translate: -55% 0;
     }
 
     &__inner {
