@@ -21,24 +21,64 @@ html:has(.boise-header) {
 }
 
 // Header
+//
+// Works like the main site header (blocks/site-header): fixed at full
+// height, then once the page scrolls (header.js adds .is-scrolled) a white
+// bar slides down and the logo rises onto it. The buttons hang half over the
+// header's bottom edge and follow it up; all but the last slide on up and
+// off the screen.
 
 .boise-header {
-    position: sticky;
-    top: var(--wp-admin--admin-bar--height, 0px);
-    z-index: 20;
-    background-color: var(--color-white);
+    --boise-header-bar-height: #{$header-height};
+    // Where the header's bottom edge sits: full height, then the bar's.
+    --boise-header-edge: var(--header-height);
+    // How far the logo sits below the bar while the header is at full height.
+    --boise-header-offset: calc((var(--header-height) - var(--boise-header-bar-height)) / 2);
+    --boise-header-duration: 400ms;
+
+    // Holds the header's space, since the bar is fixed.
+    min-height: var(--header-height);
+
+    &:has(.is-scrolled) {
+        --boise-header-edge: var(--boise-header-bar-height);
+        --boise-header-offset: 0px;
+    }
+
+    &__bar {
+        position: fixed;
+        inset: var(--wp-admin--admin-bar--height, 0px) 0 auto;
+        z-index: 20;
+
+        // The white bar sits at its scrolled height and slides down from
+        // above, so it doesn't grow or shrink along with the header.
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0 0 auto;
+            z-index: -1;
+            height: var(--boise-header-bar-height);
+            background-color: var(--color-white);
+            translate: 0 -100%;
+            transition: translate var(--duration) var(--ease-out);
+        }
+
+        &.is-scrolled::before {
+            translate: none;
+        }
+    }
 
     &__inner {
+        position: relative;
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        gap: var(--space-md);
-        min-height: $header-height;
+        min-height: var(--boise-header-bar-height);
     }
 
     &__logo {
         display: block;
         color: var(--color-primary);
+        translate: 0 var(--boise-header-offset);
+        transition: translate var(--boise-header-duration) var(--ease-out);
 
         svg,
         img {
@@ -51,13 +91,19 @@ html:has(.boise-header) {
         }
     }
 
-    // Below md the hero carries the jump links instead.
+    // Centered on the header's bottom edge. Below md the hero carries the
+    // jump links instead.
     &__nav {
+        position: absolute;
+        top: 0;
+        right: var(--space-gutter);
         display: none;
+        gap: var(--space-2xs);
+        translate: 0 calc(var(--boise-header-edge) - 50%);
+        transition: translate var(--boise-header-duration) var(--ease-out);
 
         @include md {
             display: flex;
-            gap: var(--space-2xs);
         }
     }
 
@@ -66,6 +112,18 @@ html:has(.boise-header) {
         min-height: 48px;
         padding-inline: var(--space-md);
         font-size: 15px;
+        // Hidden once it's off screen, so it can't take focus there.
+        transition:
+            background-color var(--duration) var(--ease-out),
+            translate var(--boise-header-duration) var(--ease-out),
+            visibility 0s linear;
+    }
+
+    // Clears the bar, the admin bar, and the button itself.
+    &:has(.is-scrolled) &__button:not(:last-child) {
+        visibility: hidden;
+        translate: 0 calc(-1 * (var(--wp-admin--admin-bar--height, 0px) + var(--boise-header-bar-height) + 100%));
+        transition-delay: 0s, 0s, var(--boise-header-duration);
     }
 }
 

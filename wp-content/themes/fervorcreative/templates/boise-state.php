@@ -73,25 +73,27 @@ $jump_links = array(
 <?php wp_body_open(); ?>
 <div class="wp-site-blocks">
 	<header class="boise-header">
-		<a class="skip-link" href="#main"><?php esc_html_e( 'Skip to content', 'fervorcreative' ); ?></a>
+		<div class="boise-header__bar" data-header>
+			<a class="skip-link" href="#main"><?php esc_html_e( 'Skip to content', 'fervorcreative' ); ?></a>
 
-		<div class="boise-header__inner container">
-			<a class="boise-header__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-				<?php if ( $logo_svg ) : ?>
-					<?php echo $logo_svg; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- sanitized by fervor_get_svg_attachment. ?>
-					<span class="visually-hidden"><?php bloginfo( 'name' ); ?></span>
-				<?php elseif ( $logo_id ) : ?>
-					<?php echo wp_get_attachment_image( $logo_id, 'medium', false, array( 'alt' => get_bloginfo( 'name' ) ) ); ?>
-				<?php else : ?>
-					<?php bloginfo( 'name' ); ?>
-				<?php endif; ?>
-			</a>
+			<div class="boise-header__inner container">
+				<a class="boise-header__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+					<?php if ( $logo_svg ) : ?>
+						<?php echo $logo_svg; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- sanitized by fervor_get_svg_attachment. ?>
+						<span class="visually-hidden"><?php bloginfo( 'name' ); ?></span>
+					<?php elseif ( $logo_id ) : ?>
+						<?php echo wp_get_attachment_image( $logo_id, 'medium', false, array( 'alt' => get_bloginfo( 'name' ) ) ); ?>
+					<?php else : ?>
+						<?php bloginfo( 'name' ); ?>
+					<?php endif; ?>
+				</a>
 
-			<nav class="boise-header__nav" aria-label="<?php esc_attr_e( 'Page', 'fervorcreative' ); ?>">
-				<?php foreach ( $jump_links as $href => $label ) : ?>
-					<a class="btn boise-header__button" href="<?php echo esc_attr( $href ); ?>"><?php echo esc_html( $label ); ?></a>
-				<?php endforeach; ?>
-			</nav>
+				<nav class="boise-header__nav" aria-label="<?php esc_attr_e( 'Page', 'fervorcreative' ); ?>">
+					<?php foreach ( $jump_links as $href => $label ) : ?>
+						<a class="btn boise-header__button" href="<?php echo esc_attr( $href ); ?>"><?php echo esc_html( $label ); ?></a>
+					<?php endforeach; ?>
+				</nav>
+			</div>
 		</div>
 	</header>
 
