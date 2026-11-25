@@ -52,6 +52,25 @@
             "return_format": "id",
             "preview_size": "medium",
             "library": "all"
+        },
+        {
+            "key": "field_fc_project_card_video",
+            "label": "Card Video",
+            "name": "card_video",
+            "type": "file",
+            "instructions": "Optional muted, looping MP4 for project grids. Plays in place of the card image, which becomes its poster.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "mp4,webm"
         }
     ],
     "location": [
@@ -72,5 +91,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1792947693
+    "modified": 1795577712
 }

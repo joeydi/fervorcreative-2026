@@ -13,6 +13,7 @@
 $project_id = (int) ( $args['id'] ?? 0 );
 $size       = $args['size'] ?? 'small';
 $image_id   = fervor_get_project_card_image( $project_id );
+$video      = get_field( 'card_video', $project_id );
 $tagline    = get_field( 'tagline', $project_id );
 $services   = fervor_get_project_services( $project_id );
 
@@ -27,7 +28,22 @@ $sizes = array(
 	<a class="project-card__link" href="<?php echo esc_url( get_permalink( $project_id ) ); ?>">
 		<figure class="project-card__media">
 			<?php
-			if ( $image_id ) {
+			if ( ! empty( $video['url'] ) ) {
+				// The card image becomes the poster; the video carries its alt text as a label.
+				$poster = $image_id ? wp_get_attachment_image_url( $image_id, '2048x2048' ) : '';
+				$label  = $image_id ? get_post_meta( $image_id, '_wp_attachment_image_alt', true ) : '';
+				?>
+				<video
+					class="project-card__image project-card__video"
+					src="<?php echo esc_url( $video['url'] ); ?>"
+					<?php echo $poster ? 'poster="' . esc_url( $poster ) . '"' : ''; ?>
+					<?php echo $label ? 'role="img" aria-label="' . esc_attr( $label ) . '"' : 'aria-hidden="true"'; ?>
+					autoplay
+					muted
+					loop
+					playsinline></video>
+				<?php
+			} elseif ( $image_id ) {
 				echo wp_get_attachment_image(
 					$image_id,
 					'full' === $size ? '2048x2048' : '1536x1536',
